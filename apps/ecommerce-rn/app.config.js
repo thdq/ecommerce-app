@@ -1,6 +1,6 @@
 const config = {
-  name: "ecommerce-rn",
-  slug: "ecommerce-rn",
-};
+  name: 'ecommerce-rn',
+  slug: 'ecommerce-rn',
+}
 
-export default config;
+export default config
