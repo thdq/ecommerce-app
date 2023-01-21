@@ -1,5 +1,5 @@
 module.exports = {
   root: true,
-  extends: ["react-custom"],
-  settings: { },
-};
+  extends: ['react-custom'],
+  settings: {},
+}
