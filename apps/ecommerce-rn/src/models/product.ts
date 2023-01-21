@@ -11,11 +11,7 @@ export type ProductType = {
   images: string[]
 }
 
-interface IProduct extends ProductType {
-  getPriceWithoutDiscount?: () => number
-}
-
-class Product implements IProduct {
+class Product implements ProductType {
   constructor(
     public id: string,
     public title: string,
