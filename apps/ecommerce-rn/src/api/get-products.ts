@@ -8,12 +8,12 @@ export type GetProductsParam = {
   page?: number
 }
 
-type ProductsPayload = {
+export type ProductsPayload = {
   products: Product[]
   total: number
   skip: number
   limit: number
-}
+} | null
 
 export const getProducts = ({
   limit = ITEMS_PER_PAGINATION,
@@ -23,7 +23,7 @@ export const getProducts = ({
 
   return new Promise((resolve, reject) => {
     httpClient
-      .request({
+      .request<ProductsPayload>({
         url: '/products',
         params: {
           limit,
