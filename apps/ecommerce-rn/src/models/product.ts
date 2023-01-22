@@ -1,4 +1,4 @@
-export type ProductType = {
+type ProductType = {
   id: string
   title: string
   price: number
@@ -22,12 +22,21 @@ class Product implements ProductType {
   category: string
   thumbnail: string
   images: string[]
+  inCart: boolean
   constructor(params: ProductType) {
     Object.assign(this, params)
   }
 
-  getFormattedPrice() {
+  getFormattedPrice(): string {
     return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+  }
+
+  markAsInCart(): void {
+    this.inCart = true
+  }
+
+  unMarkFromCart(): void {
+    this.inCart = false
   }
 }
 
