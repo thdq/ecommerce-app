@@ -1,14 +1,13 @@
-import { Text, Button, View, StyleSheet } from 'react-native'
+import { Suspense } from 'react'
+import { Text, View, StyleSheet } from 'react-native'
+import { ProductList } from '../../components/ProductList'
 
 const Products = ({ navigation }: any) => {
-  const handlePress = () => {
-    navigation.navigate('Cart')
-  }
-
   return (
     <View style={styles.container}>
-      <Text> Products screen </Text>
-      <Button title='Go to Cart' onPress={handlePress} />
+      <Suspense fallback={<Text style={styles.title}>Loading</Text>}>
+        <ProductList />
+      </Suspense>
     </View>
   )
 }
@@ -19,6 +18,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginTop: 70,
+    textAlign: 'center',
+    marginBottom: 30,
   },
 })
 

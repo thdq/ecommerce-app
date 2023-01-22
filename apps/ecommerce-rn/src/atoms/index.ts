@@ -1,8 +1,16 @@
 import { atom } from 'jotai'
-import { Product } from '../models/product'
+import { ProductsPayload } from '../api/get-products'
+import { CartSummaryType } from '../models/cart-summary'
 
-const productAtom = atom(null)
-const cartAtom = atom<Product[]>([])
-const categoriesAtom = atom<string[]>([])
+const initialValues = {
+  cartSummaryAtom: {
+    totalItens: 0,
+    totalPrice: 0,
+    list: [],
+  },
+}
 
-export { productAtom, cartAtom, categoriesAtom }
+const productsAtom = atom<ProductsPayload>(null)
+const cartSummaryAtom = atom<CartSummaryType>(initialValues.cartSummaryAtom)
+
+export { productsAtom, cartSummaryAtom }
