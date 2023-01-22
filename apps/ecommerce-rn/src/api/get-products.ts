@@ -19,7 +19,7 @@ export const getProducts = ({
   limit = ITEMS_PER_PAGINATION,
   page = 1,
 }: GetProductsParam): Promise<ProductsPayload | undefined> => {
-  const offset = page * limit
+  const offset = (page - 1) * limit
 
   return new Promise((resolve, reject) => {
     httpClient
