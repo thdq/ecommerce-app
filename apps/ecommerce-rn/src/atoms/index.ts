@@ -1,8 +1,15 @@
 import { atom } from 'jotai'
-import { Product } from '../models/product'
+import { CartType } from '../models/cart'
+import { ProductType } from '../models/product'
 
-const productAtom = atom(null)
-const cartAtom = atom<Product[]>([])
-const categoriesAtom = atom<string[]>([])
+export type ProductsAtom = {
+  products: ProductType[]
+  total: number
+  skip: number
+  limit: number
+} | null
 
-export { productAtom, cartAtom, categoriesAtom }
+const productsAtom = atom<ProductsAtom>(null)
+const cartAtom = atom<CartType[]>([])
+
+export { productsAtom, cartAtom }
