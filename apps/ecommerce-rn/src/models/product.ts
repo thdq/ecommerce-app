@@ -25,6 +25,10 @@ class Product implements ProductType {
   constructor(params: ProductType) {
     Object.assign(this, params)
   }
+
+  getFormattedPrice() {
+    return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+  }
 }
 
 export { Product }

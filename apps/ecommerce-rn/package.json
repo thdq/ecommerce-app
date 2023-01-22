@@ -29,6 +29,7 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.70.6",
+    "@types/styled-components-react-native": "^5.2.1",
     "env-cmd": "^10.1.0",
     "eslint-config-react-custom": "*",
     "ts-node": "^10.9.1",
