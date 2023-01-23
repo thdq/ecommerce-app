@@ -6,7 +6,6 @@ const fetcher = (params: HttpClientRequest) =>
 const swrConfig = {
   fetcher,
   revalidateOnFocus: false,
-  suspense: true,
 }
 
 export default swrConfig

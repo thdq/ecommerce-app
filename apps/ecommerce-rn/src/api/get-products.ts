@@ -8,24 +8,22 @@ export type GetProductsParam = {
   page?: number
 }
 
-export const getProducts = ({
+export const getProducts = async ({
   limit = ITEMS_PER_PAGINATION,
   page = 1,
 }: GetProductsParam): Promise<ProductList | undefined> => {
   const offset = (page - 1) * limit
 
-  return new Promise((resolve, reject) => {
-    httpClient
-      .request<ProductList>({
-        url: '/products',
-        params: {
-          limit,
-          skip: offset,
-        },
-      })
-      .then((res) => resolve(res.data))
-      .catch((res) => {
-        reject(res)
-      })
-  })
+  return await httpClient
+    .request<ProductList>({
+      url: '/products',
+      params: {
+        limit,
+        skip: offset,
+      },
+    })
+    .then((res) => res.data)
+    .catch(() => {
+      throw new Error('An error occurred while fetching the product list')
+    })
 }

@@ -5,7 +5,6 @@ import { Product } from '../models/product'
 const updateSummary = (list: Product[]) => {
   const infos = list.reduce(
     (accumulator, product) => {
-      console.log(product)
       const totalItens = accumulator.totalItens + product.getAddedQuantity()
       const totalPrice = accumulator.totalPrice + product.price
 

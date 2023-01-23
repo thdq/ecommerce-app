@@ -1,13 +1,10 @@
-import { Suspense } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { ProductList } from '../../components/ProductList'
 
 const Products = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      <Suspense fallback={<Text style={styles.title}>Loading</Text>}>
-        <ProductList />
-      </Suspense>
+      <ProductList />
     </View>
   )
 }
