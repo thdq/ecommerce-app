@@ -26,3 +26,7 @@ Este projeto foi desenvolvido com a finalidade de reproduzir um e-commerce simpl
 ```bash
 npm run dev
 ```
+
+## Outras documentações
+
+- [Estrutura](./docs/structure.md)
