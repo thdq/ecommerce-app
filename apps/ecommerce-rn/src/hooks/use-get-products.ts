@@ -8,12 +8,12 @@ const MAX_RETRY_FETCH_ON_ERROR = 3
 
 export const useGetProducts = () => {
   const [filteredList, setProducts] = useAtom(productListAtom)
-  const { data, ...swrOptions } = useSWR(GET_PRODUCTS_KEY, getProducts, {
+  const { data: response, ...swrOptions } = useSWR(GET_PRODUCTS_KEY, getProducts, {
     errorRetryCount: MAX_RETRY_FETCH_ON_ERROR,
   })
 
   if (!swrOptions.error) {
-    setProducts(data ?? null)
+    setProducts(response?.data ?? null)
   }
 
   return {

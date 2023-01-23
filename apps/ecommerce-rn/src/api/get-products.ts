@@ -1,5 +1,5 @@
 import { ProductList } from '../models/product-list'
-import { httpClient } from '../service/http-client'
+import { httpClient, HttpClientResponse } from '../service/http-client'
 
 const ITEMS_PER_PAGINATION = 20
 
@@ -11,19 +11,19 @@ export type GetProductsParam = {
 export const getProducts = async ({
   limit = ITEMS_PER_PAGINATION,
   page = 1,
-}: GetProductsParam): Promise<ProductList | undefined> => {
+}: GetProductsParam): Promise<HttpClientResponse<ProductList, unknown>> => {
   const offset = (page - 1) * limit
 
-  return await httpClient
-    .request<ProductList>({
+  try {
+    const response = await httpClient.request<ProductList>({
       url: '/products',
       params: {
         limit,
         skip: offset,
       },
     })
-    .then((res) => res.data)
-    .catch(() => {
-      throw new Error('An error occurred while fetching the product list')
-    })
+    return response
+  } catch {
+    throw new Error('An error occurred while fetching the product list')
+  }
 }
