@@ -1,73 +1,39 @@
-# Turborepo starter
+# Monorepo para e-Commerce
 
-This is an official npm starter turborepo.
+Este repositório contempla a arquitetura de monorepos construído a partir do **_build system_** [Turborepo](https://turbo.build/repo).
 
-## What's inside?
+## Porque um build system?
 
-This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It includes the following packages/apps:
+A utilização de um monorepo é uma estratégia para a escabilidade da arquitetura para outras aplicações que possam compartilhar do mesmo código, tais como configuração de TypeScript, Design System e regras de negócio de dominío por exemplo.
 
-### Apps and Packages
+## Estrutura dos repositórios
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+- `apps/ecommerce-rn`: Uma aplicação de e-Commerce desenvolvida com React Native (com Expo);
+- `packages/eslint-config-react-custom`: Biblioteca de configuração do ESlint para React e React Native;
+- `packages/tsconfig`: Configuração do TypeScript.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Inicialização
 
-### Utilities
+### Requisitos
 
-This turborepo has some additional tools already setup for you:
+- Node v18.x (`No terminal use o comando nvm install 18`)
+- NPM 6.x ou superior (`No terminal use o comando npm install -g npm@latest para atualizar`)
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Para rodar localmente todos as aplicações e bibliotecas siga o comando abaixo após o clone do repositório:
 
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-npm run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```bash
+cd ecommerce-app # Ou inicialize o terminal na pasta root do repositório
 npm run dev
 ```
 
-### Remote Caching
+Ou para rodar apenas uma aplicação pode-se usar o comando abaixo:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+npm run dev:APP_NAME # npm run dev:ecommerce-rn por exemplo
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Observação: Se um app depende de um pacote não inicializado, não é necessário rodá-lo localmente também, pois o app irá fazer o build das dependências locais antes da inicialização.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+### Documentações das aplicações/biblioteca
 
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- [apps/ecommerce-rn](./apps/ecommerce-rn/README.md)

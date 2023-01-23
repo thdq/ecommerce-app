@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
-    "start": "env-cmd --silent -f ./.env.local expo start",
+    "dev": "env-cmd --silent -f ./.env.local expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -20,7 +20,6 @@
     "jest-expo": "^47.0.1",
     "jotai": "^1.13.1",
     "react": "18.1.0",
-    "react-dom": "18.1.0",
     "react-native": "0.70.5",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
