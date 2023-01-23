@@ -11,10 +11,12 @@ export const ProductList = () => {
     <ProductListContainer>
       {products.length ? (
         products.map((product) => {
-          return <ProductCard key={product.id} product={new Product(product)} />
+          return (
+            <ProductCard testID='product-card' key={product.id} product={new Product(product)} />
+          )
         })
       ) : error ? (
-        <Text>Ocorreu um erro ao carregar a lista</Text>
+        <Text testID='error'>Ocorreu um erro ao carregar a lista</Text>
       ) : isLoading ? (
         <Text>Carregando</Text>
       ) : (

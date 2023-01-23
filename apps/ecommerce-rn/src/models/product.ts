@@ -1,5 +1,6 @@
 export type ProductType = {
-  id: string
+  id: number
+  description: string
   title: string
   price: number
   discountPercentage: number
@@ -12,7 +13,8 @@ export type ProductType = {
 }
 
 class Product implements ProductType {
-  id: string
+  id: number
+  description: string
   title: string
   price: number
   discountPercentage: number
