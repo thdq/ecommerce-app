@@ -1,4 +1,4 @@
-import { Product } from '../models/product'
+import { ProductList } from '../models/product-list'
 import { httpClient } from '../service/http-client'
 
 const ITEMS_PER_PAGINATION = 20
@@ -8,22 +8,15 @@ export type GetProductsParam = {
   page?: number
 }
 
-export type ProductsPayload = {
-  products: Product[]
-  total: number
-  skip: number
-  limit: number
-} | null
-
 export const getProducts = ({
   limit = ITEMS_PER_PAGINATION,
   page = 1,
-}: GetProductsParam): Promise<ProductsPayload | undefined> => {
+}: GetProductsParam): Promise<ProductList | undefined> => {
   const offset = (page - 1) * limit
 
   return new Promise((resolve, reject) => {
     httpClient
-      .request<ProductsPayload>({
+      .request<ProductList>({
         url: '/products',
         params: {
           limit,

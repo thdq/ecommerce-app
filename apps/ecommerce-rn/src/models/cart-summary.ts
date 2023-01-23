@@ -1,13 +1,7 @@
-export type ProductToCartType = {
-  id: string
-  title: string
-  quantity: number
-  price: number
-  thumbnail: string
-}
+import { Product } from './product'
 
-export type CartSummaryType = {
+export type CartSummary = {
   totalItens: number
   totalPrice: number
-  list: ProductToCartType[]
+  list: Product[]
 }

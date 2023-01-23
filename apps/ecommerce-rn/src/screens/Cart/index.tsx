@@ -1,14 +1,23 @@
 import { Text, Button, View, StyleSheet } from 'react-native'
+import { ProductCart } from '../../components/ProductCart'
+import { useCart } from '../../hooks/use-cart'
 
 const Cart = ({ navigation }: any) => {
-  const handlePress = () => {
+  const { getCartSummary } = useCart()
+  const { list, totalItens, totalPrice } = getCartSummary()
+
+  const handleBack = () => {
     navigation.navigate('Products')
   }
 
   return (
     <View style={styles.container}>
-      <Text> Cart screen </Text>
-      <Button title='Go back' onPress={handlePress} />
+      <Text> Total de itens: {totalItens} </Text>
+      <Text> Valor total: {totalPrice} </Text>
+      {list.map((product) => (
+        <ProductCart product={product} key={product.id} />
+      ))}
+      <Button title='Go back' onPress={handleBack} />
     </View>
   )
 }

@@ -1,4 +1,4 @@
-type ProductType = {
+export type ProductType = {
   id: string
   title: string
   price: number
@@ -23,6 +23,7 @@ class Product implements ProductType {
   thumbnail: string
   images: string[]
   inCart: boolean
+  private quantity: number
   constructor(params: ProductType) {
     Object.assign(this, params)
   }
@@ -37,6 +38,16 @@ class Product implements ProductType {
 
   unMarkFromCart(): void {
     this.inCart = false
+  }
+
+  setQuantity(quantity: number) {
+    this.quantity = quantity
+  }
+
+  getAddedQuantity() {
+    if (!this.inCart) throw new Error('Product not in cart, you must add to cart to get quantity')
+
+    return this.quantity
   }
 }
 

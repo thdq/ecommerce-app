@@ -1,12 +1,12 @@
 import { useAtom } from 'jotai'
 import { cartSummaryAtom } from '../atoms'
-import { ProductToCartType } from '../models/cart-summary'
 import { Product } from '../models/product'
 
-const updateSummary = (list: ProductToCartType[]) => {
+const updateSummary = (list: Product[]) => {
   const infos = list.reduce(
     (accumulator, product) => {
-      const totalItens = accumulator.totalItens + product.quantity
+      console.log(product)
+      const totalItens = accumulator.totalItens + product.getAddedQuantity()
       const totalPrice = accumulator.totalPrice + product.price
 
       return {
@@ -30,32 +30,26 @@ export const useCart = () => {
 
   return {
     addToCart: (productToAdd: Product, quantity = 1) => {
-      const { title, id, price, thumbnail } = productToAdd
-      const updatedProductsCartList = [
-        ...cartSummary.list,
-        {
-          title,
-          id,
-          price,
-          thumbnail,
-          quantity,
-        },
-      ]
+      productToAdd.setQuantity(quantity)
+      const updatedProductsCartList = [...cartSummary.list].concat([productToAdd])
+
+      productToAdd.markAsInCart()
 
       const summary = updateSummary(updatedProductsCartList)
       setCartSummary(summary)
-
-      productToAdd.markAsInCart()
     },
     removeFromCart: (productToRemove: Product) => {
       const updatedProductsCartList = cartSummary.list.filter(
         (product) => product.id !== productToRemove.id,
       )
+      productToRemove.setQuantity(-1)
+      productToRemove.unMarkFromCart()
 
       const summary = updateSummary(updatedProductsCartList)
       setCartSummary(summary)
-
-      productToRemove.unMarkFromCart()
+    },
+    getCartSummary: () => {
+      return cartSummary
     },
   }
 }
