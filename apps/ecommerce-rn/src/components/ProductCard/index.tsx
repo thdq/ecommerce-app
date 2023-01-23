@@ -1,13 +1,13 @@
-import { Button, Text } from 'react-native'
+import { Button, Text, ViewProps } from 'react-native'
 import { Product } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
 
 type ProductCardProps = {
   product: Product
-}
+} & ViewProps
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, ...props }: ProductCardProps) => {
   const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   }
 
   return (
-    <CardContainer>
+    <CardContainer {...props}>
       <Image testID='product-cart-thumbnail' source={{ uri: product.thumbnail }} />
       <Text> {product.title} </Text>
       <Text> {product.getFormattedPrice()} </Text>
