@@ -1,9 +1,5 @@
 import { Provider as JotaiProvider } from 'jotai'
+import { render } from '@testing-library/react-native'
 
-type RenderWithProvidersProps = {
-  children: JSX.Element[] | JSX.Element
-}
-
-export const renderWithProviders = ({ children }: RenderWithProvidersProps) => (
-  <JotaiProvider>{children}</JotaiProvider>
-)
+export const renderWithProviders = (children: JSX.Element[] | JSX.Element) =>
+  render(<JotaiProvider>{children}</JotaiProvider>)

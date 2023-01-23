@@ -20,7 +20,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <CardContainer>
-      <Image source={{ uri: product.thumbnail }} />
+      <Image testID='product-cart-thumbnail' source={{ uri: product.thumbnail }} />
       <Text> {product.title} </Text>
       <Text> {product.getFormattedPrice()} </Text>
       {!product.inCart ? (
