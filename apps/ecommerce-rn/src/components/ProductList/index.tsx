@@ -51,5 +51,3 @@ const FlatList = styled.FlatList`
   flex: 1;
   margin: 0 4px 0 4px;
 ` as unknown as typeof FlatListNative
-
-const Text = styled.Text``
