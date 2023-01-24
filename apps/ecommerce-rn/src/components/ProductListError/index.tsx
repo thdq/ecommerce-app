@@ -1,5 +1,6 @@
 import { ViewProps } from 'react-native'
 import styled from 'styled-components/native'
+import { Button } from 'ui-rn'
 
 type ProductListErrorProps = {
   onTryAgain: () => void
@@ -9,9 +10,7 @@ export const ProductListError = ({ onTryAgain, ...props }: ProductListErrorProps
   return (
     <ProductListErrorContainer {...props}>
       <MessageText>Ocorreu um erro ao recuperar lista de produtos</MessageText>
-      <TryAgainButton onPress={onTryAgain}>
-        <Text>Tentar novamente</Text>
-      </TryAgainButton>
+      <Button onPress={onTryAgain} label='Tentar novamente' />
     </ProductListErrorContainer>
   )
 }
@@ -26,16 +25,4 @@ const MessageText = styled.Text`
   font-size: 18px;
   font-weight: bold;
   color: #444;
-`
-
-const Text = styled.Text`
-  font-weight: bold;
-  color: #14532d;
-`
-
-const TryAgainButton = styled.TouchableOpacity`
-  margin-top: 16px;
-  background-color: #86efac;
-  padding: 12px;
-  border-radius: 6px;
 `

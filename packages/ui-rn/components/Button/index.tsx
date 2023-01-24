@@ -1,32 +1,26 @@
-import * as React from 'react'
-import { TouchableOpacity, StyleSheet, GestureResponderEvent, Text } from 'react-native'
+import { TouchableOpacityProps } from 'react-native'
+import styled from 'styled-components/native'
 
-export interface ButtonProps {
-  text: string
-  onClick?: (event: GestureResponderEvent) => void
-}
+export type ButtonProps = {
+  label?: string
+} & TouchableOpacityProps
 
-export function Button({ text, onClick }: ButtonProps) {
+export function Button({ label, children, ...props }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onClick}>
-      <Text style={styles.text}>{text}</Text>
-    </TouchableOpacity>
+    <ButtonContainer {...props}>
+      {label ? <ButtonLabel>{label}</ButtonLabel> : children}
+    </ButtonContainer>
   )
 }
 
-const styles = StyleSheet.create({
-  button: {
-    maxWidth: 200,
-    textAlign: 'center',
-    borderRadius: 10,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingLeft: 30,
-    paddingRight: 30,
-    fontSize: '15px',
-    backgroundColor: '#2f80ed',
-  },
-  text: {
-    color: 'white',
-  },
-})
+const ButtonContainer = styled.TouchableOpacity`
+  margin-top: 16px;
+  background-color: #86efac;
+  padding: 12px;
+  border-radius: 6px;
+`
+
+const ButtonLabel = styled.Text`
+  font-weight: bold;
+  color: #14532d;
+`
