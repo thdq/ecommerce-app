@@ -1,13 +1,17 @@
-import { Button, Text, ViewProps } from 'react-native'
+import { ActivityIndicator, Text, ViewProps } from 'react-native'
 import { Product } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
+import { Ionicons } from '@expo/vector-icons'
+import { Button } from 'ui-rn'
+import { useState } from 'react'
 
 type ProductCardProps = {
   product: Product
 } & ViewProps
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
+  const [isImageLoading, setIsImageLoading] = useState(true)
   const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
@@ -18,28 +22,61 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
     removeFromCart(product)
   }
 
+  const handleShowLoading = () => {
+    setIsImageLoading(false)
+  }
+
   return (
     <CardContainer {...props}>
-      <Image testID='product-cart-thumbnail' source={{ uri: product.thumbnail }} />
-      <Text> {product.title} </Text>
-      <Text> {product.getFormattedPrice()} </Text>
+      <View>
+        <Image
+          resizeMode='cover'
+          testID='product-cart-thumbnail'
+          source={{ uri: product.thumbnail }}
+          onLoadEnd={handleShowLoading}
+        />
+        {isImageLoading && <ActivityIndicator size='small' color={'#22c55e'} />}
+      </View>
+      <ProductInfoView>
+        <ProductTitleText> {product.title} </ProductTitleText>
+        <PriceText> {product.getFormattedPrice()} </PriceText>
+      </ProductInfoView>
+
       {!product.inCart ? (
-        <Button onPress={handleAddToCart} title='Adicionar ao carrinho'></Button>
+        <AddToCartView>
+          <Button size='small' outline onPress={handleAddToCart}>
+            <Ionicons
+              style={{ color: '#22c55e' }}
+              name='add-circle-sharp'
+              size={40}
+              color='black'
+            />
+          </Button>
+        </AddToCartView>
       ) : (
-        <Button title='Remover do carrinho' onPress={handleRemoveFromCart}></Button>
+        <RemoveToCartView>
+          <Button variant='danger' size='small' onPress={handleRemoveFromCart}>
+            <Text>Remover do carrinho</Text>
+            <Ionicons
+              style={{ marginLeft: 8 }}
+              name='ios-remove-circle-sharp'
+              size={26}
+              color='black'
+            />
+          </Button>
+        </RemoveToCartView>
       )}
     </CardContainer>
   )
 }
 
 const CardContainer = styled.View`
-  min-height: 200px;
-  padding: 4px;
+  width: 100%;
+  padding: 0;
   flex: 1;
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 1px solid transparent;
   border-radius: 8px;
   margin: 8px;
   shadow-color: #000;
@@ -49,6 +86,36 @@ const CardContainer = styled.View`
 `
 
 const Image = styled.Image`
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+`
+
+const AddToCartView = styled.View`
+  color: '#22c55e';
+  margin-left: auto;
+`
+
+const RemoveToCartView = styled.View`
+  margin-bottom: 15px;
+`
+
+const ProductInfoView = styled.View`
+  width: 100%;
+  margin: 12px 0;
+`
+
+const ProductTitleText = styled.Text`
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 2px;
+`
+
+const PriceText = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  color: #111827;
+`
+const View = styled.View`
+  width: 100%;
 `
