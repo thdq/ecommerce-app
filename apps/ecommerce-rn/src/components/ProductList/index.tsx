@@ -4,6 +4,10 @@ import { ProductCard } from '../ProductCard'
 import styled from 'styled-components/native'
 import { ListRenderItem, FlatList as FlatListNative } from 'react-native'
 import { ProductListError } from '../ProductListError'
+import { SkeletonCard } from 'ui-rn'
+
+const NUMBER_COLUMNS = 2
+const SKELETON_FAKE_LIST = [...Array(6).keys()]
 
 export const ProductList = () => {
   const { filteredList, error, isLoading, mutate } = useGetProducts()
@@ -11,6 +15,7 @@ export const ProductList = () => {
 
   const handleRetry = () => mutate()
 
+  const renderSkeleton = () => <SkeletonCard />
   const renderItem: ListRenderItem<ProductType> = ({ item }) => (
     <ProductCard product={new Product(item)} />
   )
@@ -20,12 +25,17 @@ export const ProductList = () => {
       {products.length ? (
         <FlatList
           data={products}
-          numColumns={2}
+          numColumns={NUMBER_COLUMNS}
           keyExtractor={(product: ProductType) => product.id.toString()}
           renderItem={renderItem}
         />
       ) : isLoading ? (
-        <Text>Carregando</Text>
+        <FlatList
+          data={SKELETON_FAKE_LIST}
+          numColumns={NUMBER_COLUMNS}
+          keyExtractor={(item: number) => item.toString()}
+          renderItem={renderSkeleton}
+        />
       ) : error ? (
         <ProductListError onTryAgain={handleRetry} testID='error' />
       ) : null}
