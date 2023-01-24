@@ -1,1 +1,1 @@
-export { Button, type ButtonProps } from './components'
+export * from './components'

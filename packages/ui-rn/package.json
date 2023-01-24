@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
+    "@types/styled-components-react-native": "^5.2.1",
     "eslint": "^8.10.0",
     "eslint-config-react-custom": "*",
     "tsconfig": "*",
@@ -18,9 +19,12 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@types/styled-components-react-native": "^5.2.1",
+    "@react-native-masked-view/masked-view": "0.2.8",
+    "expo-linear-gradient": "~12.0.1",
+    "moti": "^0.22.0",
     "react": "^18.1.0",
     "react-native": "^0.70.3",
+    "react-native-reanimated": "~2.12.0",
     "styled-components": "^5.3.6"
   }
 }
