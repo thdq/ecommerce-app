@@ -1,3 +1,4 @@
+import { environment } from '../config'
 import { ProductList } from '../models/product-list'
 import { httpClient, HttpClientResponse } from '../service/http-client'
 
@@ -13,6 +14,9 @@ export const getProducts = async ({
   page = 1,
 }: GetProductsParam): Promise<HttpClientResponse<ProductList, unknown>> => {
   const offset = (page - 1) * limit
+
+  if (typeof environment.delayRequestsInSeconds === 'number')
+    await new Promise((resolve) => setTimeout(resolve, environment.delayRequestsInSeconds * 1000))
 
   try {
     const response = await httpClient.request<ProductList>({
