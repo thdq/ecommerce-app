@@ -33,10 +33,19 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
 }
 
 const CardContainer = styled.View`
+  min-height: 200px;
+  padding: 4px;
   flex: 1;
+  justify-content: center;
+  align-items: center;
   background-color: white;
-  border: 1px solid black;
-  border-radius: 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  margin: 8px;
+  shadow-color: #000;
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.1;
+  elevation: 3;
 `
 
 const Image = styled.Image`

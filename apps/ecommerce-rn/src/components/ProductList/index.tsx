@@ -3,10 +3,13 @@ import { Product, ProductType } from '../../models/product'
 import { ProductCard } from '../ProductCard'
 import styled from 'styled-components/native'
 import { ListRenderItem, FlatList as FlatListNative } from 'react-native'
+import { ProductListError } from '../ProductListError'
 
 export const ProductList = () => {
-  const { filteredList, error, isLoading } = useGetProducts()
+  const { filteredList, error, isLoading, mutate } = useGetProducts()
   const products = filteredList?.products ?? []
+
+  const handleRetry = () => mutate()
 
   const renderItem: ListRenderItem<ProductType> = ({ item }) => (
     <ProductCard product={new Product(item)} />
@@ -21,10 +24,10 @@ export const ProductList = () => {
           keyExtractor={(product: ProductType) => product.id.toString()}
           renderItem={renderItem}
         />
-      ) : error ? (
-        <Text testID='error'>Ocorreu um erro ao carregar a lista</Text>
       ) : isLoading ? (
         <Text>Carregando</Text>
+      ) : error ? (
+        <ProductListError onTryAgain={handleRetry} testID='error' />
       ) : null}
     </ProductListContainer>
   )
