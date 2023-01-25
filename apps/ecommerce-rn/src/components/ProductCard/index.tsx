@@ -39,7 +39,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         {isImageLoading && <ActivityIndicator size='small' color={'#22c55e'} />}
       </View>
       <ProductInfoView>
-        <ProductTitleText> {product.title} </ProductTitleText>
+        <ProductTitleText>{product.title}</ProductTitleText>
         <PriceText> {product.getFormattedPrice()} </PriceText>
       </ProductInfoView>
 
@@ -132,6 +132,7 @@ const RemoveToCartView = styled.View`
 const ProductInfoView = styled.View`
   width: 100%;
   margin: 12px 0;
+  padding: 0 8px;
 `
 
 const ProductTitleText = styled.Text`
