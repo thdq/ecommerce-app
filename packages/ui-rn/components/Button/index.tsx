@@ -20,7 +20,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <ButtonContainer size={size} variant={variant} {...props}>
-      {label ? <ButtonLabel>{label}</ButtonLabel> : children}
+      {label ? <ButtonLabel variant={variant}>{label}</ButtonLabel> : children}
     </ButtonContainer>
   )
 }
@@ -45,9 +45,16 @@ const ButtonContainer = styled.TouchableOpacity<ButtonContainer>`
   align-items: center;
 `
 
-const ButtonLabel = styled.Text`
+const ButtonLabel = styled.Text<{ variant: string }>`
   width: 100%;
   text-align: center;
   font-weight: bold;
-  color: #14532d;
+  color: ${({ variant }) =>
+    variant === 'primary'
+      ? '#14532d'
+      : variant === 'danger'
+      ? '#b6253a'
+      : variant === 'info'
+      ? '#727881'
+      : ''};
 `

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, ViewProps } from 'react-native'
+import { ActivityIndicator, ViewProps } from 'react-native'
 import { ProductModel } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
@@ -55,15 +55,11 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         </AddToCartView>
       ) : (
         <RemoveToCartView>
-          <Button variant='danger' size='small' onPress={handleRemoveFromCart}>
-            <Text>Remover do carrinho</Text>
-            <Ionicons
-              style={{ marginLeft: 8 }}
-              name='ios-remove-circle-sharp'
-              size={26}
-              color='black'
-            />
-          </Button>
+          <Button
+            variant='danger'
+            label='Remover do carrinho'
+            onPress={handleRemoveFromCart}
+          ></Button>
         </RemoveToCartView>
       )}
     </CardContainer>
@@ -97,6 +93,8 @@ const AddToCartView = styled.View`
 `
 
 const RemoveToCartView = styled.View`
+  padding: 0 8px;
+  width: 100%;
   margin-bottom: 15px;
 `
 
