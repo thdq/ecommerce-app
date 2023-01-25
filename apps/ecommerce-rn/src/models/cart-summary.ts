@@ -41,6 +41,10 @@ export class CartSummaryModel implements CartSummary {
     this.totalShippingTax = totalShippingTax
   }
 
+  hasItens(): boolean {
+    return this.list.length >= 1
+  }
+
   isFreeShipping(): boolean {
     if (this.totalShippingTax === 0) return true
     return false
