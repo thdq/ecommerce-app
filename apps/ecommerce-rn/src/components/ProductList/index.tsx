@@ -1,5 +1,5 @@
 import { useGetProducts } from '../../hooks/use-get-products'
-import { Product, ProductType } from '../../models/product'
+import { ProductModel, ProductType } from '../../models/product'
 import { ProductCard } from '../ProductCard'
 import styled from 'styled-components/native'
 import { ListRenderItem, FlatList as FlatListNative } from 'react-native'
@@ -16,8 +16,8 @@ export const ProductList = () => {
   const handleRetry = () => mutate()
 
   const renderSkeleton = () => <SkeletonCard />
-  const renderItem: ListRenderItem<ProductType> = ({ item }) => (
-    <ProductCard product={new Product(item)} />
+  const renderItem: ListRenderItem<ProductType> = ({ item: product }) => (
+    <ProductCard product={new ProductModel(product)} />
   )
 
   return (
@@ -51,5 +51,3 @@ const FlatList = styled.FlatList`
   flex: 1;
   margin: 0 4px 0 4px;
 ` as unknown as typeof FlatListNative
-
-const Text = styled.Text``

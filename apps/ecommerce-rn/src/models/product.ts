@@ -12,7 +12,15 @@ export type ProductType = {
   images: string[]
 }
 
-class Product implements ProductType {
+type CartStatus = {
+  inCart: boolean
+  quantity: number
+}
+
+const FREE_SHIPPING_IF_MORE_THAN_IT = 300
+const TAX_SHIP_PERCENTAGE = 0.07
+
+export class ProductModel implements ProductType {
   id: number
   description: string
   title: string
@@ -24,33 +32,62 @@ class Product implements ProductType {
   category: string
   thumbnail: string
   images: string[]
-  inCart: boolean
-  private quantity: number
+  private cartStatus: CartStatus
   constructor(params: ProductType) {
     Object.assign(this, params)
+    this.cartStatus = {
+      inCart: false,
+      quantity: 0,
+    }
+  }
+
+  getAddedQuantity() {
+    if (!this.cartStatus.inCart)
+      throw new Error('ProductModel not in cart, you must add to cart to get quantity')
+
+    return this.cartStatus.quantity
   }
 
   getFormattedPrice(): string {
     return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
   }
 
-  markAsInCart(): void {
-    this.inCart = true
+  isFreeShipping(): boolean {
+    return this.getShippingTax() === 0
   }
 
-  unMarkFromCart(): void {
-    this.inCart = false
+  getShippingTax(): number {
+    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return 0
+    return this.price * TAX_SHIP_PERCENTAGE
   }
 
-  setQuantity(quantity: number) {
-    this.quantity = quantity
+  getFormattedShippingTax(): string {
+    const priceWithTax = this.getShippingTax()
+    return priceWithTax.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
   }
 
-  getAddedQuantity() {
-    if (!this.inCart) throw new Error('Product not in cart, you must add to cart to get quantity')
+  getPriceWithShipping(): number {
+    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return this.price
 
-    return this.quantity
+    return this.price + this.getShippingTax()
+  }
+
+  isInCart(): boolean {
+    const { inCart, quantity } = this.cartStatus
+    return inCart && quantity >= 1
+  }
+
+  addToCart(quantity?: number): void {
+    this.cartStatus = {
+      inCart: true,
+      quantity: quantity || 1,
+    }
+  }
+
+  removeFromCart(): void {
+    this.cartStatus = {
+      inCart: false,
+      quantity: 0,
+    }
   }
 }
-
-export { Product }

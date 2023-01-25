@@ -1,5 +1,5 @@
-import { ActivityIndicator, Text, ViewProps } from 'react-native'
-import { Product } from '../../models/product'
+import { ActivityIndicator, ViewProps } from 'react-native'
+import { ProductModel } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
 import { Ionicons } from '@expo/vector-icons'
@@ -7,19 +7,19 @@ import { Button } from 'ui-rn'
 import { useState } from 'react'
 
 type ProductCardProps = {
-  product: Product
+  product: ProductModel
 } & ViewProps
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { addToCart, removeFromCart } = useCart()
+  const { dispatchCart } = useCart()
 
   const handleAddToCart = () => {
-    addToCart(product)
+    dispatchCart({ type: 'ADD', payload: product })
   }
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product)
+    dispatchCart({ type: 'REMOVE', payload: product })
   }
 
   const handleShowLoading = () => {
@@ -42,7 +42,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         <PriceText> {product.getFormattedPrice()} </PriceText>
       </ProductInfoView>
 
-      {!product.inCart ? (
+      {!product.isInCart() ? (
         <AddToCartView>
           <Button size='small' outline onPress={handleAddToCart}>
             <Ionicons
@@ -55,15 +55,11 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         </AddToCartView>
       ) : (
         <RemoveToCartView>
-          <Button variant='danger' size='small' onPress={handleRemoveFromCart}>
-            <Text>Remover do carrinho</Text>
-            <Ionicons
-              style={{ marginLeft: 8 }}
-              name='ios-remove-circle-sharp'
-              size={26}
-              color='black'
-            />
-          </Button>
+          <Button
+            variant='danger'
+            label='Remover do carrinho'
+            onPress={handleRemoveFromCart}
+          ></Button>
         </RemoveToCartView>
       )}
     </CardContainer>
@@ -97,6 +93,8 @@ const AddToCartView = styled.View`
 `
 
 const RemoveToCartView = styled.View`
+  padding: 0 8px;
+  width: 100%;
   margin-bottom: 15px;
 `
 
