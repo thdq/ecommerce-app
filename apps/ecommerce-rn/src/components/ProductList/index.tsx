@@ -16,8 +16,8 @@ export const ProductList = () => {
   const handleRetry = () => mutate()
 
   const renderSkeleton = () => <SkeletonCard />
-  const renderItem: ListRenderItem<ProductType> = ({ item }) => (
-    <ProductCard product={new ProductModel(item)} />
+  const renderItem: ListRenderItem<ProductType> = ({ item: product }) => (
+    <ProductCard product={new ProductModel(product)} />
   )
 
   return (

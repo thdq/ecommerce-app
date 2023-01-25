@@ -44,6 +44,7 @@ const ShippingFreeText = styled.Text`
 const Text = styled.Text``
 
 const TotalPriceText = styled.Text`
+  font-size: 18px;
   font-weight: bold;
 `
 
