@@ -30,8 +30,8 @@ export const SkeletonCard = () => {
             <Skeleton colorMode={colorMode} height={16} width={'75%'} />
             <Spacer height={24} />
             <View style={styles.footerGroup}>
-              <Skeleton colorMode={colorMode} width={'50%'} />
               <Skeleton colorMode={colorMode} width={'70%'} />
+              <Skeleton colorMode={colorMode} width={'50%'} />
             </View>
           </View>
         </View>

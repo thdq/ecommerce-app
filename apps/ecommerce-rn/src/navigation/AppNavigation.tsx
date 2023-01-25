@@ -13,7 +13,7 @@ const AppNavigation = () => {
         name='Products'
         component={Products}
         options={({ navigation }) => ({
-          headerBackTitle: 'Voltar',
+          title: 'Produtos',
           headerRight: () => (
             <TouchableHighlight>
               <AntDesign
