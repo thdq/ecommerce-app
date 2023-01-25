@@ -1,9 +1,9 @@
 import { cartSummaryAtom } from '../atoms'
 import { useReducerAtom } from 'jotai/utils'
-import { Product, ProductType } from '../models/product'
+import { ProductModel, ProductType } from '../models/product'
 
 type CartReducerAction = {
-  payload: Product
+  payload: ProductModel
   type: 'ADD' | 'REMOVE'
 }
 
@@ -21,7 +21,7 @@ export const useCart = () => {
     }
   }
 
-  const [summary, dispatchCart] = useReducerAtom(cartSummaryAtom, cartReducer)
+  const [products, dispatchCart] = useReducerAtom(cartSummaryAtom, cartReducer)
 
-  return { summary, dispatchCart }
+  return { products, dispatchCart }
 }

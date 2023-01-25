@@ -1,10 +1,10 @@
 import { Button, Text } from 'react-native'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
-import { Product } from '../../models/product'
+import { ProductModel } from '../../models/product'
 
 type ProductCartProps = {
-  product: Product
+  product: ProductModel
 }
 
 export const ProductCart = ({ product }: ProductCartProps) => {

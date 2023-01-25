@@ -1,5 +1,5 @@
 import { ActivityIndicator, Text, ViewProps } from 'react-native'
-import { Product } from '../../models/product'
+import { ProductModel } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
 import { Ionicons } from '@expo/vector-icons'
@@ -7,7 +7,7 @@ import { Button } from 'ui-rn'
 import { useState } from 'react'
 
 type ProductCardProps = {
-  product: Product
+  product: ProductModel
 } & ViewProps
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {

@@ -46,6 +46,8 @@ const ButtonContainer = styled.TouchableOpacity<ButtonContainer>`
 `
 
 const ButtonLabel = styled.Text`
+  width: 100%;
+  text-align: center;
   font-weight: bold;
   color: #14532d;
 `

@@ -17,7 +17,10 @@ type CartStatus = {
   quantity: number
 }
 
-class Product implements ProductType {
+const FREE_SHIPPING_IF_MORE_THAN_IT = 300
+const TAX_SHIP_PERCENTAGE = 0.07
+
+export class ProductModel implements ProductType {
   id: number
   description: string
   title: string
@@ -38,8 +41,26 @@ class Product implements ProductType {
     }
   }
 
+  getAddedQuantity() {
+    if (!this.cartStatus.inCart)
+      throw new Error('ProductModel not in cart, you must add to cart to get quantity')
+
+    return this.cartStatus.quantity
+  }
+
   getFormattedPrice(): string {
     return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+  }
+
+  getShippingTax(): number {
+    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return 0
+    return this.price * TAX_SHIP_PERCENTAGE
+  }
+
+  getPriceWithShipping(): number {
+    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return this.price
+
+    return this.price + this.getShippingTax()
   }
 
   isInCart(): boolean {
@@ -61,5 +82,3 @@ class Product implements ProductType {
     }
   }
 }
-
-export { Product }
