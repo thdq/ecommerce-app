@@ -12,14 +12,14 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { addToCart, removeFromCart } = useCart()
+  const { dispatchCart } = useCart()
 
   const handleAddToCart = () => {
-    addToCart(product)
+    dispatchCart({ type: 'ADD', payload: product })
   }
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product)
+    dispatchCart({ type: 'REMOVE', payload: product })
   }
 
   const handleShowLoading = () => {
@@ -42,7 +42,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         <PriceText> {product.getFormattedPrice()} </PriceText>
       </ProductInfoView>
 
-      {!product.inCart ? (
+      {!product.isInCart() ? (
         <AddToCartView>
           <Button size='small' outline onPress={handleAddToCart}>
             <Ionicons

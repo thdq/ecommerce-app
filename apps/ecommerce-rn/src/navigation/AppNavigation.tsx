@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Products, Cart } from '../screens'
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign, Ionicons } from '@expo/vector-icons'
 
 const Stack = createNativeStackNavigator()
 
@@ -29,8 +29,16 @@ const AppNavigation = () => {
       <Stack.Screen
         name='Cart'
         component={Cart}
-        options={() => ({
-          title: 'Cart',
+        options={({ navigation }) => ({
+          title: 'Carrinho de compras',
+          headerLeft: () => (
+            <Ionicons
+              name='arrow-back-sharp'
+              size={30}
+              color='black'
+              onPress={() => navigation.goBack()}
+            />
+          ),
         })}
       />
     </Stack.Navigator>

@@ -1,7 +1,14 @@
 import { Product } from './product'
 
 export type CartSummary = {
-  totalItens: number
-  totalPrice: number
   list: Product[]
+}
+
+export class CartSummaryModel implements CartSummary {
+  private totalItens: number
+  private totalPrice: number
+  list: Product[]
+  constructor(list: Product[]) {
+    this.list = list
+  }
 }

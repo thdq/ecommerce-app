@@ -12,6 +12,11 @@ export type ProductType = {
   images: string[]
 }
 
+type CartStatus = {
+  inCart: boolean
+  quantity: number
+}
+
 class Product implements ProductType {
   id: number
   description: string
@@ -24,32 +29,36 @@ class Product implements ProductType {
   category: string
   thumbnail: string
   images: string[]
-  inCart: boolean
-  private quantity: number
+  private cartStatus: CartStatus
   constructor(params: ProductType) {
     Object.assign(this, params)
+    this.cartStatus = {
+      inCart: false,
+      quantity: 0,
+    }
   }
 
   getFormattedPrice(): string {
     return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
   }
 
-  markAsInCart(): void {
-    this.inCart = true
+  isInCart(): boolean {
+    const { inCart, quantity } = this.cartStatus
+    return inCart && quantity >= 1
   }
 
-  unMarkFromCart(): void {
-    this.inCart = false
+  addToCart(quantity?: number): void {
+    this.cartStatus = {
+      inCart: true,
+      quantity: quantity || 1,
+    }
   }
 
-  setQuantity(quantity: number) {
-    this.quantity = quantity
-  }
-
-  getAddedQuantity() {
-    if (!this.inCart) throw new Error('Product not in cart, you must add to cart to get quantity')
-
-    return this.quantity
+  removeFromCart(): void {
+    this.cartStatus = {
+      inCart: false,
+      quantity: 0,
+    }
   }
 }
 
