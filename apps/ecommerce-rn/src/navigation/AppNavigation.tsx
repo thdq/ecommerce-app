@@ -13,7 +13,6 @@ const AppNavigation = () => {
         name='Products'
         component={Products}
         options={({ navigation }) => ({
-          headerShown: true,
           headerBackTitle: 'Voltar',
           headerRight: () => (
             <TouchableHighlight>
@@ -27,7 +26,13 @@ const AppNavigation = () => {
           ),
         })}
       />
-      <Stack.Screen name='Checkout' component={Checkout} />
+      <Stack.Screen
+        name='Checkout'
+        component={Checkout}
+        options={({ navigation }) => ({
+          headerShown: false,
+        })}
+      />
 
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
