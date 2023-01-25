@@ -59,7 +59,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
                 <Ionicons
                   style={{ color: '#22c55e' }}
                   name='add-circle-sharp'
-                  size={40}
+                  size={34}
                   color='black'
                 />
               </Button>

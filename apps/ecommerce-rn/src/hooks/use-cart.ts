@@ -4,18 +4,20 @@ import { ProductModel, ProductType } from '../models/product'
 
 type CartReducerAction = {
   payload: ProductModel
-  type: 'ADD' | 'REMOVE'
+  type: 'ADD' | 'REMOVE' | 'RESET'
 }
 
 export const useCart = () => {
   const cartReducer = (state: ProductType[], action: CartReducerAction) => {
     switch (action.type) {
       case 'ADD':
-        action.payload.addToCart()
+        action?.payload?.addToCart()
         return [...state, action.payload]
       case 'REMOVE':
-        action.payload.removeFromCart()
-        return state.filter((product) => product.id !== action.payload.id)
+        action?.payload?.removeFromCart()
+        return state.filter((product) => product.id !== action?.payload?.id)
+      case 'RESET':
+        return []
       default:
         throw new Error('unknown action type')
     }
