@@ -22,14 +22,18 @@ export const SkeletonCard = () => {
         animate={{ backgroundColor: '#ffffff' }}
       >
         <View style={styles.skeletonGroup}>
-          <Skeleton colorMode={colorMode} radius={16} height={100} width={100}></Skeleton>
-
-          <Spacer height={16} />
-          <Skeleton colorMode={colorMode} width={'100%'} />
-          <Spacer height={16} />
-          <Skeleton colorMode={colorMode} width={'75%'} />
-          <Spacer height={24} />
-          <Skeleton colorMode={colorMode} width={'50%'} />
+          <Skeleton colorMode={colorMode} radius={8} height={150} width={'100%'}></Skeleton>
+          <View style={styles.contentGroup}>
+            <Spacer height={16} />
+            <Skeleton colorMode={colorMode} height={24} width={'100%'} />
+            <Spacer height={12} />
+            <Skeleton colorMode={colorMode} height={16} width={'75%'} />
+            <Spacer height={24} />
+            <View style={styles.footerGroup}>
+              <Skeleton colorMode={colorMode} width={'50%'} />
+              <Skeleton colorMode={colorMode} width={'70%'} />
+            </View>
+          </View>
         </View>
       </MotiView>
     </Pressable>
@@ -39,17 +43,23 @@ export const SkeletonCard = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     justifyContent: 'center',
     height: 'auto',
   },
   view: {
-    padding: 16,
     borderRadius: 8,
   },
   skeletonGroup: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+  },
+  contentGroup: {
+    padding: 8,
+  },
+  footerGroup: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
