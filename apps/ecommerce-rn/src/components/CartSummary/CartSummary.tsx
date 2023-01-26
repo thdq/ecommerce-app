@@ -33,6 +33,7 @@ export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps
         <TotalPriceText>{summary.getFormattedTotalPriceWithShipping()}</TotalPriceText>
       </TotalTextView>
       <Button
+        testID='checkout-button'
         loading={isLoading}
         loadingLabel='Finalizando compra'
         onPress={onCheckout}

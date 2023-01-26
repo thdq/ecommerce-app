@@ -25,7 +25,7 @@ export function Button({
   return (
     <>
       {loading ? (
-        <ButtonLoadingContainer size={size}>
+        <ButtonLoadingContainer {...props} size={size} onPress={() => null}>
           <ActivityIndicator size={'small'} />
           <ButtonDisabledText>{loadingLabel}</ButtonDisabledText>
         </ButtonLoadingContainer>
