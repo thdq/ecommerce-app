@@ -1,7 +1,7 @@
 import { screen, fireEvent } from '@testing-library/react-native'
 
 import { productMock } from '../../../../__mocks__/product-list'
-import { ProductCard } from '../../../components/ProductCard'
+import { ProductCard } from '../../../components/ProductCard/ProductCard'
 import { Product } from '../../../models/product'
 import { renderWithProviders } from '../../wrapper'
 

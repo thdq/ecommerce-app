@@ -1,6 +1,6 @@
 import { useGetProducts } from '../../hooks/use-get-products'
 import { ProductType } from '../../models/product'
-import { ProductCard } from '../ProductCard'
+import { ProductCard } from '../ProductCard/ProductCard'
 import styled from 'styled-components/native'
 import { ListRenderItem, FlatList as FlatListNative, RefreshControl } from 'react-native'
 import { ProductListError } from '../ProductListError'
