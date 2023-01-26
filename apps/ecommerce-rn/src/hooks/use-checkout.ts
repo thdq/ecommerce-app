@@ -1,4 +1,4 @@
-import { makePurchase } from '@api'
+import { makePurchase } from '@app/api'
 
 export const useCheckout = () => {
   return {

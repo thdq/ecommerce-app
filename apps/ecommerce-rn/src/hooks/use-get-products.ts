@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import useSWR from 'swr'
-import { getProducts } from '@api'
-import { productListAtom } from '@store'
+import { getProducts } from '@app/api'
+import { productListAtom } from '@app/store'
 
 const GET_PRODUCTS_KEY = '/products'
 const MAX_RETRY_FETCH_ON_ERROR = 3

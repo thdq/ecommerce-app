@@ -1,4 +1,11 @@
-import styled from 'styled-components/native'
+import {
+  CartSummaryContainer,
+  ShippingFreeText,
+  ShippingTextView,
+  TotalPriceText,
+  TotalTextView,
+} from './CartSummary.styles'
+import { Text } from 'react-native'
 import { Button } from 'ui-rn'
 import { CartSummaryModel } from '../../models/cart-summary'
 
@@ -12,7 +19,7 @@ export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps
   return (
     <CartSummaryContainer>
       <ShippingTextView>
-        <ShippingLabelText>Frete</ShippingLabelText>
+        <Text>Frete</Text>
         {summary.isFreeShipping() ? (
           <ShippingFreeText>Grátis</ShippingFreeText>
         ) : (
@@ -33,36 +40,3 @@ export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps
     </CartSummaryContainer>
   )
 }
-
-const CartSummaryContainer = styled.View`
-  margin-top: auto;
-  background-color: white;
-  width: 100%;
-  padding: 16px;
-`
-
-const ShippingLabelText = styled.Text``
-
-const ShippingFreeText = styled.Text`
-  font-weight: bold;
-  color: #15803d;
-`
-
-const Text = styled.Text``
-
-const TotalPriceText = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-`
-
-const ShippingTextView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`
-
-const TotalTextView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 12px;
-`
