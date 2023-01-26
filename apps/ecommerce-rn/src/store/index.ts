@@ -1,7 +1,6 @@
 import { atom } from 'jotai'
 
-import { ProductType } from '../models/product'
-import { ProductList } from '../models/product-list'
+import { ProductType, ProductList } from '@app/models'
 
 const productListAtom = atom<ProductList>(null)
 const cartSummaryAtom = atom<ProductType[]>([])

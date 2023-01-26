@@ -1,4 +1,4 @@
-import { environment } from '../config'
+import { environment } from '@app/config'
 
 const FAKE_PURCHASE = true
 

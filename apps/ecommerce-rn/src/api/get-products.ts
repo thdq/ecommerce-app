@@ -1,6 +1,6 @@
-import { environment } from '../config'
-import { ProductList } from '../models/product-list'
-import { httpClient, HttpClientResponse } from '../service/http-client'
+import { environment } from '@app/config'
+import { ProductList } from '@app/models'
+import { httpClient, HttpClientResponse } from '@app/service'
 
 const ITEMS_PER_PAGINATION = 20
 

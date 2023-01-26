@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { TouchableHighlight } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Products, Cart, Checkout } from '../screens'
+import { Products, Cart, Checkout } from '@app/screens'
 import { AntDesign } from '@expo/vector-icons'
 
 const Stack = createNativeStackNavigator()

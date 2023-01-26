@@ -1,5 +1,4 @@
-import { ProductType } from '../src/models/product'
-import { ProductList } from '../src/models/product-list'
+import { ProductType, ProductList } from '@app/models'
 
 export const productListMock: ProductList = {
   products: [
