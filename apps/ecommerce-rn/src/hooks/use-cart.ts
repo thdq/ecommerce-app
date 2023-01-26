@@ -1,4 +1,4 @@
-import { cartSummaryAtom } from '../atoms'
+import { cartSummaryAtom } from '../store'
 import { useReducerAtom } from 'jotai/utils'
 import { ProductModel, ProductType } from '../models/product'
 
