@@ -16,6 +16,8 @@ type CartSummaryProps = {
 }
 
 export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps) => {
+  if (!summary.hasItens()) throw new Error('CartSummary: summary must have itens')
+
   return (
     <CartSummaryContainer>
       <ShippingTextView>
