@@ -20,4 +20,4 @@ jobs:
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - run: npm install
-      - run: expo publish --release-channel production
+      - run: cd ./apps/ecommerce-rn && expo publish --release-channel production
