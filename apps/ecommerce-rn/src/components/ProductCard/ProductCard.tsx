@@ -67,12 +67,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
               )}
             </ShippingInfoView>
             <AddToCartView>
-              <Button
-                testID='cart-add-to-cart-button'
-                size='small'
-                outline
-                onPress={handleAddToCart}
-              >
+              <Button testID='add-to-cart-button' size='small' outline onPress={handleAddToCart}>
                 <Ionicons
                   style={{ color: '#22c55e' }}
                   name='add-circle-sharp'
