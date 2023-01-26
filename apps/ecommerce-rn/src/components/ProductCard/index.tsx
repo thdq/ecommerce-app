@@ -1,10 +1,11 @@
-import { ActivityIndicator, ViewProps } from 'react-native'
+import { ActivityIndicator, ViewProps, Text } from 'react-native'
 import { ProductModel } from '../../models/product'
 import styled from 'styled-components/native'
 import { useCart } from '../../hooks/use-cart'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
 import { useState } from 'react'
+import { MaterialIcons } from '@expo/vector-icons'
 
 type ProductCardProps = {
   product: ProductModel
@@ -12,7 +13,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { dispatchCart } = useCart()
+  const { dispatchCart, products: productsFromCart } = useCart()
 
   const handleAddToCart = () => {
     dispatchCart({ type: 'ADD', payload: product })
@@ -38,30 +39,42 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         {isImageLoading && <ActivityIndicator size='small' color={'#22c55e'} />}
       </View>
       <ProductInfoView>
-        <ProductTitleText> {product.title} </ProductTitleText>
+        <ProductTitleText>{product.title}</ProductTitleText>
         <PriceText> {product.getFormattedPrice()} </PriceText>
       </ProductInfoView>
 
-      {!product.isInCart() ? (
-        <AddToCartView>
-          <Button size='small' outline onPress={handleAddToCart}>
-            <Ionicons
-              style={{ color: '#22c55e' }}
-              name='add-circle-sharp'
-              size={40}
-              color='black'
-            />
-          </Button>
-        </AddToCartView>
-      ) : (
-        <RemoveToCartView>
-          <Button
-            variant='danger'
-            label='Remover do carrinho'
-            onPress={handleRemoveFromCart}
-          ></Button>
-        </RemoveToCartView>
-      )}
+      <ProductFooterView>
+        {!product.isInCart(productsFromCart) ? (
+          <>
+            <ShippingInfoView>
+              <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
+              {product.isFreeShipping() ? (
+                <ShippingFreeText> Grátis</ShippingFreeText>
+              ) : (
+                <Text> {product.getFormattedShippingTax()}</Text>
+              )}
+            </ShippingInfoView>
+            <AddToCartView>
+              <Button size='small' outline onPress={handleAddToCart}>
+                <Ionicons
+                  style={{ color: '#22c55e' }}
+                  name='add-circle-sharp'
+                  size={34}
+                  color='black'
+                />
+              </Button>
+            </AddToCartView>
+          </>
+        ) : (
+          <RemoveToCartView>
+            <Button
+              variant='danger'
+              label='Remover do carrinho'
+              onPress={handleRemoveFromCart}
+            ></Button>
+          </RemoveToCartView>
+        )}
+      </ProductFooterView>
     </CardContainer>
   )
 }
@@ -87,6 +100,24 @@ const Image = styled.Image`
   border-radius: 8px;
 `
 
+const ProductFooterView = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+`
+
+const ShippingInfoView = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
+const ShippingFreeText = styled.Text`
+  font-weight: bold;
+  color: #15803d;
+`
+
 const AddToCartView = styled.View`
   color: '#22c55e';
   margin-left: auto;
@@ -101,6 +132,7 @@ const RemoveToCartView = styled.View`
 const ProductInfoView = styled.View`
   width: 100%;
   margin: 12px 0;
+  padding: 0 8px;
 `
 
 const ProductTitleText = styled.Text`

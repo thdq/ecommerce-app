@@ -1,3 +1,5 @@
+import { CartSummaryModel } from './cart-summary'
+
 export type ProductType = {
   id: number
   description: string
@@ -72,12 +74,13 @@ export class ProductModel implements ProductType {
     return this.price + this.getShippingTax()
   }
 
-  isInCart(): boolean {
-    const { inCart, quantity } = this.cartStatus
-    return inCart && quantity >= 1
+  isInCart(cartListReference: ProductType[]): boolean {
+    const productIsInCart = cartListReference.some((product) => product.id === this.id)
+    return productIsInCart
   }
 
   addToCart(quantity?: number): void {
+    if (this.isInCart([])) throw new Error('product is already in cart')
     this.cartStatus = {
       inCart: true,
       quantity: quantity || 1,

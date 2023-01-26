@@ -29,50 +29,66 @@ export const ProductCart = ({ product }: ProductCartProps) => {
         {isImageLoading && <ActivityIndicator size='small' color={'#22c55e'} />}
       </View>
       <ProductContainerView>
-        <ProductInfoView>
-          <ProductTitle>{product.title} </ProductTitle>
-          <Text>
-            {product.getFormattedPrice()} x {product.getAddedQuantity()} un.
-          </Text>
-          <ShippingInfoView>
-            Frete:
-            {product.isFreeShipping() ? (
-              <ShippingFreeText> Grátis</ShippingFreeText>
-            ) : (
-              <Text> {product.getFormattedShippingTax()}</Text>
-            )}
-          </ShippingInfoView>
-        </ProductInfoView>
-
-        <Button onPress={handleRemoveFromCart} variant='danger' outline>
-          <Ionicons
-            style={{ color: '#b6253a' }}
-            name='remove-circle-outline'
-            size={28}
-            color='black'
-          />
-        </Button>
+        <ProductHeaderView>
+          <ProductTitle numberOfLines={1}>{product.title}</ProductTitle>
+        </ProductHeaderView>
+        <ProductContentView>
+          <View>
+            <Text>
+              {product.getFormattedPrice()} x {product.getAddedQuantity()} un.
+            </Text>
+            <ShippingInfoView>
+              Frete:
+              {product.isFreeShipping() ? (
+                <ShippingFreeText> Grátis</ShippingFreeText>
+              ) : (
+                <Text> {product.getFormattedShippingTax()}</Text>
+              )}
+            </ShippingInfoView>
+          </View>
+          <ProductInfoView>
+            <Button onPress={handleRemoveFromCart} variant='danger' outline>
+              <Ionicons
+                style={{ color: '#b6253a' }}
+                name='remove-circle-outline'
+                size={28}
+                color='black'
+              />
+            </Button>
+          </ProductInfoView>
+        </ProductContentView>
       </ProductContainerView>
     </CartContainer>
   )
 }
 
 const CartContainer = styled.View`
-  flex-wrap: wrap;
   flex-direction: row;
   background-color: white;
   border-radius: 6px;
   margin: 4px 8px;
 `
 const ProductContainerView = styled.View`
+  width: 100%;
   flex: 1;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
   padding: 16px;
 `
 
-const ProductInfoView = styled.View``
+const ProductHeaderView = styled.View`
+  width: 100%;
+`
+
+const ProductContentView = styled.View`
+  flex-direction: row;
+`
+
+const ProductInfoView = styled.View`
+  flex: 1;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+  justify-content: flex-end;
+`
 
 const ProductTitle = styled.Text`
   font-size: 16px;

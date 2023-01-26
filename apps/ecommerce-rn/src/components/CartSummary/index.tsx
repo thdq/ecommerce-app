@@ -5,9 +5,10 @@ import { CartSummaryModel } from '../../models/cart-summary'
 type CartSummaryProps = {
   onCheckout: () => void
   summary: CartSummaryModel
+  isLoading?: boolean
 }
 
-export const CartSummary = ({ onCheckout, summary }: CartSummaryProps) => {
+export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps) => {
   return (
     <CartSummaryContainer>
       <ShippingTextView>
@@ -22,7 +23,13 @@ export const CartSummary = ({ onCheckout, summary }: CartSummaryProps) => {
         <Text>Total com frete</Text>
         <TotalPriceText>{summary.getFormattedTotalPriceWithShipping()}</TotalPriceText>
       </TotalTextView>
-      <Button onPress={onCheckout} label='Finalizar compra' size='large'></Button>
+      <Button
+        loading={isLoading}
+        loadingLabel='Finalizando compra'
+        onPress={onCheckout}
+        label='Finalizar compra'
+        size='large'
+      ></Button>
     </CartSummaryContainer>
   )
 }

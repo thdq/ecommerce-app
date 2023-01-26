@@ -1,8 +1,8 @@
 import { memo } from 'react'
-
+import { TouchableHighlight } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Products, Cart } from '../screens'
-import { AntDesign, Ionicons } from '@expo/vector-icons'
+import { Products, Cart, Checkout } from '../screens'
+import { AntDesign } from '@expo/vector-icons'
 
 const Stack = createNativeStackNavigator()
 
@@ -13,34 +13,36 @@ const AppNavigation = () => {
         name='Products'
         component={Products}
         options={({ navigation }) => ({
-          headerShown: true,
-          headerBackTitle: 'Voltar',
+          title: 'Produtos',
           headerRight: () => (
-            <AntDesign
-              name='shoppingcart'
-              size={30}
-              color='black'
-              onPress={() => navigation.navigate('Cart')}
-            />
+            <TouchableHighlight>
+              <AntDesign
+                name='shoppingcart'
+                size={30}
+                style={{ color: '#15803d' }}
+                onPress={() => navigation.navigate('Cart')}
+              />
+            </TouchableHighlight>
           ),
+        })}
+      />
+      <Stack.Screen
+        name='Checkout'
+        component={Checkout}
+        options={({ navigation }) => ({
+          headerShown: false,
         })}
       />
 
-      <Stack.Screen
-        name='Cart'
-        component={Cart}
-        options={({ navigation }) => ({
-          title: 'Carrinho de compras',
-          headerLeft: () => (
-            <Ionicons
-              name='arrow-back-sharp'
-              size={30}
-              color='black'
-              onPress={() => navigation.goBack()}
-            />
-          ),
-        })}
-      />
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name='Cart'
+          component={Cart}
+          options={({ navigation }) => ({
+            title: 'Carrinho de compras',
+          })}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }
