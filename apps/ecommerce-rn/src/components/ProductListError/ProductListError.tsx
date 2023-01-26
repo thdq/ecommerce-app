@@ -1,6 +1,6 @@
 import { ViewProps } from 'react-native'
-import styled from 'styled-components/native'
 import { Button } from 'ui-rn'
+import { MessageText, ProductListErrorContainer } from './ProductListError.styles'
 
 type ProductListErrorProps = {
   onTryAgain: () => void
@@ -14,15 +14,3 @@ export const ProductListError = ({ onTryAgain, ...props }: ProductListErrorProps
     </ProductListErrorContainer>
   )
 }
-
-const ProductListErrorContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
-
-const MessageText = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  color: #444;
-`
