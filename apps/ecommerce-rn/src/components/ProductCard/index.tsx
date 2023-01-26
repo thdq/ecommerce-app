@@ -13,7 +13,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { dispatchCart } = useCart()
+  const { dispatchCart, products: productsFromCart } = useCart()
 
   const handleAddToCart = () => {
     dispatchCart({ type: 'ADD', payload: product })
@@ -44,7 +44,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
       </ProductInfoView>
 
       <ProductFooterView>
-        {!product.isInCart() ? (
+        {!product.isInCart(productsFromCart) ? (
           <>
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
