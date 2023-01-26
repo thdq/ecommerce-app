@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import AppNavigation from './navigation/AppNavigation'
 import { SWRConfig } from 'swr'
-import swrConfig from './service/swr-config'
+import { swrConfig } from '@app/service'
 
 export default function App() {
   return (
