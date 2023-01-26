@@ -1,10 +1,20 @@
 import { ViewProps, View, Text, ActivityIndicator } from 'react-native'
-import styled from 'styled-components/native'
 import { Button } from 'ui-rn'
 import { useCart } from '../../hooks/use-cart'
 import { ProductModel } from '../../models/product'
 import { Ionicons } from '@expo/vector-icons'
 import { useState } from 'react'
+import {
+  CartContainer,
+  Image,
+  ProductContainerView,
+  ProductContentView,
+  ProductHeaderView,
+  ProductInfoView,
+  ProductTitle,
+  ShippingFreeText,
+  ShippingInfoView,
+} from './ProductDetailCart.styles'
 
 type ProductCartProps = {
   product: ProductModel
@@ -61,51 +71,3 @@ export const ProductCart = ({ product }: ProductCartProps) => {
     </CartContainer>
   )
 }
-
-const CartContainer = styled.View`
-  flex-direction: row;
-  background-color: white;
-  border-radius: 6px;
-  margin: 4px 8px;
-`
-const ProductContainerView = styled.View`
-  width: 100%;
-  flex: 1;
-  padding: 16px;
-`
-
-const ProductHeaderView = styled.View`
-  width: 100%;
-`
-
-const ProductContentView = styled.View`
-  flex-direction: row;
-`
-
-const ProductInfoView = styled.View`
-  flex: 1;
-  flex-wrap: nowrap;
-  flex-direction: row;
-
-  justify-content: flex-end;
-`
-
-const ProductTitle = styled.Text`
-  font-size: 16px;
-  font-weight: bold;
-`
-
-const ShippingInfoView = styled.Text`
-  margin-top: auto;
-`
-
-const ShippingFreeText = styled.Text`
-  font-weight: bold;
-  color: #15803d;
-`
-
-const Image = styled.Image`
-  width: 100px;
-  height: 100px;
-  border-radius: 6px;
-`
