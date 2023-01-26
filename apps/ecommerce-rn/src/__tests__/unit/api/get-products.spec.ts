@@ -1,5 +1,5 @@
 import { getProducts } from '@app/api'
-import { productListMock } from '../../../../__mocks__/product-list'
+import { productListMock } from '@mocks/product-list'
 
 import mockAxios from 'jest-mock-axios'
 

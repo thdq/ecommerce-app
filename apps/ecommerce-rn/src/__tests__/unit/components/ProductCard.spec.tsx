@@ -1,9 +1,9 @@
 import { screen, fireEvent } from '@testing-library/react-native'
 
-import { productMock } from '../../../../__mocks__/product-list'
-import { ProductCard } from '../../../components/ProductCard/ProductCard'
-import { ProductModel } from '../../../models/product'
-import { renderWithProviders } from '../../wrapper'
+import { productMock } from '@mocks/product-list'
+import { ProductCard } from '@app/components'
+import { ProductModel } from '@app/models'
+import { renderWithProviders } from '@app/__tests__/wrapper'
 
 const addToCartAssert = () => {
   const addToCartButton = screen.getByTestId('add-to-cart-button')
