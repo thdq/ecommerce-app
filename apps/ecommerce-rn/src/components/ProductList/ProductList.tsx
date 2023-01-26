@@ -1,12 +1,12 @@
 import { useGetProducts } from '../../hooks/use-get-products'
 import { ProductType } from '../../models/product'
 import { ProductCard } from '../ProductCard/ProductCard'
-import styled from 'styled-components/native'
-import { ListRenderItem, FlatList as FlatListNative, RefreshControl } from 'react-native'
+import { ListRenderItem, RefreshControl } from 'react-native'
 import { ProductListError } from '../ProductListError'
 import { SkeletonCard } from 'ui-rn'
 import { useState, useCallback } from 'react'
 import { useProductModel } from '../../hooks/use-product-model'
+import { FlatList, ProductListContainer } from './ProductList.styles'
 
 const NUMBER_COLUMNS = 2
 const SKELETON_FAKE_LIST = [...Array(6).keys()]
@@ -54,12 +54,3 @@ export const ProductList = () => {
     </ProductListContainer>
   )
 }
-
-const ProductListContainer = styled.View`
-  flex: 1;
-`
-
-const FlatList = styled.FlatList`
-  flex: 1;
-  margin: 0 4px 0 4px;
-` as unknown as typeof FlatListNative
