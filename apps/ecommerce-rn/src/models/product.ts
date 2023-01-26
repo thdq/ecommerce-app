@@ -42,9 +42,6 @@ export class ProductModel implements Product {
   }
 
   getAddedQuantity() {
-    if (!this.cartStatus.inCart)
-      throw new Error('ProductModel not in cart, you must add to cart to get quantity')
-
     return this.cartStatus.quantity
   }
 

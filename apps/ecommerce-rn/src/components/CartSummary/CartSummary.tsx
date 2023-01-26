@@ -16,6 +16,8 @@ type CartSummaryProps = {
 }
 
 export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps) => {
+  if (!summary.hasItens()) throw new Error('CartSummary: summary must have itens')
+
   return (
     <CartSummaryContainer>
       <ShippingTextView>
@@ -31,6 +33,7 @@ export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps
         <TotalPriceText>{summary.getFormattedTotalPriceWithShipping()}</TotalPriceText>
       </TotalTextView>
       <Button
+        testID='checkout-button'
         loading={isLoading}
         loadingLabel='Finalizando compra'
         onPress={onCheckout}
