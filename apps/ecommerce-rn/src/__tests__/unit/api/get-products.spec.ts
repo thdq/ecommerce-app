@@ -1,4 +1,4 @@
-import { getProducts } from '../../../api/get-products'
+import { getProducts } from '@app/api'
 import { productListMock } from '../../../../__mocks__/product-list'
 
 import mockAxios from 'jest-mock-axios'

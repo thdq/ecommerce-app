@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react-native'
-import { productListMock } from '../../../../__mocks__/product-list'
-import { ProductList } from '../../../components/ProductList'
-import * as useGetProductsMock from '../../../hooks/use-get-products'
-import { renderWithProviders } from '../../wrapper'
+import { productListMock } from '@mocks/product-list'
+import { ProductList } from '@app/components'
+import * as useGetProductsMock from '@app/hooks/'
+import { renderWithProviders } from '@app/__tests__/wrapper'
 
 describe('<ProductList /> component', () => {
   it('should renders loading if list is fetching', async () => {

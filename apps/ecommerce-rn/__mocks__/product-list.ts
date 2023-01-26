@@ -1,4 +1,4 @@
-import { ProductType, ProductList } from '@app/models'
+import { Product, ProductList } from '@app/models'
 
 export const productListMock: ProductList = {
   products: [
@@ -99,5 +99,5 @@ export const productListMock: ProductList = {
 export const productMock = (id: number) => {
   if (id > 5) throw new Error('The product id is not in the list')
 
-  return (productListMock.products.find((product) => product.id === id) ?? null) as ProductType
+  return (productListMock.products.find((product) => product.id === id) ?? null) as Product
 }
