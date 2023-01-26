@@ -4,4 +4,5 @@ export const environment = {
   ...constants.expoConfig?.extra,
   baseApiUrl: constants.expoConfig?.extra?.baseApiUrl,
   delayRequestsInSeconds: parseInt(constants.expoConfig?.extra?.delayRequestsInSeconds),
+  isDevelopment: () => constants.expoConfig?.extra?.env === 'development',
 }

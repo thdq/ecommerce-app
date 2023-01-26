@@ -30,3 +30,5 @@ npm run dev
 ## Outras documentações
 
 - [Estrutura](./docs/structure.md)
+- [Roadmap](./docs/roadmap.md)
+- [Funcionalidades](./docs/features.md)
