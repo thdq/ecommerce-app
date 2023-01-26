@@ -1,7 +1,7 @@
 import { ViewProps, View, Text, ActivityIndicator } from 'react-native'
 import { Button } from 'ui-rn'
-import { useCart } from '../../hooks/use-cart'
-import { ProductModel } from '../../models/product'
+import { useCart } from '@app/hooks'
+import { ProductModel } from '@app/models'
 import { Ionicons } from '@expo/vector-icons'
 import { useState } from 'react'
 import {

@@ -7,7 +7,7 @@ import {
 } from './CartSummary.styles'
 import { Text } from 'react-native'
 import { Button } from 'ui-rn'
-import { CartSummaryModel } from '../../models/cart-summary'
+import { CartSummaryModel } from '@app/models'
 
 type CartSummaryProps = {
   onCheckout: () => void

@@ -1,11 +1,11 @@
-import { useGetProducts } from '../../hooks/use-get-products'
-import { ProductType } from '../../models/product'
-import { ProductCard } from '../ProductCard/ProductCard'
+import { useGetProducts } from '@app/hooks'
+import { ProductType } from '@app/models'
+import { ProductCard } from '@app/components/ProductCard'
 import { ListRenderItem, RefreshControl } from 'react-native'
-import { ProductListError } from '../ProductListError'
+import { ProductListError } from '@app/components/ProductListError'
 import { SkeletonCard } from 'ui-rn'
 import { useState, useCallback } from 'react'
-import { useProductModel } from '../../hooks/use-product-model'
+import { useProductModel } from '@app/hooks'
 import { FlatList, ProductListContainer } from './ProductList.styles'
 
 const NUMBER_COLUMNS = 2
