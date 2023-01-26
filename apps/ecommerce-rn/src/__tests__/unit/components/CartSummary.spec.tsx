@@ -6,7 +6,7 @@ import { fireEvent, screen } from '@testing-library/react-native'
 const onCheckoutMock = jest.fn()
 
 describe('<CartSummary /> component', () => {
-  test('should renders', () => {
+  it('should renders', () => {
     renderWithProviders(<CartSummary summary={cartSummaryMock} onCheckout={onCheckoutMock} />)
 
     expect(screen.getByText('Frete')).toBeVisible()
@@ -15,19 +15,17 @@ describe('<CartSummary /> component', () => {
     expect(screen.getByText(cartSummaryMock.getFormattedTotalPriceWithShipping())).toBeVisible()
   })
 
-  test('should call onCheckout on finish press', () => {
+  it('should call onCheckout on finish press', () => {
     renderWithProviders(<CartSummary summary={cartSummaryMock} onCheckout={onCheckoutMock} />)
 
     fireEvent.press(screen.getByTestId('checkout-button'))
     expect(onCheckoutMock).toBeCalled()
   })
 
-  test('should not call onCheckout on finish press if is loading', () => {
+  it('should not call onCheckout on finish press if is loading', () => {
     renderWithProviders(
       <CartSummary isLoading={true} summary={cartSummaryMock} onCheckout={onCheckoutMock} />,
     )
-
-    screen.debug()
 
     fireEvent.press(screen.getByTestId('checkout-button'))
     expect(onCheckoutMock).not.toBeCalled()

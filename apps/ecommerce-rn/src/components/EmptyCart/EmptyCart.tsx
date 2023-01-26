@@ -8,10 +8,10 @@ type EmptyCartProps = {
 
 export const EmptyCart = ({ onShowProducts, ...props }: EmptyCartProps) => (
   <EmptyCartContainer {...props}>
-    <TitleText>Seu Carrinho está vazio</TitleText>
+    <TitleText>Seu carrinho está vazio</TitleText>
     <DescriptionText>
       Comece adicionando um produto ao carrinho para realizar uma compra!
     </DescriptionText>
-    <Button onPress={onShowProducts} label='Conferir produtos' />
+    <Button testID='show-products-button' onPress={onShowProducts} label='Conferir produtos' />
   </EmptyCartContainer>
 )
