@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
+    "postinstall": "turbo run build --scope=ui-rn",
     "dev": "env-cmd --silent -f ./.env.local expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll --runInBand --detectOpenHandles",
-    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage",
-    "build:android": "expo build:android -p"
+    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.2",

@@ -22,17 +22,15 @@ A utilização de um monorepo é uma estratégia para a escabilidade da arquitet
 Para rodar localmente todos as aplicações e bibliotecas siga o comando abaixo após o clone do repositório:
 
 ```bash
-cd ecommerce-app # Ou inicialize o terminal na pasta root do repositório
+npm install
 npm run dev
 ```
 
 Ou para rodar apenas uma aplicação pode-se usar o comando abaixo:
 
 ```bash
-npm run dev:APP_NAME # npm run dev:ecommerce-rn por exemplo
+npm run start:APP_NAME # npm run dev:ecommerce-rn por exemplo
 ```
-
-Observação: Se um app depende de um pacote não inicializado, não é necessário rodá-lo localmente também, pois o app irá fazer o build das dependências locais antes da inicialização.
 
 ### Documentações das aplicações/biblioteca
 

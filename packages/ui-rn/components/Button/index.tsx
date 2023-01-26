@@ -22,10 +22,11 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
+  if (loading) delete props.onPress
   return (
     <>
       {loading ? (
-        <ButtonLoadingContainer {...props} size={size} onPress={() => null}>
+        <ButtonLoadingContainer {...props} size={size}>
           <ActivityIndicator size={'small'} />
           <ButtonDisabledText>{loadingLabel}</ButtonDisabledText>
         </ButtonLoadingContainer>
