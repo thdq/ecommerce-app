@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/react-native'
 import { productListMock } from '@mocks/product-list'
 import { ProductList } from '@app/components'
-import * as useGetProductsMock from '@app/hooks/'
+import * as useGetProductsMock from '@app/hooks/use-get-products'
 import { renderWithProviders } from '@app/__tests__/wrapper'
 
 describe('<ProductList /> component', () => {
   it('should renders loading if list is fetching', async () => {
     renderWithProviders(<ProductList />)
 
-    const loadingText = screen.queryByText('Carregando')
-    expect(loadingText).toBeVisible()
+    const loadingSkeleton = screen.queryByTestId('skeleton-loading')
+    expect(loadingSkeleton).toBeVisible()
   })
   it('should renders error if list fetch fails', async () => {
     jest.spyOn(useGetProductsMock, 'useGetProducts').mockReturnValueOnce({
@@ -22,8 +22,8 @@ describe('<ProductList /> component', () => {
 
     renderWithProviders(<ProductList />)
 
-    const loadingText = screen.queryByText('Carregando')
-    expect(loadingText).toBeNull()
+    const loadingSkeleton = screen.queryByTestId('skeleton-loading')
+    expect(loadingSkeleton).toBeNull()
 
     const errorComponent = screen.queryByTestId('error')
     expect(errorComponent).toBeVisible()

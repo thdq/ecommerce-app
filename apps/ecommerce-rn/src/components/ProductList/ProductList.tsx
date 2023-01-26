@@ -22,7 +22,7 @@ export const ProductList = () => {
 
   const renderSkeleton = () => <SkeletonCard />
   const renderItem: ListRenderItem<Product> = ({ item: product }) => (
-    <ProductCard product={createProductModel(product)} />
+    <ProductCard testID='product-card' product={createProductModel(product)} />
   )
 
   const onRefresh = useCallback(async () => {
@@ -43,6 +43,7 @@ export const ProductList = () => {
         />
       ) : isLoading || isRefreshing ? (
         <FlatList
+          testID='skeleton-loading'
           data={SKELETON_FAKE_LIST}
           numColumns={NUMBER_COLUMNS}
           keyExtractor={(item: number) => item.toString()}
