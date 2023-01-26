@@ -1,5 +1,3 @@
-import { CartSummaryModel } from './cart-summary'
-
 export type ProductType = {
   id: number
   description: string

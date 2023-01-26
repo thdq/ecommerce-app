@@ -20,7 +20,7 @@ type ProductCartProps = {
   product: ProductModel
 } & ViewProps
 
-export const ProductCart = ({ product }: ProductCartProps) => {
+export const ProductDetailCart = ({ product }: ProductCartProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
   const { dispatchCart } = useCart()
 

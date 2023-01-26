@@ -1,12 +1,9 @@
 import { FlatList, ListRenderItem } from 'react-native'
-import styled from 'styled-components/native'
-import { CartSummary } from '../../components/CartSummary'
-import { EmptyCart } from '../../components/EmptyCart'
-import { ProductCart } from '../../components/ProductDetailCart'
-import { useCart } from '../../hooks/use-cart'
-import { useCheckout } from '../../hooks/use-checkout'
-import { CartSummaryModel } from '../../models/cart-summary'
-import { ProductModel } from '../../models/product'
+import { CartSummary, EmptyCart, ProductDetailCart } from '@app/components'
+import { useCart, useCheckout } from '@app/hooks'
+import { CartSummaryModel, ProductModel } from '@app/models'
+import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
+
 import { useState } from 'react'
 
 const Cart = ({ navigation }: any) => {
@@ -19,7 +16,7 @@ const Cart = ({ navigation }: any) => {
   const summaryList = new CartSummaryModel(productsFromCart)
 
   const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
-    <ProductCart product={product} />
+    <ProductDetailCart product={product} />
   )
 
   const handleCheckout = async () => {
@@ -53,21 +50,5 @@ const Cart = ({ navigation }: any) => {
     </SafeAreaView>
   )
 }
-
-const CartContainer = styled.View`
-  height: 100%;
-  background-color: #f3f4f6;
-`
-
-const TotalItensText = styled.Text`
-  font-size: 16px;
-  font-weight: bold;
-  margin: 16px 8px;
-`
-
-const SafeAreaView = styled.SafeAreaView`
-  flex: 1;
-  background-color: #fff;
-`
 
 export { Cart }

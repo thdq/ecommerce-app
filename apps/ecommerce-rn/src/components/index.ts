@@ -1,5 +1,6 @@
 export * from './CartSummary'
 export * from './EmptyCart'
-export * from './ProductCard/ProductCard'
+export * from './ProductCard'
 export * from './ProductList'
 export * from './ProductListError'
+export * from './ProductDetailCart'
