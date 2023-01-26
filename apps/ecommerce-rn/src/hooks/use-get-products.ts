@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 import useSWR from 'swr'
-import { getProducts } from '../api/get-products'
+import { getProducts } from '@api'
 import { productListAtom } from '../atoms'
 
 const GET_PRODUCTS_KEY = '/products'

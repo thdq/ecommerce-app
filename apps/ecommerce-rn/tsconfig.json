@@ -4,6 +4,10 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "strict": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "baseUrl": "src",
+    "paths": {
+      "@*": ["./*"]
+    }
   }
 }
