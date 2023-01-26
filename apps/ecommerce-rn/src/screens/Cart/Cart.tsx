@@ -19,8 +19,12 @@ const Cart = () => {
   const productsFromCart = products as ProductModel[]
   const summaryList = createCartSummaryModel(productsFromCart)
 
+  const handleRemoveFromCart = (product: ProductModel) => {
+    dispatchCart({ payload: product, type: 'REMOVE' })
+  }
+
   const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
-    <ProductDetailCart product={product} />
+    <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />
   )
 
   const handleCheckout = async () => {

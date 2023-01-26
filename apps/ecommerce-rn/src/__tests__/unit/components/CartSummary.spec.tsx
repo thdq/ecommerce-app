@@ -1,6 +1,6 @@
 import { CartSummary } from '@app/components'
 import { renderWithProviders } from '@app/__tests__/wrapper'
-import { cartSummaryMock } from '@mocks/cart-summary'
+import { cartSummaryMock } from '@mocks/cart-summary-model'
 import { fireEvent, screen } from '@testing-library/react-native'
 
 const onCheckoutMock = jest.fn()

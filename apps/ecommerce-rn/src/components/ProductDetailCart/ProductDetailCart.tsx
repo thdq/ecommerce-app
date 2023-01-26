@@ -18,15 +18,11 @@ import {
 
 type ProductCartProps = {
   product: ProductModel
+  onRemove: (product: ProductModel) => void
 } & ViewProps
 
-export const ProductDetailCart = ({ product }: ProductCartProps) => {
+export const ProductDetailCart = ({ product, onRemove }: ProductCartProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { dispatchCart } = useCart()
-
-  const handleRemoveFromCart = () => {
-    dispatchCart({ payload: product, type: 'REMOVE' })
-  }
 
   const handleShowLoading = () => {
     setIsImageLoading(false)
@@ -57,7 +53,12 @@ export const ProductDetailCart = ({ product }: ProductCartProps) => {
             </ShippingInfoView>
           </View>
           <ProductInfoView>
-            <Button onPress={handleRemoveFromCart} variant='danger' outline>
+            <Button
+              testID='remove-from-cart-button'
+              onPress={() => onRemove(product)}
+              variant='danger'
+              outline
+            >
               <Ionicons
                 style={{ color: '#b6253a' }}
                 name='remove-circle-outline'
