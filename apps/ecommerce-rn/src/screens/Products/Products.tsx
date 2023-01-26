@@ -1,6 +1,6 @@
 import { ProductList } from '@app/components'
 
-const Products = ({ navigation }: any) => {
+const Products = () => {
   return <ProductList />
 }
 

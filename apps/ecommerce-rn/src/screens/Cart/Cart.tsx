@@ -5,8 +5,12 @@ import { CartSummaryModel, ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProps } from '@app/navigation/AppNavigation'
 
-const Cart = ({ navigation }: any) => {
+const Cart = () => {
+  const navigation = useNavigation<StackNavigationProps>()
+
   const { products, dispatchCart } = useCart()
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)

@@ -1,45 +1,57 @@
 import { memo } from 'react'
 import { TouchableHighlight } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack'
 import { Products, Cart, Checkout } from '@app/screens'
 import { AntDesign } from '@expo/vector-icons'
 
-const Stack = createNativeStackNavigator()
+type RootStackParamList = {
+  Products: undefined
+  Cart: undefined
+  Checkout: undefined
+}
+
+export type StackNavigationProps = NativeStackNavigationProp<RootStackParamList>
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const AppNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName='Products' screenOptions={{}}>
-      <Stack.Screen
-        name='Products'
-        component={Products}
-        options={({ navigation }) => ({
-          title: 'Produtos',
-          headerRight: () => (
-            <TouchableHighlight>
-              <AntDesign
-                name='shoppingcart'
-                size={30}
-                style={{ color: '#15803d' }}
-                onPress={() => navigation.navigate('Cart')}
-              />
-            </TouchableHighlight>
-          ),
-        })}
-      />
-      <Stack.Screen
-        name='Checkout'
-        component={Checkout}
-        options={({ navigation }) => ({
-          headerShown: false,
-        })}
-      />
-
+    <Stack.Navigator initialRouteName='Products'>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name='Cart'
           component={Cart}
-          options={({ navigation }) => ({
+          options={() => ({
             title: 'Carrinho de compras',
+          })}
+        />
+      </Stack.Group>
+      <Stack.Group>
+        <Stack.Screen
+          name='Products'
+          component={Products}
+          options={({ navigation }) => ({
+            title: 'Produtos',
+            headerRight: () => (
+              <TouchableHighlight>
+                <AntDesign
+                  name='shoppingcart'
+                  size={30}
+                  style={{ color: '#15803d' }}
+                  onPress={() => navigation.navigate('Cart')}
+                />
+              </TouchableHighlight>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name='Checkout'
+          component={Checkout}
+          options={() => ({
+            headerShown: false,
           })}
         />
       </Stack.Group>
