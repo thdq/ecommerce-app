@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll --runInBand --detectOpenHandles",
-    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage"
+    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage",
+    "build:android": "expo build:android -p"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.2",
