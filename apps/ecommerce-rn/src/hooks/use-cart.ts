@@ -1,6 +1,6 @@
 import { cartSummaryAtom } from '@app/store'
 import { useReducerAtom } from 'jotai/utils'
-import { ProductModel, ProductType } from '@app/models'
+import { ProductModel, Product } from '@app/models'
 
 type CartReducerAction = {
   payload: ProductModel
@@ -8,7 +8,7 @@ type CartReducerAction = {
 }
 
 export const useCart = () => {
-  const cartReducer = (state: ProductType[], action: CartReducerAction) => {
+  const cartReducer = (state: Product[], action: CartReducerAction) => {
     switch (action.type) {
       case 'ADD':
         action?.payload?.addToCart()

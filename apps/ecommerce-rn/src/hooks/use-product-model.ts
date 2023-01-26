@@ -1,7 +1,7 @@
-import { ProductModel, ProductType } from '@app/models'
+import { ProductModel, Product } from '@app/models'
 
 export const useProductModel = () => {
   return {
-    createModel: (product: ProductType) => new ProductModel(product),
+    createProductModel: (product: Product) => new ProductModel(product),
   }
 }

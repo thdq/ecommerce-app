@@ -1,7 +1,7 @@
-import { ProductType } from './product'
+import { Product } from './product'
 
 export type ProductList = {
-  products: ProductType[]
+  products: Product[]
   total: number
   skip: number
   limit: number

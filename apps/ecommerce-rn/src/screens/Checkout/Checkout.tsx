@@ -2,9 +2,10 @@ import { ViewProps } from 'react-native'
 import { CheckoutContainer, TitleText } from './Checkout.styles'
 import { Button } from 'ui-rn'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { StackNavigationProps } from '@app/navigation/AppNavigation'
 
 type CheckoutProps = {
-  navigation: any
+  navigation: StackNavigationProps
 } & ViewProps
 
 export const Checkout = ({ navigation, ...props }: CheckoutProps) => {

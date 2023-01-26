@@ -1,4 +1,4 @@
-export type ProductType = {
+export type Product = {
   id: number
   description: string
   title: string
@@ -20,7 +20,7 @@ type CartStatus = {
 const FREE_SHIPPING_IF_MORE_THAN_IT = 300
 const TAX_SHIP_PERCENTAGE = 0.07
 
-export class ProductModel implements ProductType {
+export class ProductModel implements Product {
   id: number
   description: string
   title: string
@@ -33,7 +33,7 @@ export class ProductModel implements ProductType {
   thumbnail: string
   images: string[]
   private cartStatus: CartStatus
-  constructor(params: ProductType) {
+  constructor(params: Product) {
     Object.assign(this, params)
     this.cartStatus = {
       inCart: false,
@@ -72,7 +72,7 @@ export class ProductModel implements ProductType {
     return this.price + this.getShippingTax()
   }
 
-  isInCart(cartListReference: ProductType[]): boolean {
+  isInCart(cartListReference: Product[]): boolean {
     const productIsInCart = cartListReference.some((product) => product.id === this.id)
     return productIsInCart
   }

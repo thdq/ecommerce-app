@@ -17,6 +17,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@testing-library/react-hooks": "^8.0.1",
     "husky": "^8.0.3",
     "prettier": "latest",
     "ts-node": "^10.9.1",
