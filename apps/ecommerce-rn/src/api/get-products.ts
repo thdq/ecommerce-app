@@ -15,7 +15,7 @@ export const getProducts = async ({
 }: GetProductsParam): Promise<HttpClientResponse<ProductList, unknown>> => {
   const offset = (page - 1) * limit
 
-  if (typeof environment.delayRequestsInSeconds === 'number')
+  if (typeof environment.delayRequestsInSeconds === 'number' && environment.isDevelopment())
     await new Promise((resolve) => setTimeout(resolve, environment.delayRequestsInSeconds * 1000))
 
   try {
