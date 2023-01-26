@@ -1,6 +1,6 @@
-import { cartSummaryAtom } from '../atoms'
+import { cartSummaryAtom } from '@app/store'
 import { useReducerAtom } from 'jotai/utils'
-import { ProductModel, ProductType } from '../models/product'
+import { ProductModel, ProductType } from '@app/models'
 
 type CartReducerAction = {
   payload: ProductModel

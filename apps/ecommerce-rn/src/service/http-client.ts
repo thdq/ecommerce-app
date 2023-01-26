@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { environment } from '../config'
+import { environment } from '@app/config'
 
 export type HttpClientRequest = typeof axios.request
 

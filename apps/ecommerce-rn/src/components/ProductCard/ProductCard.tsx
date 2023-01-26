@@ -1,11 +1,23 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
-import { ProductModel } from '../../models/product'
-import styled from 'styled-components/native'
-import { useCart } from '../../hooks/use-cart'
+import { ProductModel } from '@app/models'
+import { useCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
 import { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
+import {
+  AddToCartView,
+  CardContainer,
+  Image,
+  PriceText,
+  ProductFooterView,
+  ProductInfoView,
+  ProductTitleText,
+  RemoveToCartView,
+  ShippingFreeText,
+  ShippingInfoView,
+  View,
+} from './ProductCart.styles'
 
 type ProductCardProps = {
   product: ProductModel
@@ -78,74 +90,3 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
     </CardContainer>
   )
 }
-
-const CardContainer = styled.View`
-  width: 100%;
-  padding: 0;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 8px;
-  margin: 8px;
-  shadow-color: #000;
-  shadow-offset: 1px 1px;
-  shadow-opacity: 0.1;
-  elevation: 3;
-`
-
-const Image = styled.Image`
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-`
-
-const ProductFooterView = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 8px;
-`
-
-const ShippingInfoView = styled.View`
-  flex-direction: row;
-  align-items: center;
-`
-
-const ShippingFreeText = styled.Text`
-  font-weight: bold;
-  color: #15803d;
-`
-
-const AddToCartView = styled.View`
-  color: '#22c55e';
-  margin-left: auto;
-`
-
-const RemoveToCartView = styled.View`
-  padding: 0 8px;
-  width: 100%;
-  margin-bottom: 15px;
-`
-
-const ProductInfoView = styled.View`
-  width: 100%;
-  margin: 12px 0;
-  padding: 0 8px;
-`
-
-const ProductTitleText = styled.Text`
-  font-size: 16px;
-  color: #374151;
-  margin-bottom: 2px;
-`
-
-const PriceText = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  color: #111827;
-`
-const View = styled.View`
-  width: 100%;
-`
