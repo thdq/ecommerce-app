@@ -1,7 +1,7 @@
 import { FlatList, ListRenderItem } from 'react-native'
 import { CartSummary, EmptyCart, ProductDetailCart } from '@app/components'
-import { useCart, useCheckout } from '@app/hooks'
-import { CartSummaryModel, ProductModel } from '@app/models'
+import { useCart, useCartSummaryModel, useCheckout } from '@app/hooks'
+import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
 import { useState } from 'react'
@@ -12,12 +12,12 @@ const Cart = () => {
   const navigation = useNavigation<StackNavigationProps>()
 
   const { products, dispatchCart } = useCart()
+  const { createCartSummaryModel } = useCartSummaryModel()
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)
 
   const productsFromCart = products as ProductModel[]
-
-  const summaryList = new CartSummaryModel(productsFromCart)
+  const summaryList = createCartSummaryModel(productsFromCart)
 
   const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
     <ProductDetailCart product={product} />

@@ -1,5 +1,5 @@
 import { useGetProducts } from '@app/hooks'
-import { ProductType } from '@app/models'
+import { Product } from '@app/models'
 import { ProductCard } from '@app/components/ProductCard'
 import { ListRenderItem, RefreshControl } from 'react-native'
 import { ProductListError } from '@app/components/ProductListError'
@@ -13,7 +13,7 @@ const SKELETON_FAKE_LIST = [...Array(6).keys()]
 
 export const ProductList = () => {
   const [isRefreshing, setRefreshing] = useState(false)
-  const { createModel } = useProductModel()
+  const { createProductModel } = useProductModel()
 
   const { filteredList, error, isLoading, mutate } = useGetProducts()
   const products = filteredList?.products ?? []
@@ -21,8 +21,8 @@ export const ProductList = () => {
   const handleRetry = () => mutate()
 
   const renderSkeleton = () => <SkeletonCard />
-  const renderItem: ListRenderItem<ProductType> = ({ item: product }) => (
-    <ProductCard product={createModel(product)} />
+  const renderItem: ListRenderItem<Product> = ({ item: product }) => (
+    <ProductCard product={createProductModel(product)} />
   )
 
   const onRefresh = useCallback(async () => {
@@ -37,7 +37,7 @@ export const ProductList = () => {
         <FlatList
           data={products}
           numColumns={NUMBER_COLUMNS}
-          keyExtractor={(product: ProductType) => product.id.toString()}
+          keyExtractor={(product: Product) => product.id.toString()}
           renderItem={renderItem}
           refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}
         />
