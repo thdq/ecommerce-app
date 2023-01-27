@@ -1,4 +1,5 @@
-name: 'Build an APK from e-Commerce React Native application'
+name: Build an APK from e-Commerce React Native application
+
 on:
   push:
   pull_request:
