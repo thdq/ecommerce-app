@@ -16,13 +16,17 @@ Este projeto foi desenvolvido com a finalidade de reproduzir um e-commerce simpl
 - Styled components;
 - SWR;
 
-## Inicialização
 
 ### Requisitos
 
-- Node v18.x (`No terminal use o comando nvm install 18`)
+- Node v18.x (`No terminal use o comando nvm install 16`)
 - NPM 6.x ou superior (`No terminal use o comando npm install -g npm@latest para atualizar`)
-- Executar comando `npm install && npm run build` no root do repositório para instalar dependências de packages e apps
+
+## Inicialização
+1 - Execute comando `npm install`
+2 - Execute o comando `npm run dev`
+
+Observação: As blibliotecas dependentes como a `packages/ui-rn` não tem hot-reload ao executar o comando acima, para resolver em questão pode-se abrir um novo terminal e executar `npm run dev` na pasta da bliblioteca desejada, ou no root do repositório execute o comando `npm run dev` para executar todas as aplicações/bibliotecas com hot-reload.
 
 Crie um arquivo local `.env.local` e insira as variáveis, há um [exemplo de env](./.env.example). Como a variável da URL da API não tem segmentos de ambientes(produção/homologação) pode-se copiar o de exemplo.
 

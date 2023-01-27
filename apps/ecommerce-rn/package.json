@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install -g turbo@latest && turbo run build --scope=ui-rn",
+    "build-deps": "turbo run build --scope=ui-rn",
+    "postinstall": "npm install -g turbo@latest && npm run build-deps",
     "eject": "expo-cli eject",
-    "dev": "env-cmd --silent -f ./.env.local expo start",
+    "dev": "npm run build-deps && env-cmd --silent -f ./.env.local expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
