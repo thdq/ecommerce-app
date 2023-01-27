@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "postinstall": "turbo run build --scope=ui-rn",
+    "postinstall": "npm install -g turbo@latest && turbo run build --scope=ui-rn",
     "eject": "expo eject",
     "dev": "env-cmd --silent -f ./.env.local expo start",
     "android": "expo run:android",
