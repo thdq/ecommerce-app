@@ -4,12 +4,15 @@
   "main": "main.ts",
   "scripts": {
     "postinstall": "turbo run build --scope=ui-rn",
+    "eject": "expo eject",
     "dev": "env-cmd --silent -f ./.env.local expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest --watchAll --runInBand --detectOpenHandles",
-    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage"
+    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage",
+    "build:android": "expo build:android -p",
+    "start": "expo start --dev-client"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.2",
@@ -27,7 +30,8 @@
     "react-native-web": "~0.18.9",
     "styled-components": "^5.3.6",
     "swr": "^2.0.1",
-    "ui-rn": "*"
+    "ui-rn": "*",
+    "expo-splash-screen": "~0.17.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

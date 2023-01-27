@@ -30,6 +30,7 @@ const config = {
     },
   },
   ios: {
+    bundleIdentifier: 'com.ecommerce.rn',
     supportsTablet: true,
   },
 }
