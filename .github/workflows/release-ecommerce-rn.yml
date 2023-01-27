@@ -2,11 +2,11 @@ name: Build an APK from e-Commerce React Native application
 
 on:
   push:
-  pull_request:
-    types: [opened, synchronize, edited]
+    branches:
+      - main
 
 jobs:
-  # First Job
+
   install-and-test:
     runs-on: ubuntu-latest
     steps:
@@ -14,11 +14,11 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
-      # For testing
+
       - name: Run tests
         run: |
           npm test
-  # Second Job
+
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
-      # Upload to Artifact
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
