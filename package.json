@@ -9,7 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "dev:ecommerce-rn": "cd apps/ecommerce-rn && npm run dev",
+    "start:ecommerce-rn": "turbo run dev --filter=ui-rn --filter=ecommerce-rn",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install"

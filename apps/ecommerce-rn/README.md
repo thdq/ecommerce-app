@@ -27,7 +27,7 @@ Este projeto foi desenvolvido com a finalidade de reproduzir um e-commerce simpl
 Crie um arquivo local `.env.local` e insira as variáveis, há um [exemplo de env](./.env.example). Como a variável da URL da API não tem segmentos de ambientes(produção/homologação) pode-se copiar o de exemplo.
 
 ```bash
-npm  install # não é necessário se executado no root do repositório
+npm  install
 npm run dev
 ```
 

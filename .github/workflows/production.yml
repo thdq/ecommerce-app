@@ -19,5 +19,5 @@ jobs:
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
-      - run: yarn
+      - run: npm Install
       - run: expo publish --release-channel production
