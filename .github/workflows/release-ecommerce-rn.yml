@@ -49,9 +49,9 @@ jobs:
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
-      name: Testing host folder paths
-      run: |
-        ls -la && cd android && ls -la
+      - name: Testing host folder paths
+        run: |
+          ls -la && cd android && ls -la
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
