@@ -4,7 +4,7 @@ author: 'thdq'
 on:
   push:
     branches:
-      - ci/build-apk-with-rn-cli
+      - '**'
 jobs:
   # First Job
   install-and-test:
