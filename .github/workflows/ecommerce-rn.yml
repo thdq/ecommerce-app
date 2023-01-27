@@ -5,10 +5,6 @@ on:
   pull_request:
     types: [opened, synchronize, edited]
 
-defaults:
-  run:
-    working-directory: apps/ecommerce-rn
-
 jobs:
   # First Job
   install-and-test:
@@ -26,6 +22,11 @@ jobs:
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/ecommerce-rn
+
     steps:
       - uses: actions/checkout@v2
       - name: Install npm dependencies
