@@ -1,9 +1,8 @@
 name: Build an APK from e-Commerce React Native application
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, edited]
 
 jobs:
 
@@ -46,17 +45,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-caches-
 
-      - name: Clean Gradlew
-        run: |
-          cd android && ./gradlew clean
-
       - name: Build Android Release
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
+          name: ecommerce-rn.apk
+          path: ../ecommerce-rn/android/app/build/outputs/apk/release/
