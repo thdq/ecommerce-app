@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-rn",
   "version": "1.0.0",
-  "main": "main.ts",
+  "main": "index.js",
   "scripts": {
     "postinstall": "turbo run build --scope=ui-rn",
     "eject": "expo eject",
@@ -19,6 +19,7 @@
     "@react-navigation/native-stack": "^6.9.8",
     "axios": "^1.2.3",
     "expo": "~47.0.12",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "jest-expo": "^47.0.1",
     "jotai": "^1.13.1",
@@ -30,8 +31,7 @@
     "react-native-web": "~0.18.9",
     "styled-components": "^5.3.6",
     "swr": "^2.0.1",
-    "ui-rn": "*",
-    "expo-splash-screen": "~0.17.5"
+    "ui-rn": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -45,6 +45,7 @@
     "env-cmd": "^10.1.0",
     "eslint": "^8.10.0",
     "eslint-config-react-custom": "*",
+    "expo-cli": "^6.1.0",
     "jest": "^29.3.1",
     "jest-mock-axios": "^4.7.0-beta4",
     "ts-node": "^10.9.1",
