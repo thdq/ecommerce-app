@@ -11,6 +11,7 @@
     "dev": "turbo run dev --parallel",
     "start:ecommerce-rn": "turbo run dev --filter=ui-rn --filter=ecommerce-rn",
     "lint": "turbo run lint",
+    "test": "turbo run test:ci",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install"
   },
