@@ -4,8 +4,7 @@ author: 'thdq'
 on:
   push:
   pull_request:
-    branches:
-      - main
+    types: [opened, synchronize, edited]
 jobs:
   # First Job
   install-and-test:
