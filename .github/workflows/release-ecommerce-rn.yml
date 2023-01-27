@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ecommerce-rn.apk
-          path: ../ecommerce-rn/android/app/build/outputs/apk/release/
+          path: ../apps/ecommerce-rn/android/app/build/outputs/apk/release/
