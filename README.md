@@ -17,7 +17,7 @@ A utilização de um monorepo é uma estratégia para a escabilidade da arquitet
 
 ### Requisitos
 
-- Node v18.x (`No terminal use o comando nvm install 18`)
+- Node v16.x (`No terminal use o comando nvm install 18`)
 - NPM 6.x ou superior (`No terminal use o comando npm install -g npm@latest para atualizar`)
 
 Para rodar localmente todos as aplicações e bibliotecas siga o comando abaixo após o clone do repositório:
