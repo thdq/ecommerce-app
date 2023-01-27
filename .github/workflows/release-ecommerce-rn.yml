@@ -19,6 +19,7 @@ jobs:
           npm test
 
   build-android:
+    needs: install-and-test
     runs-on: ubuntu-latest
 
     defaults:
@@ -44,14 +45,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-caches-
 
-
-
-      - name: Testing host folder paths
+      - name: Build Android Release
         run: |
-          ls -la && cd android && ls -la && pwd
+          cd android && ./gradlew assembleRelease --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: ecommerce-rn.apk
-          path: ../../android/app/build/outputs/apk/release/
+          path: apps/ecommerce-rn/android/app/build/outputs/apk/release/
