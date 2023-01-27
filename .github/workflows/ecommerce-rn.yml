@@ -1,6 +1,4 @@
 name: 'Build an APK from e-Commerce React Native application'
-description: 'This github action automatically builds the android apk under the artifact section'
-author: 'thdq'
 on:
   push:
   pull_request:
