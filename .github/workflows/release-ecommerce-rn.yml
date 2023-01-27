@@ -49,8 +49,12 @@ jobs:
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
+      name: Testing host folder paths
+      run: |
+        ls -la && cd android && ls -la
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: ecommerce-rn.apk
-          path: ../../ecommerce-rn/android/app/build/outputs/apk/release/
+          path: ../../ecommerce-app/android/app/build/outputs/apk/release/
