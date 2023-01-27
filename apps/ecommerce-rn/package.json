@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm install -g turbo@latest && turbo run build --scope=ui-rn",
-    "eject": "expo eject",
+    "eject": "expo-cli eject",
     "dev": "env-cmd --silent -f ./.env.local expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
