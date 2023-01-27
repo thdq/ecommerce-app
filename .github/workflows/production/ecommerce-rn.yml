@@ -3,8 +3,9 @@ description: 'This github action automatically builds the android apk under the 
 author: 'thdq'
 on:
   push:
+  pull_request:
     branches:
-      - '**'
+      - main
 jobs:
   # First Job
   install-and-test:
