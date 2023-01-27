@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
     types: [opened, synchronize, edited]
+
+defaults:
+  run:
+    working-directory: apps/ecommerce-rn
+
 jobs:
   # First Job
   install-and-test:
@@ -20,10 +25,6 @@ jobs:
   # Second Job
   build-android:
     needs: install-and-test
-    on:
-      push:
-        paths:
-          - apps/ecommerce-rn/**
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
