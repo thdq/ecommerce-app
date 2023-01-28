@@ -33,6 +33,10 @@ Ou para rodar apenas uma aplicação pode-se usar o comando abaixo:
 npm run start:APP_NAME # npm run dev:ecommerce-rn por exemplo
 ```
 
+## Integração e entrega contínua
+
+- [CI/CD](./docs//ci-cd.md)
+
 ### Documentações das aplicações/biblioteca
 
 - [apps/ecommerce-rn](./apps/ecommerce-rn/README.md)
