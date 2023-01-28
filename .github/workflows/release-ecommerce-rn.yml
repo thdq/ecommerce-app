@@ -5,7 +5,6 @@ on:
     types: [opened, synchronize, edited]
 
 jobs:
-
   install-and-test:
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +16,14 @@ jobs:
       - name: Run tests
         run: |
           npm test
+
+    create-env-file:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Create .env file
+          uses: ozaytsev86/create-env-file@v1
+            with:
+              REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
 
   build-android:
     needs: install-and-test
@@ -47,7 +54,7 @@ jobs:
 
       - name: Build Android Release
         run: |
-          cd android && ./gradlew assembleRelease --no-daemon
+          APP_ENV=production && cd android && ./gradlew assembleRelease --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
