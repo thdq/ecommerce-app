@@ -22,11 +22,10 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  if (loading) delete props.onPress
   return (
     <>
       {loading ? (
-        <ButtonLoadingContainer {...props} size={size}>
+        <ButtonLoadingContainer disabled {...props} size={size}>
           <ActivityIndicator size={'small'} />
           <ButtonDisabledText>{loadingLabel}</ButtonDisabledText>
         </ButtonLoadingContainer>
@@ -73,7 +72,7 @@ const ButtonLabel = styled.Text<{ variant: string }>`
       : ''};
 `
 
-const ButtonLoadingContainer = styled.View<{ size: ButtonSize }>`
+const ButtonLoadingContainer = styled.TouchableOpacity<{ size: ButtonSize }>`
   padding: 12px;
   padding: ${({ size }) => (size === 'large' ? '18px' : size === 'medium' ? '12px' : '6px')};
   border-radius: 6px;

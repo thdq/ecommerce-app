@@ -1,16 +1,18 @@
 import constants from 'expo-constants'
+import { REACT_APP_BASE_API_URL, NODE_ENV, REACT_APP_DELAY_REQUESTS_IN_SECONDS } from '@env'
 
-const baseApiUrl = constants.expoConfig?.extra?.baseApiUrl
+const baseApiUrl = REACT_APP_BASE_API_URL || process.env.REACT_APP_BASE_API_URL
+const delayRequestsInSeconds = parseInt(REACT_APP_DELAY_REQUESTS_IN_SECONDS || '')
+const env: string = NODE_ENV || process.env.NODE_ENV || ''
 
-if (!baseApiUrl) {
-  new Error(
-    'Env `REACT_APP_BASE_API_URL` not found, create a `.env.local` and insert the variables',
-  )
-}
-
-export const environment = {
+const environment = {
   ...constants.expoConfig?.extra,
+  delayRequestsInSeconds,
   baseApiUrl,
-  delayRequestsInSeconds: parseInt(constants.expoConfig?.extra?.delayRequestsInSeconds),
-  isDevelopment: () => constants.expoConfig?.extra?.env === 'development',
+  env,
+  isTest: () => ['test'].includes(env.toLowerCase()),
+  isDevelopment: () => ['dev', 'development'].includes(env.toLowerCase()),
+  isProduction: () => ['prod', 'production'].includes(env.toLowerCase()),
 }
+
+export { environment }

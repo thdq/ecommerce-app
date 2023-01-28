@@ -16,11 +16,6 @@ const config = {
   assetBundlePatterns: ['**/*'],
 
   owner: 'thdq',
-  extra: {
-    baseApiUrl: process.env.REACT_APP_BASE_API_URL,
-    delayRequestsInSeconds: process.env.REACT_APP_DELAY_REQUESTS_IN_SECONDS,
-    env: process.env.NODE_ENV,
-  },
   android: {
     package: 'com.ecommerce.rn',
     versionCode: 1,
@@ -30,6 +25,7 @@ const config = {
     },
   },
   ios: {
+    bundleIdentifier: 'com.ecommerce.rn',
     supportsTablet: true,
   },
 }

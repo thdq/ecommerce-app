@@ -9,8 +9,9 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "start:ecommerce-rn": "turbo run dev --filter=ui-rn --filter=ecommerce-rn",
+    "dev:ecommerce-rn": "turbo run dev --filter=ui-rn --filter=ecommerce-rn",
     "lint": "turbo run lint",
+    "test": "turbo run test:ci",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install"
   },
@@ -24,7 +25,7 @@
     "turbo": "latest"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "16.x"
   },
   "packageManager": "npm@8.19.3"
 }

@@ -4,6 +4,8 @@ Este documento comtempla ajudá-lo entender a estrutura, modelo de uso, e uma in
 
 ## Estrutura de pasta
 
+- `./android`: Pasta onde localiza-se módulos/binários nativos do Android (gerado com `npx expo prebuild`);
+- `./android`: Pasta onde localiza-se módulos/binários nativos do iOS (gerado com `npx expo prebuild`);
 - `./__mocks__`: Pasta para armazenamento de dados brutos e mock de libs como o axios;
 - `./src/__tests__`: Pasta onde são escritos os testes, sendo dividido pelas sub-pastas de **unit**, **integration** e **e2e**;
 - `./src/api`: Onde fica as chamada para requisição HTTP, nela cada requisição é separada por aquivo;

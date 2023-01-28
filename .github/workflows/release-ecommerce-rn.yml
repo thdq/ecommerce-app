@@ -1,0 +1,15 @@
+name: Release an e-Commerce React Native application
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-release:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
