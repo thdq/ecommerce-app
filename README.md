@@ -8,7 +8,7 @@ A utilização de um monorepo é uma estratégia para a escabilidade da arquitet
 
 ## Estrutura dos repositórios
 
-- `apps/ecommerce-rn`: Uma aplicação de e-Commerce desenvolvida com React Native (com Expo);
+- `apps/ecommerce-rn`: Uma aplicação de e-Commerce desenvolvida com React Native (com Expo Bare);
 - `packages/ui-rn`: Design System para compartilhar UI's entre as aplicações;
 - `packages/eslint-config-react-custom`: Biblioteca de configuração do ESlint para React e React Native;
 - `packages/tsconfig`: Configuração do TypeScript.
