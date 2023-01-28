@@ -3,7 +3,7 @@ import { ProductModel } from '@app/models'
 import { useCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import {
   AddToCartView,
@@ -23,7 +23,7 @@ type ProductCardProps = {
   product: ProductModel
 } & ViewProps
 
-export const ProductCard = ({ product, ...props }: ProductCardProps) => {
+export const ProductCardComponent = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
   const { dispatchCart, products: productsFromCart } = useCart()
 
@@ -90,3 +90,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
     </CardContainer>
   )
 }
+
+const ProductCardMemo = memo(ProductCardComponent)
+
+export { ProductCardMemo as ProductCard }
