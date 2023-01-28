@@ -2,10 +2,10 @@ import { SkeletonCard } from 'ui-rn'
 import { FlatList } from './ProductListLoading.styles'
 
 const NUMBER_COLUMNS = 2
-const SKELETON_FAKE_LIST = [...Array(6).keys()]
+export const SKELETON_FAKE_LIST = [...Array(6).keys()]
 
 export const ProductListLoading = () => {
-  const renderSkeleton = () => <SkeletonCard />
+  const renderSkeleton = () => <SkeletonCard testID='skeleton-card' />
 
   return (
     <FlatList
