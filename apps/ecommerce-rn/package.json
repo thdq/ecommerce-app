@@ -5,7 +5,6 @@
   "scripts": {
     "build-deps": "turbo run build --scope=ui-rn",
     "postinstall": "npm install -g turbo@latest && npm run build-deps",
-    "eject": "expo-cli eject",
     "dev:expo": "npm run build-deps && ENVFILE=.env.local expo start --dev-client",
     "dev:cli": "ENVFILE=.env.local react-native run-android",
     "android": "expo run:android",

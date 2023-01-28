@@ -11,10 +11,11 @@ const environment = {
   baseApiUrl,
   env,
   isTest: () => ['test'].includes(env.toLowerCase()),
-  isDevelopment: () => ['dev', 'development,', 'DEV', 'DEVELOPMENT'].includes(env.toLowerCase()),
+  isDevelopment: () => ['dev', 'development'].includes(env.toLowerCase()),
+  isProduction: () => ['prod', 'production'].includes(env.toLowerCase()),
 }
 
-if (!baseApiUrl && !environment.isTest()) {
+if ((!baseApiUrl && !environment.isTest()) || !environment.isProduction()) {
   throw new Error(
     `Env \`REACT_APP_BASE_API_URL\` not found, create a \`.env.${env}\` and insert the variables`,
   )
