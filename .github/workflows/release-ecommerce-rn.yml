@@ -17,13 +17,13 @@ jobs:
         run: |
           npm test
 
-    create-env-file:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Create .env file
-          uses: ozaytsev86/create-env-file@v1
-            with:
-              REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
+  create-env-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
+        with:
+          REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
 
   build-android:
     needs: install-and-test
