@@ -20,6 +20,7 @@ jobs:
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
+    environment: production
 
     defaults:
       run:
@@ -48,12 +49,13 @@ jobs:
         run: |
           touch .env.production
           echo REACT_APP_BASE_API_URL=${{ secrets.REACT_APP_BASE_API_URL }} >> .env.production
+          echo "`.env.production`"
 
       - name: Build Android Release
         run: |
           ls -la || true
           pwd || true
-          echo "`.env.production`"
+          echo REACT_APP_BASE_API_URL=${{ secrets.REACT_APP_BASE_API_URL }}
           APP_ENV=production && cd android && ./gradlew assembleRelease --no-daemon
 
       - name: Upload Artifact
