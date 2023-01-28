@@ -19,17 +19,19 @@ jobs:
 
   create-env-file:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/ecommerce-rn
     steps:
+      - name: Show env outupt and current directory
+        run: |
+          pwd
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
           file_name: .env.production
           directory: apps/ecommerce-rn
-
-      - name: Show env outupt (Remove after test)
-        run: |
-          echo "`<.env.production`" && cd apps/ecommerce-rn echo "`<.env.production`"
 
   build-android:
     needs: install-and-test
