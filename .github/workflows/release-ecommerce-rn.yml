@@ -21,9 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
+        uses: ozaytsev86/create-env-file@v1.3.0
         with:
-          REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
+          envkey_REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
+          file_name: .env.production
+          directory: apps/ecommerce-rn
+
+      - name: Show env outupt (Remove after test)
+        run: |
+          echo "`<.env.production`" && cd apps/ecommerce-rn echo "`<.env.production`"
 
   build-android:
     needs: install-and-test
