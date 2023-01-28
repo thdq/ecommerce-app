@@ -15,10 +15,4 @@ const environment = {
   isProduction: () => ['prod', 'production'].includes(env.toLowerCase()),
 }
 
-if (!baseApiUrl && environment.isDevelopment()) {
-  throw new Error(
-    `Env \`REACT_APP_BASE_API_URL\` not found, create a \`.env.${env}\` and insert the variables`,
-  )
-}
-
 export { environment }
