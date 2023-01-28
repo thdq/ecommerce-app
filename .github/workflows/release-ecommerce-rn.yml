@@ -28,6 +28,7 @@ jobs:
         with:
           envkey_REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
           file_name: .env.production
+          directory: apps/ecommerce-rn
 
   build-android:
     needs: install-and-test
