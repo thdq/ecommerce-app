@@ -25,13 +25,12 @@ jobs:
     steps:
       - name: Show env outupt and current directory
         run: |
-          pwd
+          ls -la
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
           file_name: .env.production
-          directory: apps/ecommerce-rn
 
   build-android:
     needs: install-and-test
