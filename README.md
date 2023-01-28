@@ -13,7 +13,11 @@ A utilização de um monorepo é uma estratégia para a escabilidade da arquitet
 - `packages/eslint-config-react-custom`: Biblioteca de configuração do ESlint para React e React Native;
 - `packages/tsconfig`: Configuração do TypeScript.
 
-## Inicialização
+## Inicialização com APK
+
+- Vá em [releases](https://github.com/thdq/ecommerce-app/releases) do projeto e baixa o APK em assets da versão desejada
+
+## Inicialização local
 
 ### Requisitos
 

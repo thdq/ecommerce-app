@@ -11,7 +11,7 @@
 - [ ] Prover o tema do styled components global
 - [ ] Consumir alguma lib (preferencialmente do monorepo) de tracking
 - [ ] i18n
-- [ ] Pipeline para release de APK.
+- [x] Pipeline para release de APK.
 
 ## Roadmap a respeito do produto
 
