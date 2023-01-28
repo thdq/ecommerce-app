@@ -1,8 +1,9 @@
 name: Build an APK from e-Commerce React Native application
 
 on:
-  pull_request:
-    types: [opened, synchronize, edited]
+  push:
+    branches:
+      - main
 
 jobs:
   install-and-test:
