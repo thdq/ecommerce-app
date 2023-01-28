@@ -6,13 +6,13 @@ import { FlatList, ProductListContainer } from './ProductList.styles'
 
 const NUMBER_COLUMNS = 2
 
-type ProductList = {
+type ProductListProps = {
   products: Product[]
   isRefreshing: boolean
   onRefresh: () => void
 }
 
-export const ProductList = ({ products, isRefreshing, onRefresh }: ProductList) => {
+export const ProductList = ({ products, isRefreshing, onRefresh }: ProductListProps) => {
   const { createProductModel } = useProductModel()
 
   const renderItem: ListRenderItem<Product> = ({ item: product }) => (
