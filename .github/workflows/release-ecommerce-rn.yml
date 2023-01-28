@@ -51,8 +51,9 @@ jobs:
 
       - name: Build Android Release
         run: |
-          ls || true
+          ls -la || true
           pwd || true
+          echo "`.env.production`"
           APP_ENV=production && cd android && ./gradlew assembleRelease --no-daemon
 
       - name: Upload Artifact
