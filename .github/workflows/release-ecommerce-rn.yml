@@ -24,11 +24,9 @@ jobs:
         working-directory: apps/ecommerce-rn
     steps:
       - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1.2
-        with:
-          envkey_REACT_APP_BASE_API_URL: ${{ secrets.REACT_APP_BASE_API_URL }}
-          file_name: .env.production
-          directory: apps/ecommerce-rn
+        run: |
+          touch .env.production
+          echo REACT_APP_BASE_API_URL=${{ secrets.REACT_APP_BASE_API_URL }} >> .env.production && cd apps
 
   build-android:
     needs: install-and-test
