@@ -33,6 +33,11 @@ const config = {
     bundleIdentifier: 'com.ecommerce.rn',
     supportsTablet: true,
   },
+  expo: {
+    assetBundlePatterns: [
+      '**/*'
+    ]
+  }
 }
 
 export default config

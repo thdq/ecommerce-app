@@ -13,7 +13,8 @@
     "test": "jest --watchAll --runInBand --detectOpenHandles",
     "test:ci": "jest --runInBand --detectOpenHandles",
     "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage",
-    "build:android": "expo build:android -p",
+    "build:android": "ENVFILE=.env.production && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ &&  cd ./android && ./gradlew app:assembleRelease",
+
     "start": "expo start --dev-client"
   },
   "dependencies": {
