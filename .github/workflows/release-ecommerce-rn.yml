@@ -1,65 +1,15 @@
-name: Build an APK from e-Commerce React Native application
+name: Release an e-Commerce React Native application
 
 on:
-  pull_request:
-    types: [opened, synchronize, edited]
+  release:
+    types: [published]
 
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-
-      - name: Run tests
-        run: |
-          npm test
-
-  build-android:
-    needs: install-and-test
+  deploy-release:
     runs-on: ubuntu-latest
     environment: production
 
-    defaults:
-      run:
-        working-directory: apps/ecommerce-rn
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-      - name: Cache Gradle Wrapper
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-
-      - name: Cache Gradle Dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-caches-
-
-      - name: Create .env file
-        run: |
-          touch .env.production
-          echo REACT_APP_BASE_API_URL=${{ secrets.REACT_APP_BASE_API_URL }} >> .env.production
-          echo "`.env.production`"
-
-      - name: Build Android Release
-        run: |
-          ls -la || true
-          pwd || true
-          echo REACT_APP_BASE_API_URL=${{ secrets.REACT_APP_BASE_API_URL }}
-          APP_ENV=production && cd android && ./gradlew assembleRelease --no-daemon
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: ecommerce-rn.apk
-          path: apps/ecommerce-rn/android/app/build/outputs/apk/release/
+      - name: download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
