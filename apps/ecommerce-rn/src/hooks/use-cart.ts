@@ -1,29 +1,22 @@
 import { cartSummaryAtom } from '@app/store'
-import { useReducerAtom } from 'jotai/utils'
-import { ProductModel, Product } from '@app/models'
 
-type CartReducerAction = {
-  payload: ProductModel
-  type: 'ADD' | 'REMOVE' | 'RESET'
-}
+import { useSetAtom } from 'jotai'
+import { ProductModel } from '@app/models'
 
 export const useCart = () => {
-  const cartReducer = (state: Product[], action: CartReducerAction) => {
-    switch (action.type) {
-      case 'ADD':
-        action?.payload?.addToCart()
-        return [...state, action.payload]
-      case 'REMOVE':
-        action?.payload?.removeFromCart()
-        return state.filter((product) => product.id !== action?.payload?.id)
-      case 'RESET':
-        return []
-      default:
-        throw new Error('unknown action type')
-    }
+  const setCartSummary = useSetAtom(cartSummaryAtom)
+
+  const addToCart = (product: ProductModel) => {
+    setCartSummary((prev) => [...prev, product])
   }
 
-  const [products, dispatchCart] = useReducerAtom(cartSummaryAtom, cartReducer)
+  const removeFromCart = (product: ProductModel) => {
+    setCartSummary((prev) => prev.filter((p) => p.id !== product.id))
+  }
 
-  return { products, dispatchCart }
+  const clearCart = () => {
+    setCartSummary([])
+  }
+
+  return { addToCart, removeFromCart, clearCart }
 }

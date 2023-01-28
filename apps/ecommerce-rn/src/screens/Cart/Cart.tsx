@@ -11,16 +11,15 @@ import { StackNavigationProps } from '@app/navigation/AppNavigation'
 const Cart = () => {
   const navigation = useNavigation<StackNavigationProps>()
 
-  const { products, dispatchCart } = useCart()
+  const { clearCart, removeFromCart } = useCart()
   const { createCartSummaryModel } = useCartSummaryModel()
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)
 
-  const productsFromCart = products as ProductModel[]
-  const summaryList = createCartSummaryModel(productsFromCart)
+  const summaryList = createCartSummaryModel([] as ProductModel[])
 
   const handleRemoveFromCart = (product: ProductModel) => {
-    dispatchCart({ payload: product, type: 'REMOVE' })
+    removeFromCart(product)
   }
 
   const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
@@ -33,8 +32,7 @@ const Cart = () => {
     setIsPurchasing(false)
 
     if (isPurchased) {
-      const payload = {} as ProductModel
-      dispatchCart({ type: 'RESET', payload })
+      clearCart()
       navigation.navigate('Products')
       navigation.navigate('Checkout')
     }

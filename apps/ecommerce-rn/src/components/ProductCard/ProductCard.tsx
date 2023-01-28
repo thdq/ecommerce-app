@@ -18,21 +18,20 @@ import {
   ShippingInfoView,
   View,
 } from './ProductCart.styles'
-
 type ProductCardProps = {
   product: ProductModel
 } & ViewProps
 
 export const ProductCardComponent = ({ product, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { dispatchCart, products: productsFromCart } = useCart()
+  const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
-    dispatchCart({ type: 'ADD', payload: product })
+    addToCart(product)
   }
 
   const handleRemoveFromCart = () => {
-    dispatchCart({ type: 'REMOVE', payload: product })
+    removeFromCart(product)
   }
 
   const handleShowLoading = () => {
@@ -56,7 +55,7 @@ export const ProductCardComponent = ({ product, ...props }: ProductCardProps) =>
       </ProductInfoView>
 
       <ProductFooterView>
-        {!product.isInCart(productsFromCart) ? (
+        {!product.isInCart() ? (
           <>
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
@@ -79,11 +78,7 @@ export const ProductCardComponent = ({ product, ...props }: ProductCardProps) =>
           </>
         ) : (
           <RemoveToCartView>
-            <Button
-              variant='danger'
-              label='Remover do carrinho'
-              onPress={handleRemoveFromCart}
-            ></Button>
+            <Button variant='danger' label='Remover' onPress={handleRemoveFromCart}></Button>
           </RemoveToCartView>
         )}
       </ProductFooterView>
