@@ -49,7 +49,7 @@ export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartPro
               {t('components.product_detail_cart.shipping')}
               {product.isFreeShipping() ? (
                 <ShippingFreeText>
-                  {t('components.product_detail_cart.free_shipping')}
+                  {' ' + t('components.product_detail_cart.free_shipping')}
                 </ShippingFreeText>
               ) : (
                 <Text> {product.getFormattedShippingTax()}</Text>

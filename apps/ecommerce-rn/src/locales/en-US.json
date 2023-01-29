@@ -30,7 +30,7 @@
       "show_products": "Show products"
     },
     "product_detail_cart": {
-      "shipping": "Shipping: ",
+      "shipping": "Shipping:",
       "free_shipping": "Free"
     },
     "product_list_error": {

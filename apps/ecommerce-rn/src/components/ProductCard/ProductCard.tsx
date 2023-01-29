@@ -69,7 +69,7 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
               {product.isFreeShipping() ? (
-                <ShippingFreeText>{t('components.product_card.free_shipping')}</ShippingFreeText>
+                <ShippingFreeText> {t('components.product_card.free_shipping')}</ShippingFreeText>
               ) : (
                 <Text> {product.getFormattedShippingTax()}</Text>
               )}
