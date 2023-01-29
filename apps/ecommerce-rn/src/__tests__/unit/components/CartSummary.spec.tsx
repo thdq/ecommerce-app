@@ -1,7 +1,11 @@
 import { CartSummary } from '@app/components'
-import { renderWithProviders } from '@app/__tests__/wrapper'
+import { renderWithProviders, translate } from '@app/__tests__/wrapper'
 import { cartSummaryMock } from '@mocks/cart-summary-model'
 import { fireEvent, screen } from '@testing-library/react-native'
+
+const TRANSALATE_PREFIX = 'components.cart_summary'
+
+const t = (message: string) => translate(`${TRANSALATE_PREFIX}.${message}`)
 
 const onCheckoutMock = jest.fn()
 
@@ -9,9 +13,9 @@ describe('<CartSummary /> component', () => {
   it('should renders', () => {
     renderWithProviders(<CartSummary summary={cartSummaryMock} onCheckout={onCheckoutMock} />)
 
-    expect(screen.getByText('Frete')).toBeVisible()
+    expect(screen.getByText(t('shipping'))).toBeVisible()
     expect(screen.getByText(cartSummaryMock.getFormattedShippingTax())).toBeVisible()
-    expect(screen.getByText('Total com frete')).toBeVisible()
+    expect(screen.getByText(t('total_with_shipping'))).toBeVisible()
     expect(screen.getByText(cartSummaryMock.getFormattedTotalPriceWithShipping())).toBeVisible()
   })
 
