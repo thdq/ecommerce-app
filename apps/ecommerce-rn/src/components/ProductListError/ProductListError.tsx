@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { ViewProps } from 'react-native'
 import { Button } from 'ui-rn'
 import { MessageText, ProductListErrorContainer } from './ProductListError.styles'
@@ -7,10 +8,12 @@ type ProductListErrorProps = {
 } & ViewProps
 
 export const ProductListError = ({ onTryAgain, ...props }: ProductListErrorProps) => {
+  const { t } = useTranslation()
+
   return (
     <ProductListErrorContainer {...props}>
-      <MessageText>Ocorreu um erro ao recuperar lista de produtos</MessageText>
-      <Button onPress={onTryAgain} label='Tentar novamente' />
+      <MessageText>{t('components.product_list_error.title')}</MessageText>
+      <Button onPress={onTryAgain} label={t('components.product_list_error.try_again') ?? ''} />
     </ProductListErrorContainer>
   )
 }

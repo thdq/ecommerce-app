@@ -10,7 +10,11 @@ import { StackNavigationProps } from '@app/navigation/AppNavigation'
 import { useAtomValue } from 'jotai'
 import { CartSummaryModelAtom } from '@app/store'
 
+import { useTranslation } from 'react-i18next'
+
 const Cart = () => {
+  const { t } = useTranslation()
+
   const navigation = useNavigation<StackNavigationProps>()
   const cartSummary = useAtomValue(CartSummaryModelAtom)
 
@@ -46,7 +50,9 @@ const Cart = () => {
     <SafeAreaView>
       {cartSummary.hasItens() ? (
         <CartContainer>
-          <TotalItensText>Itens no carrinho: {cartSummary.totalItens}</TotalItensText>
+          <TotalItensText>
+            {t('screens.cart.items_quantity', { quantity: cartSummary.totalItens })}
+          </TotalItensText>
           <FlatList
             data={cartSummary.list}
             keyExtractor={getKeyExtractor}

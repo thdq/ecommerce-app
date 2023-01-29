@@ -14,6 +14,7 @@ import {
   ShippingFreeText,
   ShippingInfoView,
 } from './ProductDetailCart.styles'
+import { useTranslation } from 'react-i18next'
 
 type ProductCartProps = {
   product: ProductModel
@@ -21,6 +22,8 @@ type ProductCartProps = {
 } & ViewProps
 
 export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartProps) => {
+  const { t } = useTranslation()
+
   const [isImageLoading, setIsImageLoading] = useState(true)
 
   const handleShowLoading = () => {
@@ -43,9 +46,11 @@ export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartPro
               {product.getFormattedPrice()} x {product.getAddedQuantity()} un.
             </Text>
             <ShippingInfoView>
-              Frete:
+              {t('components.product_detail_cart.shipping')}
               {product.isFreeShipping() ? (
-                <ShippingFreeText> Grátis</ShippingFreeText>
+                <ShippingFreeText>
+                  {' ' + t('components.product_detail_cart.free_shipping')}
+                </ShippingFreeText>
               ) : (
                 <Text> {product.getFormattedShippingTax()}</Text>
               )}

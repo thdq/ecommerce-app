@@ -1,0 +1,41 @@
+{
+  "screens": {
+    "products": {
+      "title": "Products"
+    },
+    "cart": {
+      "title": "Cart",
+      "items_quantity": "Items in cart:  {{quantity}}"
+    },
+    "checkout": {
+      "title": "Your purchase is complete",
+      "see_more": "See more products"
+    }
+  },
+  "components": {
+    "product_card": {
+      "remove": "Remove",
+      "free_shipping": "Free"
+    },
+    "cart_summary": {
+      "shipping": "Shipping",
+      "free_shipping": "Free",
+      "total_with_shipping": "Total with shipping",
+      "purchase": "Purchase",
+      "purchasing": "Purchasing..."
+    },
+    "empty_cart": {
+      "title": "Your cart is empty",
+      "description": "Add some products to your cart to see them here",
+      "show_products": "Show products"
+    },
+    "product_detail_cart": {
+      "shipping": "Shipping:",
+      "free_shipping": "Free"
+    },
+    "product_list_error": {
+      "title": "An error occurred while loading the product list",
+      "try_again": "Try again"
+    }
+  }
+}

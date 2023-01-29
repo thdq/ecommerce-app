@@ -3,19 +3,23 @@ import { screen, fireEvent } from '@testing-library/react-native'
 import { productMock } from '@mocks/product-list'
 import { ProductCard } from '@app/components'
 import { ProductModel } from '@app/models'
-import { renderWithProviders } from '@app/__tests__/wrapper'
+import { renderWithProviders, translate } from '@app/__tests__/wrapper'
+
+const TRANSALATE_PREFIX = 'components.product_card'
+
+const t = (message: string) => translate(`${TRANSALATE_PREFIX}.${message}`)
 
 const addToCartAssert = () => {
   const addToCartButton = screen.getByTestId('add-to-cart-button')
   expect(addToCartButton).toBeVisible()
   fireEvent(addToCartButton, 'press')
 
-  const removeToCartButton = screen.getByText('Remover')
+  const removeToCartButton = screen.getByText(t('remove'))
   expect(removeToCartButton).toBeVisible()
 }
 
 const removeToCartAssert = () => {
-  const removeToCartButton = screen.getByText('Remover')
+  const removeToCartButton = screen.getByText(t('remove'))
   fireEvent(removeToCartButton, 'press')
 
   const addToCartButton = screen.getByTestId('add-to-cart-button')

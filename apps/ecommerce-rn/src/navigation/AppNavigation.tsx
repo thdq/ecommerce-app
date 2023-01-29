@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native-stack'
 import { Products, Cart, Checkout } from '@app/screens'
 import { AntDesign } from '@expo/vector-icons'
+import { useTranslation } from 'react-i18next'
 
 type RootStackParamList = {
   Products: undefined
@@ -18,6 +19,11 @@ export type StackNavigationProps = NativeStackNavigationProp<RootStackParamList>
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const AppNavigation = () => {
+  const { t } = useTranslation()
+
+  const productListTitle = t('screens.products.title')
+  const cartTitle = t('screens.cart.title')
+
   return (
     <Stack.Navigator initialRouteName='Products'>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -25,7 +31,7 @@ const AppNavigation = () => {
           name='Cart'
           component={Cart}
           options={() => ({
-            title: 'Carrinho de compras',
+            title: cartTitle,
           })}
         />
       </Stack.Group>
@@ -34,7 +40,7 @@ const AppNavigation = () => {
           name='Products'
           component={Products}
           options={({ navigation }) => ({
-            title: 'Produtos',
+            title: productListTitle,
             headerRight: () => (
               <TouchableHighlight>
                 <AntDesign

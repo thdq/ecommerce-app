@@ -1,6 +1,6 @@
 import { environment } from '@app/config'
 import { ProductList } from '@app/models'
-import { httpClient, HttpClientResponse } from '@app/service'
+import { httpClient, HttpClientResponse } from '@app/services'
 
 const ITEMS_PER_PAGINATION = 20
 
@@ -22,7 +22,7 @@ export const getProducts = async ({
     const response = await httpClient.request<ProductList>({
       url: '/products',
       params: {
-        limit: 100,
+        limit,
         skip: offset,
       },
     })

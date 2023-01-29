@@ -1,7 +1,6 @@
 import { useGetProducts } from '@app/hooks'
 import { ProductListError, ProductListLoading } from '@app/components'
 import { useState, useCallback, useEffect } from 'react'
-import { Text } from 'react-native'
 
 import { ProductList } from '@app/components'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'

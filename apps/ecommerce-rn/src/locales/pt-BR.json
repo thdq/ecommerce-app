@@ -1,0 +1,41 @@
+{
+  "screens": {
+    "products": {
+      "title": "Produtos"
+    },
+    "cart": {
+      "title": "Carrinho de compras",
+      "items_quantity": "Itens no carrinho: {{quantity}}"
+    },
+    "checkout": {
+      "title": "Sua compra foi aprovada!",
+      "see_more": "Conferir mais ofertas"
+    }
+  },
+  "components": {
+    "product_card": {
+      "remove": "Remover",
+      "free_shipping": "Grátis"
+    },
+    "cart_summary": {
+      "shipping": "Frete",
+      "free_shipping": "Grátis",
+      "total_with_shipping": "Total com frete",
+      "purchase": "Finalizar Compra",
+      "purchasing": "Finalizando compra..."
+    },
+    "empty_cart": {
+      "title": "Seu carrinho está vazio",
+      "description": "Comece a adicionar produtos agora mesmo!",
+      "show_products": "Conferir produtos"
+    },
+    "product_detail_cart": {
+      "shipping": "Frete:",
+      "free_shipping": "Grátis"
+    },
+    "product_list_error": {
+      "title": "Ocorreu um erro ao carregar os produtos",
+      "try_again": "Tentar novamente"
+    }
+  }
+}

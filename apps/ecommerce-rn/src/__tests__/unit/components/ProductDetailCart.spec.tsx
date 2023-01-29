@@ -1,7 +1,10 @@
 import { ProductDetailCart } from '@app/components'
-import { renderWithProviders } from '@app/__tests__/wrapper'
+import { renderWithProviders, translate } from '@app/__tests__/wrapper'
 import { screen, fireEvent } from '@testing-library/react-native'
 import { productModel } from '@mocks/product-model'
+
+const TRANSALATE_PREFIX = 'components.product_detail_cart'
+const t = (message: string) => translate(`${TRANSALATE_PREFIX}.${message}`)
 
 const onRemoveMock = jest.fn()
 
@@ -13,7 +16,7 @@ describe('<ProductDetailCart /> component', () => {
     expect(screen.getByText(productModel.getFormattedPrice(), { exact: false })).toBeVisible()
 
     if (productModel.isFreeShipping()) {
-      expect(screen.getByText('Frete: Grátis')).toBeVisible()
+      expect(screen.getByText(t('free_shipping'))).toBeVisible()
     } else {
       expect(
         screen.getByText(productModel.getFormattedShippingTax(), { exact: false }),
