@@ -12,11 +12,6 @@ export type Product = {
   images: string[]
 }
 
-type CartStatus = {
-  inCart: boolean
-  quantity: number
-}
-
 const FREE_SHIPPING_IF_MORE_THAN_IT = 300
 const TAX_SHIP_PERCENTAGE = 0.07
 
@@ -32,17 +27,17 @@ export class ProductModel implements Product {
   category: string
   thumbnail: string
   images: string[]
-  private cartStatus: CartStatus
+  private quantity: number
   constructor(params: Product) {
     Object.assign(this, params)
-    this.cartStatus = {
-      inCart: false,
-      quantity: 0,
-    }
   }
 
-  getAddedQuantity() {
-    return this.cartStatus.quantity
+  getAddedQuantity(): number {
+    return this.quantity
+  }
+
+  setQuantity(quantity: number): void {
+    this.quantity = quantity
   }
 
   getFormattedPrice(): string {
@@ -67,25 +62,5 @@ export class ProductModel implements Product {
     if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return this.price
 
     return this.price + this.getShippingTax()
-  }
-
-  isInCart(cartListReference: Product[]): boolean {
-    const productIsInCart = cartListReference.some((product) => product.id === this.id)
-    return productIsInCart
-  }
-
-  addToCart(quantity?: number): void {
-    if (this.isInCart([])) throw new Error('product is already in cart')
-    this.cartStatus = {
-      inCart: true,
-      quantity: quantity || 1,
-    }
-  }
-
-  removeFromCart(): void {
-    this.cartStatus = {
-      inCart: false,
-      quantity: 0,
-    }
   }
 }

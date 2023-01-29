@@ -10,12 +10,12 @@ const addToCartAssert = () => {
   expect(addToCartButton).toBeVisible()
   fireEvent(addToCartButton, 'press')
 
-  const removeToCartButton = screen.getByText('Remover do carrinho')
+  const removeToCartButton = screen.getByText('Remover')
   expect(removeToCartButton).toBeVisible()
 }
 
 const removeToCartAssert = () => {
-  const removeToCartButton = screen.getByText('Remover do carrinho')
+  const removeToCartButton = screen.getByText('Remover')
   fireEvent(removeToCartButton, 'press')
 
   const addToCartButton = screen.getByTestId('add-to-cart-button')
@@ -25,7 +25,7 @@ const removeToCartAssert = () => {
 describe('<ProductCard /> component', () => {
   it('should renders card information', () => {
     const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard product={product} />)
+    renderWithProviders(<ProductCard inCart={false} product={product} />)
 
     const titleText = screen.getByText(product.title)
     const priceText = screen.getByText(product.getFormattedPrice())
@@ -38,14 +38,14 @@ describe('<ProductCard /> component', () => {
 
   it('should add to cart if press on button', async () => {
     const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard product={product} />)
+    renderWithProviders(<ProductCard inCart={false} product={product} />)
 
     addToCartAssert()
   })
 
   it('should remove to cart if press on button', async () => {
     const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard product={product} />)
+    renderWithProviders(<ProductCard inCart={false} product={product} />)
 
     addToCartAssert()
     removeToCartAssert()

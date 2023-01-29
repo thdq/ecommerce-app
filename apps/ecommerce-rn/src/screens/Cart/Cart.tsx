@@ -1,31 +1,34 @@
 import { FlatList, ListRenderItem } from 'react-native'
 import { CartSummary, EmptyCart, ProductDetailCart } from '@app/components'
-import { useCart, useCartSummaryModel, useCheckout } from '@app/hooks'
+import { useCart, useCheckout } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
+import { useAtomValue } from 'jotai'
+import { CartSummaryModelAtom } from '@app/store'
 
 const Cart = () => {
   const navigation = useNavigation<StackNavigationProps>()
+  const cartSummary = useAtomValue(CartSummaryModelAtom)
 
-  const { products, dispatchCart } = useCart()
-  const { createCartSummaryModel } = useCartSummaryModel()
+  const { clearCart, removeFromCart } = useCart()
+
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)
 
-  const productsFromCart = products as ProductModel[]
-  const summaryList = createCartSummaryModel(productsFromCart)
-
   const handleRemoveFromCart = (product: ProductModel) => {
-    dispatchCart({ payload: product, type: 'REMOVE' })
+    removeFromCart(product)
   }
 
-  const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
-    <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />
+  const renderItem: ListRenderItem<ProductModel> = useCallback(
+    ({ item: product }) => <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />,
+    [],
   )
+
+  const getKeyExtractor = (product: ProductModel) => product.id.toString()
 
   const handleCheckout = async () => {
     setIsPurchasing(true)
@@ -33,8 +36,7 @@ const Cart = () => {
     setIsPurchasing(false)
 
     if (isPurchased) {
-      const payload = {} as ProductModel
-      dispatchCart({ type: 'RESET', payload })
+      clearCart()
       navigation.navigate('Products')
       navigation.navigate('Checkout')
     }
@@ -42,15 +44,15 @@ const Cart = () => {
 
   return (
     <SafeAreaView>
-      {summaryList.hasItens() ? (
+      {cartSummary.hasItens() ? (
         <CartContainer>
-          <TotalItensText>Itens no carrinho: {summaryList.totalItens}</TotalItensText>
+          <TotalItensText>Itens no carrinho: {cartSummary.totalItens}</TotalItensText>
           <FlatList
-            data={summaryList.list}
-            keyExtractor={(product: ProductModel) => product.id.toString()}
+            data={cartSummary.list}
+            keyExtractor={getKeyExtractor}
             renderItem={renderItem}
           />
-          <CartSummary isLoading={isPurchasing} summary={summaryList} onCheckout={handleCheckout} />
+          <CartSummary isLoading={isPurchasing} summary={cartSummary} onCheckout={handleCheckout} />
         </CartContainer>
       ) : (
         <EmptyCart onShowProducts={() => navigation.navigate('Products')} />

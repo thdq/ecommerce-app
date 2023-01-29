@@ -22,7 +22,7 @@ export const getProducts = async ({
     const response = await httpClient.request<ProductList>({
       url: '/products',
       params: {
-        limit,
+        limit: 100,
         skip: offset,
       },
     })

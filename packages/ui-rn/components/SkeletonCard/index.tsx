@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Pressable, View } from 'react-native'
+import { StyleSheet, View, ViewProps } from 'react-native'
 import { MotiView } from 'moti'
 import { Skeleton } from 'moti/skeleton'
 
@@ -9,11 +9,13 @@ type SpaceProps = {
 
 const Spacer = ({ height }: SpaceProps) => <MotiView style={{ height }} />
 
-export const SkeletonCard = () => {
+type SkeletonCardProps = ViewProps
+
+export const SkeletonCard = ({ ...props }: SkeletonCardProps) => {
   const colorMode = 'light'
 
   return (
-    <Pressable style={styles.container}>
+    <View {...props} style={styles.container}>
       <MotiView
         transition={{
           type: 'spring',
@@ -36,7 +38,7 @@ export const SkeletonCard = () => {
           </View>
         </View>
       </MotiView>
-    </Pressable>
+    </View>
   )
 }
 

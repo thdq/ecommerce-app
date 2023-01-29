@@ -1,9 +1,9 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
-import { ProductModel } from '@app/models'
+import { CartSummaryModel, ProductModel } from '@app/models'
 import { useCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import {
   AddToCartView,
@@ -18,21 +18,25 @@ import {
   ShippingInfoView,
   View,
 } from './ProductCart.styles'
-
 type ProductCardProps = {
   product: ProductModel
+  inCart: boolean
 } & ViewProps
 
-export const ProductCard = ({ product, ...props }: ProductCardProps) => {
+export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { dispatchCart, products: productsFromCart } = useCart()
+  const [isOnCart, setInCart] = useState(inCart)
+
+  const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
-    dispatchCart({ type: 'ADD', payload: product })
+    setInCart(true)
+    addToCart(product)
   }
 
   const handleRemoveFromCart = () => {
-    dispatchCart({ type: 'REMOVE', payload: product })
+    setInCart(false)
+    removeFromCart(product)
   }
 
   const handleShowLoading = () => {
@@ -56,7 +60,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
       </ProductInfoView>
 
       <ProductFooterView>
-        {!product.isInCart(productsFromCart) ? (
+        {!isOnCart ? (
           <>
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
@@ -79,14 +83,14 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
           </>
         ) : (
           <RemoveToCartView>
-            <Button
-              variant='danger'
-              label='Remover do carrinho'
-              onPress={handleRemoveFromCart}
-            ></Button>
+            <Button variant='danger' label='Remover' onPress={handleRemoveFromCart}></Button>
           </RemoveToCartView>
         )}
       </ProductFooterView>
     </CardContainer>
   )
 }
+
+const ProductCardMemo = memo(ProductCardComponent)
+
+export { ProductCardMemo as ProductCard }
