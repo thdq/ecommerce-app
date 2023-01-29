@@ -34,7 +34,8 @@
     "react-native-web": "~0.18.9",
     "styled-components": "^5.3.6",
     "swr": "^2.0.1",
-    "ui-rn": "*"
+    "ui-rn": "*",
+    "expo-localization": "~14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
