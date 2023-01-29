@@ -6,6 +6,10 @@
     "cart": {
       "title": "Cart",
       "items_quantity": "Items in cart:  {{quantity}}"
+    },
+    "checkout": {
+      "title": "Your purchase is complete",
+      "see_more": "See more products"
     }
   }
 }

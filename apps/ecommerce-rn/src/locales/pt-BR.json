@@ -6,6 +6,10 @@
     "cart": {
       "title": "Carrinho de compras",
       "items_quantity": "Itens no carrinho: {{quantity}}"
+    },
+    "checkout": {
+      "title": "Sua compra foi aprovada!",
+      "see_more": "Conferir mais ofertas"
     }
   }
 }

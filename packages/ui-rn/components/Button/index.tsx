@@ -5,7 +5,7 @@ type ButtonSize = 'small' | 'medium' | 'large'
 type ButtonVariant = 'primary' | 'info' | 'warning' | 'danger'
 
 export type ButtonProps = {
-  label?: string
+  label?: string | undefined
   size?: ButtonSize
   outline?: boolean
   loading?: boolean
