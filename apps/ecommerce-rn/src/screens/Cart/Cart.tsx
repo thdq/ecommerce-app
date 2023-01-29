@@ -4,7 +4,7 @@ import { useCart, useCheckout } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
 import { useAtomValue } from 'jotai'
@@ -23,9 +23,12 @@ const Cart = () => {
     removeFromCart(product)
   }
 
-  const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
-    <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />
+  const renderItem: ListRenderItem<ProductModel> = useCallback(
+    ({ item: product }) => <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />,
+    [],
   )
+
+  const getKeyExtractor = (product: ProductModel) => product.id.toString()
 
   const handleCheckout = async () => {
     setIsPurchasing(true)
@@ -46,7 +49,7 @@ const Cart = () => {
           <TotalItensText>Itens no carrinho: {cartSummary.totalItens}</TotalItensText>
           <FlatList
             data={cartSummary.list}
-            keyExtractor={(product: ProductModel) => product.id.toString()}
+            keyExtractor={getKeyExtractor}
             renderItem={renderItem}
           />
           <CartSummary isLoading={isPurchasing} summary={cartSummary} onCheckout={handleCheckout} />

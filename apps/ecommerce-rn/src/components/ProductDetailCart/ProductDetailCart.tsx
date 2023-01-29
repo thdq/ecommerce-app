@@ -1,9 +1,8 @@
 import { ViewProps, View, Text, ActivityIndicator } from 'react-native'
 import { Button } from 'ui-rn'
-import { useCart } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { Ionicons } from '@expo/vector-icons'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import {
   CartContainer,
   Image,
@@ -21,7 +20,7 @@ type ProductCartProps = {
   onRemove: (product: ProductModel) => void
 } & ViewProps
 
-export const ProductDetailCart = ({ product, onRemove }: ProductCartProps) => {
+export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
 
   const handleShowLoading = () => {
@@ -72,3 +71,7 @@ export const ProductDetailCart = ({ product, onRemove }: ProductCartProps) => {
     </CartContainer>
   )
 }
+
+const memoized = memo(ProductDetailCartComponent)
+
+export { memoized as ProductDetailCart }
