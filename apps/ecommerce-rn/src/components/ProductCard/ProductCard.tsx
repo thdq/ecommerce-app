@@ -1,5 +1,5 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
-import { ProductModel } from '@app/models'
+import { CartSummaryModel, ProductModel } from '@app/models'
 import { useCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
@@ -20,17 +20,22 @@ import {
 } from './ProductCart.styles'
 type ProductCardProps = {
   product: ProductModel
+  inCart: boolean
 } & ViewProps
 
-export const ProductCardComponent = ({ product, ...props }: ProductCardProps) => {
+export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
+  const [isOnCart, setInCart] = useState(inCart)
+
   const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
+    setInCart(true)
     addToCart(product)
   }
 
   const handleRemoveFromCart = () => {
+    setInCart(false)
     removeFromCart(product)
   }
 
@@ -55,7 +60,7 @@ export const ProductCardComponent = ({ product, ...props }: ProductCardProps) =>
       </ProductInfoView>
 
       <ProductFooterView>
-        {!product.isInCart() ? (
+        {!isOnCart ? (
           <>
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />

@@ -1,22 +1,23 @@
 import { FlatList, ListRenderItem } from 'react-native'
 import { CartSummary, EmptyCart, ProductDetailCart } from '@app/components'
-import { useCart, useCartSummaryModel, useCheckout } from '@app/hooks'
+import { useCart, useCheckout } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
+import { useAtomValue } from 'jotai'
+import { CartSummaryModelAtom } from '@app/store'
 
 const Cart = () => {
   const navigation = useNavigation<StackNavigationProps>()
+  const cartSummary = useAtomValue(CartSummaryModelAtom)
 
   const { clearCart, removeFromCart } = useCart()
-  const { createCartSummaryModel } = useCartSummaryModel()
+
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)
-
-  const summaryList = createCartSummaryModel([] as ProductModel[])
 
   const handleRemoveFromCart = (product: ProductModel) => {
     removeFromCart(product)
@@ -40,15 +41,15 @@ const Cart = () => {
 
   return (
     <SafeAreaView>
-      {summaryList.hasItens() ? (
+      {cartSummary.hasItens() ? (
         <CartContainer>
-          <TotalItensText>Itens no carrinho: {summaryList.totalItens}</TotalItensText>
+          <TotalItensText>Itens no carrinho: {cartSummary.totalItens}</TotalItensText>
           <FlatList
-            data={summaryList.list}
+            data={cartSummary.list}
             keyExtractor={(product: ProductModel) => product.id.toString()}
             renderItem={renderItem}
           />
-          <CartSummary isLoading={isPurchasing} summary={summaryList} onCheckout={handleCheckout} />
+          <CartSummary isLoading={isPurchasing} summary={cartSummary} onCheckout={handleCheckout} />
         </CartContainer>
       ) : (
         <EmptyCart onShowProducts={() => navigation.navigate('Products')} />
