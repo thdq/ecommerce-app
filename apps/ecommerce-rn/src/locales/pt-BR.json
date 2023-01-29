@@ -2,6 +2,9 @@
   "screens": {
     "products": {
       "title": "Produtos"
+    },
+    "cart": {
+      "title": "Carrinho de compras"
     }
   }
 }
