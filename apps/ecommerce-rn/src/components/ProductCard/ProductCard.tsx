@@ -1,10 +1,11 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
-import { CartSummaryModel, ProductModel } from '@app/models'
+import { ProductModel } from '@app/models'
 import { useCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
 import { useState, memo } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
+import { useTranslation } from 'react-i18next'
 import {
   AddToCartView,
   CardContainer,
@@ -18,12 +19,15 @@ import {
   ShippingInfoView,
   View,
 } from './ProductCart.styles'
+
 type ProductCardProps = {
   product: ProductModel
   inCart: boolean
 } & ViewProps
 
 export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardProps) => {
+  const { t } = useTranslation()
+
   const [isImageLoading, setIsImageLoading] = useState(true)
   const [isOnCart, setInCart] = useState(inCart)
 
@@ -65,7 +69,7 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
               {product.isFreeShipping() ? (
-                <ShippingFreeText> Grátis</ShippingFreeText>
+                <ShippingFreeText>{t('components.product_card.free_shipping')}</ShippingFreeText>
               ) : (
                 <Text> {product.getFormattedShippingTax()}</Text>
               )}
@@ -83,7 +87,11 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
           </>
         ) : (
           <RemoveToCartView>
-            <Button variant='danger' label='Remover' onPress={handleRemoveFromCart}></Button>
+            <Button
+              variant='danger'
+              label={t('components.product_card.remove') ?? ''}
+              onPress={handleRemoveFromCart}
+            ></Button>
           </RemoveToCartView>
         )}
       </ProductFooterView>

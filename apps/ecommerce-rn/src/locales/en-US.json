@@ -11,5 +11,11 @@
       "title": "Your purchase is complete",
       "see_more": "See more products"
     }
+  },
+  "components": {
+    "product_card": {
+      "remove": "Remove",
+      "free_shipping": "Free"
+    }
   }
 }

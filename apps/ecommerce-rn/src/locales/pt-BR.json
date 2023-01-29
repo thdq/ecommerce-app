@@ -11,5 +11,11 @@
       "title": "Sua compra foi aprovada!",
       "see_more": "Conferir mais ofertas"
     }
+  },
+  "components": {
+    "product_card": {
+      "remove": "Remover",
+      "free_shipping": "Grátis"
+    }
   }
 }
