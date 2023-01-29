@@ -68,24 +68,4 @@ export class ProductModel implements Product {
 
     return this.price + this.getShippingTax()
   }
-
-  isInCart(cartListReference: Product[]): boolean {
-    const productIsInCart = cartListReference.some((product) => product.id === this.id)
-    return productIsInCart
-  }
-
-  addToCart(quantity?: number): void {
-    if (this.isInCart([])) throw new Error('product is already in cart')
-    this.cartStatus = {
-      inCart: true,
-      quantity: quantity || 1,
-    }
-  }
-
-  removeFromCart(): void {
-    this.cartStatus = {
-      inCart: false,
-      quantity: 0,
-    }
-  }
 }

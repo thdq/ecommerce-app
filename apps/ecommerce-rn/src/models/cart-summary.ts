@@ -34,10 +34,8 @@ export class CartSummaryModel implements CartSummary {
   totalPriceWithShipping: number
   totalShippingTax: number
   list: ProductModel[]
-  private static staticList: ProductModel[]
   constructor(list: ProductModel[]) {
     this.list = list
-    CartSummaryModel.staticList = list
 
     const { totalItens, totalRawPrice, totalPriceWithShipping, totalShippingTax } =
       getPricesAndTotalItens(list)
@@ -69,10 +67,6 @@ export class CartSummaryModel implements CartSummary {
       style: 'currency',
       currency: 'BRL',
     })
-  }
-
-  static getList(): ProductModel[] {
-    return this.staticList || []
   }
 
   hasProduct(productId: string | number): boolean {
