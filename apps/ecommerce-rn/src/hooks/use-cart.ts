@@ -5,12 +5,15 @@ import { ProductModel } from '@app/models'
 export const useCart = () => {
   const setCartSummary = useSetAtom(CartSummaryModelAtom)
 
-  const addToCart = (product: ProductModel) => {
-    setCartSummary((prev: ProductModel[]) => [...prev, product])
+  const addToCart = (product: ProductModel, quantity = 1) => {
+    setCartSummary((state: ProductModel[]) => {
+      product.setQuantity(quantity)
+      return [...state, product]
+    })
   }
 
   const removeFromCart = (product: ProductModel) => {
-    setCartSummary((prev: ProductModel[]) => prev.filter((p: ProductModel) => p.id !== product.id))
+    setCartSummary((state: ProductModel) => state.filter((p: ProductModel) => p.id !== product.id))
   }
 
   const clearCart = () => {
