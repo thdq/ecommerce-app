@@ -74,4 +74,8 @@ export class CartSummaryModel implements CartSummary {
   static getList(): ProductModel[] {
     return this.staticList || []
   }
+
+  hasProduct(productId: string | number): boolean {
+    return this.list.some((product) => String(product.id) === String(productId))
+  }
 }

@@ -1,9 +1,19 @@
 import { atom } from 'jotai'
 
-import { Product, ProductList, ProductModel } from '@app/models'
+import { CartSummaryModel, ProductList, ProductModel } from '@app/models'
 
 const productListAtom = atom<ProductList>(null)
-const cartSummaryAtom = atom<Product[]>([])
+const cartSummaryAtom = atom<ProductModel[]>([])
+
+const CartSummaryModelAtom = atom(
+  (get) => {
+    const products = get(cartSummaryAtom)
+    return new CartSummaryModel(products)
+  },
+  (_get, set, products: ProductModel[]) => {
+    set(cartSummaryAtom, products)
+  },
+)
 
 const productListModelAtom = atom(
   (get) => {
@@ -20,4 +30,4 @@ const productListModelAtom = atom(
   },
 )
 
-export { productListAtom, cartSummaryAtom, productListModelAtom }
+export { CartSummaryModelAtom, productListModelAtom }
