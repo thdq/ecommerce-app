@@ -32,6 +32,10 @@
     "product_detail_cart": {
       "shipping": "Frete:",
       "free_shipping": "Grátis"
+    },
+    "product_list_error": {
+      "title": "Ocorreu um erro ao carregar os produtos",
+      "try_again": "Tentar novamente"
     }
   }
 }

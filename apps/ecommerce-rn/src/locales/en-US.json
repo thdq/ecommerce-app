@@ -32,6 +32,10 @@
     "product_detail_cart": {
       "shipping": "Shipping: ",
       "free_shipping": "Free"
+    },
+    "product_list_error": {
+      "title": "An error occurred while loading the product list",
+      "try_again": "Try again"
     }
   }
 }
