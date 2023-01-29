@@ -28,6 +28,10 @@
       "title": "Your cart is empty",
       "description": "Add some products to your cart to see them here",
       "show_products": "Show products"
+    },
+    "product_detail_cart": {
+      "shipping": "Shipping: ",
+      "free_shipping": "Free"
     }
   }
 }

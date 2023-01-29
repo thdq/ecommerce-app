@@ -28,6 +28,10 @@
       "title": "Seu carrinho está vazio",
       "description": "Comece a adicionar produtos agora mesmo!",
       "show_products": "Conferir produtos"
+    },
+    "product_detail_cart": {
+      "shipping": "Frete:",
+      "free_shipping": "Grátis"
     }
   }
 }
