@@ -4,7 +4,8 @@
       "title": "Produtos"
     },
     "cart": {
-      "title": "Carrinho de compras"
+      "title": "Carrinho de compras",
+      "items_quantity": "Itens no carrinho: {{quantity}}"
     }
   }
 }

@@ -4,7 +4,8 @@
       "title": "Products"
     },
     "cart": {
-      "title": "Cart"
+      "title": "Cart",
+      "items_quantity": "Items in cart:  {{quantity}}"
     }
   }
 }
