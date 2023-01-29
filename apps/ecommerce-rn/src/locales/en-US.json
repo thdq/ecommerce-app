@@ -23,6 +23,11 @@
       "total_with_shipping": "Total with shipping",
       "purchase": "Purchase",
       "purchasing": "Purchasing..."
+    },
+    "empty_cart": {
+      "title": "Your cart is empty",
+      "description": "Add some products to your cart to see them here",
+      "show_products": "Show products"
     }
   }
 }

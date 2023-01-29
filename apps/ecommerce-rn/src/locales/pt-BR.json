@@ -23,6 +23,11 @@
       "total_with_shipping": "Total com frete",
       "purchase": "Finalizar Compra",
       "purchasing": "Finalizando compra..."
+    },
+    "empty_cart": {
+      "title": "Seu carrinho está vazio",
+      "description": "Comece a adicionar produtos agora mesmo!",
+      "show_products": "Conferir produtos"
     }
   }
 }
