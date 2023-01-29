@@ -16,6 +16,13 @@
     "product_card": {
       "remove": "Remover",
       "free_shipping": "Grátis"
+    },
+    "cart_summary": {
+      "shipping": "Frete",
+      "free_shipping": "Grátis",
+      "total_with_shipping": "Total com frete",
+      "purchase": "Finalizar Compra",
+      "purchasing": "Finalizando compra..."
     }
   }
 }

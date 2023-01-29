@@ -16,6 +16,13 @@
     "product_card": {
       "remove": "Remove",
       "free_shipping": "Free"
+    },
+    "cart_summary": {
+      "shipping": "Shipping",
+      "free_shipping": "Free",
+      "total_with_shipping": "Total with shipping",
+      "purchase": "Purchase",
+      "purchasing": "Purchasing..."
     }
   }
 }
