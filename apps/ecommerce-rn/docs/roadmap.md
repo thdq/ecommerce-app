@@ -2,8 +2,7 @@
 
 ## Roadmap a respeito de desenvolvimento
 
-- [ ] Melhorar perfomance, identificar gargalos de render etc
-- [ ] Lista de produtos virtualizadas para melhorar perfomance (`react-virutal`)
+- [x] Melhorar perfomance, identificar gargalos de render etc
 - [ ] Resolver "glitches" de box-model sizing dos cards durante a renderização da imagem do produto
 - [ ] Documentação com storybook;
 - [ ] Testes de integração
