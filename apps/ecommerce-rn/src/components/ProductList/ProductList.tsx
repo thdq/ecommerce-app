@@ -11,9 +11,16 @@ type ProductListProps = {
   products: ProductModel[]
   isRefreshing: boolean
   onRefresh: () => void
+  onFetchMore?: () => void
 } & ViewProps
 
-export const ProductList = ({ products, isRefreshing, onRefresh, ...props }: ProductListProps) => {
+export const ProductList = ({
+  products,
+  isRefreshing,
+  onRefresh,
+  onFetchMore,
+  ...props
+}: ProductListProps) => {
   const { cartSummary } = useCartSummary()
 
   const renderItem: ListRenderItem<ProductModel> = useCallback(
@@ -36,6 +43,8 @@ export const ProductList = ({ products, isRefreshing, onRefresh, ...props }: Pro
         numColumns={NUMBER_COLUMNS}
         keyExtractor={getKeyExtractor}
         renderItem={renderItem}
+        onEndReached={onFetchMore}
+        onEndReachedThreshold={0.1}
         refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}
       />
     </ProductListContainer>
