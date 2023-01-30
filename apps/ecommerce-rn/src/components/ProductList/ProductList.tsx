@@ -1,6 +1,6 @@
 import { ProductModel } from '@app/models'
 import { ProductCard } from '@app/components/ProductCard'
-import { ListRenderItem, RefreshControl } from 'react-native'
+import { ListRenderItem, RefreshControl, ViewProps } from 'react-native'
 import { FlatList, ProductListContainer } from './ProductList.styles'
 import { useCallback } from 'react'
 import { useAtomValue } from 'jotai'
@@ -12,9 +12,9 @@ type ProductListProps = {
   products: ProductModel[]
   isRefreshing: boolean
   onRefresh: () => void
-}
+} & ViewProps
 
-export const ProductList = ({ products, isRefreshing, onRefresh }: ProductListProps) => {
+export const ProductList = ({ products, isRefreshing, onRefresh, ...props }: ProductListProps) => {
   const cart = useAtomValue(CartSummaryModelAtom)
 
   const renderItem: ListRenderItem<ProductModel> = useCallback(
@@ -28,6 +28,7 @@ export const ProductList = ({ products, isRefreshing, onRefresh }: ProductListPr
   return (
     <ProductListContainer>
       <FlatList
+        {...props}
         data={products}
         numColumns={NUMBER_COLUMNS}
         keyExtractor={getKeyExtractor}

@@ -10,7 +10,7 @@ const Products = () => {
 
   const [isRefreshing, setRefreshing] = useState(false)
   const { filteredList, error, isLoading, mutate } = useGetProducts()
-  const products = filteredList?.products ?? []
+  const products = filteredList?.products
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => onRefresh())
@@ -29,12 +29,17 @@ const Products = () => {
 
   return (
     <>
-      {products.length && !isRefreshing ? (
-        <ProductList isRefreshing={isRefreshing} onRefresh={onRefresh} products={products} />
-      ) : isLoading || isRefreshing ? (
+      {isLoading || isRefreshing ? (
         <ProductListLoading />
       ) : error ? (
         <ProductListError testID='product-list-error' onTryAgain={handleRetry} />
+      ) : Array.isArray(products) ? (
+        <ProductList
+          testID='product-list'
+          isRefreshing={isRefreshing}
+          onRefresh={onRefresh}
+          products={products}
+        />
       ) : null}
     </>
   )

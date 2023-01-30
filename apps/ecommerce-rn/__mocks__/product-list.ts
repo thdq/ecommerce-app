@@ -91,7 +91,21 @@ const rawProducts = [
   },
 ]
 
+export type ProductListModelType = {
+  products: ProductModel[]
+  total: number
+  skip: number
+  limit: number
+}
+
 export const productListMock: ProductList = {
+  products: rawProducts as ProductModel[],
+  total: 100,
+  skip: 0,
+  limit: 5,
+}
+
+export const productListModelMock: ProductList = {
   products: rawProducts.map((product) => new ProductModel(product)),
   total: 100,
   skip: 0,
@@ -101,5 +115,5 @@ export const productListMock: ProductList = {
 export const productMock = (id: number) => {
   if (id > 5) throw new Error('The product id is not in the list')
 
-  return (productListMock.products.find((product) => product.id === id) ?? null) as Product
+  return (productListModelMock.products.find((product) => product.id === id) ?? null) as Product
 }
