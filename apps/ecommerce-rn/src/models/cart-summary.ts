@@ -3,7 +3,7 @@ import { ProductModel } from './product'
 export type CartSummary = {
   list: ProductModel[]
   hasProduct: (productId: string | number) => boolean
-} | null
+}
 
 const getPricesAndTotalItens = (list: ProductModel[]) =>
   list.reduce(

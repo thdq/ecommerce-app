@@ -19,7 +19,7 @@ export const ProductList = ({ products, isRefreshing, onRefresh, ...props }: Pro
   const renderItem: ListRenderItem<ProductModel> = useCallback(
     ({ item: product }) => (
       <ProductCard
-        inCart={cartSummary?.hasProduct(product.id) || false}
+        inCart={cartSummary.hasProduct(product.id) || false}
         testID='product-card'
         product={product}
       />
