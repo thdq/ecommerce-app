@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react-native'
 import { Cart } from '@app/screens'
 import { renderWithProviders, translate } from '@app/__tests__/wrapper'
-import { cartSummaryModelAtom } from '@app/store'
+import { cartSummaryAtom } from '@app/store'
 import { cartSummaryMock } from '@app/../__mocks__/cart-summary-model'
 
 const t = (message: string, values?: object) => translate(message, { ...values })
@@ -14,7 +14,7 @@ describe('Cart screen', () => {
   })
 
   it('should show cart list if cart is not empty', () => {
-    renderWithProviders(<Cart />, [[cartSummaryModelAtom, cartSummaryMock]])
+    renderWithProviders(<Cart />, [[cartSummaryAtom, cartSummaryMock]])
 
     const products = screen.getAllByTestId('product-detail-cart')
     const totalItens = screen.getByText(
@@ -26,7 +26,7 @@ describe('Cart screen', () => {
   })
 
   it('should show total price and shipping taxs', () => {
-    renderWithProviders(<Cart />, [[cartSummaryModelAtom, cartSummaryMock]])
+    renderWithProviders(<Cart />, [[cartSummaryAtom, cartSummaryMock]])
 
     if (cartSummaryMock.isFreeShipping()) {
       expect(screen.getByText(t('screens.cart.free_shipping'))).toBeVisible()
@@ -38,7 +38,7 @@ describe('Cart screen', () => {
   })
 
   it('should show purchasing text if checkout button click', () => {
-    renderWithProviders(<Cart />, [[cartSummaryModelAtom, cartSummaryMock]])
+    renderWithProviders(<Cart />, [[cartSummaryAtom, cartSummaryMock]])
 
     const checkoutButton = screen.getByTestId('checkout-button')
 

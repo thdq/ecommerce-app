@@ -2,7 +2,8 @@ import { ProductModel } from './product'
 
 export type CartSummary = {
   list: ProductModel[]
-}
+  hasProduct: (productId: string | number) => boolean
+} | null
 
 const getPricesAndTotalItens = (list: ProductModel[]) =>
   list.reduce(
@@ -28,7 +29,7 @@ const getPricesAndTotalItens = (list: ProductModel[]) =>
     },
   )
 
-export class CartSummaryModel implements CartSummary {
+export class CartSummaryModel {
   totalItens: number
   totalRawPrice: number
   totalPriceWithShipping: number
@@ -72,4 +73,8 @@ export class CartSummaryModel implements CartSummary {
   hasProduct(productId: string | number): boolean {
     return this.list.some((product) => String(product.id) === String(productId))
   }
+}
+
+export const mapCartSummary = (list: ProductModel[]): CartSummaryModel => {
+  return new CartSummaryModel(list)
 }
