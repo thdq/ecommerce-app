@@ -1,9 +1,9 @@
-import { CartSummaryModelAtom } from '@app/store'
+import { cartSummaryModelAtom } from '@app/store'
 import { useSetAtom } from 'jotai'
 import { ProductModel } from '@app/models'
 
 export const useCart = () => {
-  const setCartSummary = useSetAtom(CartSummaryModelAtom)
+  const setCartSummary = useSetAtom(cartSummaryModelAtom)
 
   const addToCart = (product: ProductModel, quantity = 1) => {
     setCartSummary((state: ProductModel[]) => {
