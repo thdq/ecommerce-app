@@ -33,7 +33,7 @@ export class ProductModel implements Product {
   }
 
   getAddedQuantity(): number {
-    return this.quantity
+    return this.quantity ?? 1
   }
 
   setQuantity(quantity: number): void {

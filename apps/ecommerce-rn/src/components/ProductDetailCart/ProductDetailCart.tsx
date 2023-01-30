@@ -21,7 +21,7 @@ type ProductCartProps = {
   onRemove: (product: ProductModel) => void
 } & ViewProps
 
-export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartProps) => {
+export const ProductDetailCartComponent = ({ product, onRemove, ...props }: ProductCartProps) => {
   const { t } = useTranslation()
 
   const [isImageLoading, setIsImageLoading] = useState(true)
@@ -31,7 +31,7 @@ export const ProductDetailCartComponent = ({ product, onRemove }: ProductCartPro
   }
 
   return (
-    <CartContainer>
+    <CartContainer {...props}>
       <View>
         <Image onLoadEnd={handleShowLoading} source={{ uri: product.thumbnail }} />
         {isImageLoading && <ActivityIndicator size='small' color={'#22c55e'} />}

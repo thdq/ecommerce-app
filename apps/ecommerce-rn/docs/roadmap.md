@@ -5,7 +5,7 @@
 - [x] Melhorar perfomance, identificar gargalos de render etc
 - [ ] Resolver "glitches" de box-model sizing dos cards durante a renderização da imagem do produto
 - [ ] Documentação com storybook;
-- [ ] Testes de integração
+- [x] Testes de integração
 - [ ] Acessibilidade
 - [ ] Prover o tema do styled components global
 - [ ] Consumir alguma lib (preferencialmente do monorepo) de tracking

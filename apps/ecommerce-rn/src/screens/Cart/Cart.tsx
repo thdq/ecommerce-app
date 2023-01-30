@@ -8,7 +8,7 @@ import { useCallback, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
 import { useAtomValue } from 'jotai'
-import { CartSummaryModelAtom } from '@app/store'
+import { cartSummaryModelAtom } from '@app/store'
 
 import { useTranslation } from 'react-i18next'
 
@@ -16,7 +16,7 @@ const Cart = () => {
   const { t } = useTranslation()
 
   const navigation = useNavigation<StackNavigationProps>()
-  const cartSummary = useAtomValue(CartSummaryModelAtom)
+  const cartSummary = useAtomValue(cartSummaryModelAtom)
 
   const { clearCart, removeFromCart } = useCart()
 
@@ -28,7 +28,13 @@ const Cart = () => {
   }
 
   const renderItem: ListRenderItem<ProductModel> = useCallback(
-    ({ item: product }) => <ProductDetailCart onRemove={handleRemoveFromCart} product={product} />,
+    ({ item: product }) => (
+      <ProductDetailCart
+        testID='product-detail-cart'
+        onRemove={handleRemoveFromCart}
+        product={product}
+      />
+    ),
     [],
   )
 
@@ -61,7 +67,7 @@ const Cart = () => {
           <CartSummary isLoading={isPurchasing} summary={cartSummary} onCheckout={handleCheckout} />
         </CartContainer>
       ) : (
-        <EmptyCart onShowProducts={() => navigation.navigate('Products')} />
+        <EmptyCart testID='empty-cart' onShowProducts={() => navigation.navigate('Products')} />
       )}
     </SafeAreaView>
   )

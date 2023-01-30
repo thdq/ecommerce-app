@@ -3,16 +3,14 @@ import { ProductListError, ProductListLoading } from '@app/components'
 import { useState, useCallback, useEffect } from 'react'
 
 import { ProductList } from '@app/components'
-import { StackNavigationProps } from '@app/navigation/AppNavigation'
+import { useNavigation } from '@react-navigation/native'
 
-type CheckoutProps = {
-  navigation: StackNavigationProps
-}
+const Products = () => {
+  const navigation = useNavigation()
 
-const Products = ({ navigation }: CheckoutProps) => {
   const [isRefreshing, setRefreshing] = useState(false)
   const { filteredList, error, isLoading, mutate } = useGetProducts()
-  const products = filteredList?.products ?? []
+  const products = filteredList?.products
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => onRefresh())
@@ -31,12 +29,17 @@ const Products = ({ navigation }: CheckoutProps) => {
 
   return (
     <>
-      {products.length && !isRefreshing ? (
-        <ProductList isRefreshing={isRefreshing} onRefresh={onRefresh} products={products} />
-      ) : isLoading || isRefreshing ? (
+      {isLoading || isRefreshing ? (
         <ProductListLoading />
       ) : error ? (
-        <ProductListError onTryAgain={handleRetry} />
+        <ProductListError testID='product-list-error' onTryAgain={handleRetry} />
+      ) : Array.isArray(products) ? (
+        <ProductList
+          testID='product-list'
+          isRefreshing={isRefreshing}
+          onRefresh={onRefresh}
+          products={products}
+        />
       ) : null}
     </>
   )

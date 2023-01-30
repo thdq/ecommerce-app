@@ -28,7 +28,7 @@ export const CartSummary = ({ onCheckout, summary, isLoading }: CartSummaryProps
         {summary.isFreeShipping() ? (
           <ShippingFreeText>{t('components.cart_summary.free_shipping')}</ShippingFreeText>
         ) : (
-          <Text>{summary.getFormattedShippingTax()}</Text>
+          <Text testID='total-shipping-tax'>{summary.getFormattedShippingTax()}</Text>
         )}
       </ShippingTextView>
       <TotalTextView>

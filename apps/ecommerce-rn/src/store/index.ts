@@ -5,7 +5,7 @@ import { CartSummaryModel, ProductList, ProductModel } from '@app/models'
 const productListAtom = atom<ProductList>(null)
 const cartSummaryAtom = atom<ProductModel[]>([])
 
-const CartSummaryModelAtom = atom(
+const cartSummaryModelAtom = atom(
   (get) => {
     const products = get(cartSummaryAtom)
     return new CartSummaryModel(products)
@@ -30,4 +30,4 @@ const productListModelAtom = atom(
   },
 )
 
-export { CartSummaryModelAtom, productListModelAtom }
+export { cartSummaryModelAtom, productListModelAtom }
