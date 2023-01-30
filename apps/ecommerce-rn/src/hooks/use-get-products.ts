@@ -1,38 +1,18 @@
 import { useAtom } from 'jotai'
-import useSWRInfinite from 'swr/infinite'
+import useSWR from 'swr'
 import { getProducts } from '@app/api'
 import { productListModelAtom } from '@app/store'
-import { mapProductList, ProductModel } from '@app/models'
+import { mapProductList } from '@app/models'
 import { useEffect } from 'react'
 
-const LIMIT = 20
+const GET_PRODUCTS_KEY = '/products'
 
 export const useGetProducts = () => {
   const [filteredList, setProducts] = useAtom(productListModelAtom)
-
-  const { data: response, ...swrOptions } = useSWRInfinite((index: number) => {
-    return `?limit=${LIMIT}&skip=${index * LIMIT}`
-  }, getProducts)
-
-  const products = (response?.map((item) => item.data?.products).flat() ?? []) as ProductModel[]
-  const lastProductListResponse = response?.at(-1)
-  const total = lastProductListResponse?.data?.total ?? 0
-  const skip = lastProductListResponse?.data?.skip ?? 0
-  const limit = lastProductListResponse?.data?.limit ?? 0
+  const { data: response, ...swrOptions } = useSWR(GET_PRODUCTS_KEY, getProducts)
 
   useEffect(() => {
-    if (!swrOptions.error) {
-      setProducts(
-        mapProductList(
-          {
-            products,
-            total,
-            skip,
-            limit,
-          } ?? null,
-        ),
-      )
-    }
+    setProducts(mapProductList(response?.data ?? null))
   }, [response])
 
   return {
