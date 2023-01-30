@@ -4,6 +4,7 @@ import { SWRConfig } from 'swr'
 import { swrConfig } from '@app/services'
 import { I18nextProvider } from 'react-i18next'
 import { i18n } from '@app/services'
+import { NavigationContainer } from '@react-navigation/native'
 
 i18n.changeLanguage('en_US')
 
@@ -13,7 +14,9 @@ const renderWithProviders = (children: JSX.Element[] | JSX.Element) =>
   render(
     <SWRConfig value={{ ...swrConfig, dedupingInterval: 0 }}>
       <I18nextProvider i18n={i18n}>
-        <JotaiProvider>{children}</JotaiProvider>
+        <NavigationContainer>
+          <JotaiProvider>{children}</JotaiProvider>
+        </NavigationContainer>
       </I18nextProvider>
     </SWRConfig>,
   )

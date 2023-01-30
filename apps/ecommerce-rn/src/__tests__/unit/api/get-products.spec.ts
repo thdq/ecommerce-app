@@ -1,15 +1,15 @@
 import { getProducts } from '@app/api'
-import { productListMock } from '@mocks/product-list'
+import { productListModelMock } from '@mocks/product-list'
 
 import mockAxios from 'jest-mock-axios'
 
 describe('fetch products', () => {
   describe('when API call is successful', () => {
     it('should return product list', async () => {
-      mockAxios.request.mockResolvedValueOnce(productListMock)
+      mockAxios.request.mockResolvedValueOnce(productListModelMock)
 
       const result = await getProducts({})
-      expect(result).toEqual(productListMock)
+      expect(result).toEqual(productListModelMock)
     })
   })
 

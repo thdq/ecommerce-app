@@ -3,13 +3,11 @@ import { ProductListError, ProductListLoading } from '@app/components'
 import { useState, useCallback, useEffect } from 'react'
 
 import { ProductList } from '@app/components'
-import { StackNavigationProps } from '@app/navigation/AppNavigation'
+import { useNavigation } from '@react-navigation/native'
 
-type CheckoutProps = {
-  navigation: StackNavigationProps
-}
+const Products = () => {
+  const navigation = useNavigation()
 
-const Products = ({ navigation }: CheckoutProps) => {
   const [isRefreshing, setRefreshing] = useState(false)
   const { filteredList, error, isLoading, mutate } = useGetProducts()
   const products = filteredList?.products ?? []
@@ -36,7 +34,7 @@ const Products = ({ navigation }: CheckoutProps) => {
       ) : isLoading || isRefreshing ? (
         <ProductListLoading />
       ) : error ? (
-        <ProductListError onTryAgain={handleRetry} />
+        <ProductListError testID='product-list-error' onTryAgain={handleRetry} />
       ) : null}
     </>
   )

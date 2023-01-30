@@ -9,7 +9,7 @@ export const ProductListLoading = () => {
 
   return (
     <FlatList
-      testID='skeleton-loading'
+      testID='product-list-loading'
       data={SKELETON_FAKE_LIST}
       numColumns={NUMBER_COLUMNS}
       keyExtractor={(item: number) => item.toString()}
