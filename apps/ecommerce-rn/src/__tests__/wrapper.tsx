@@ -1,4 +1,4 @@
-import { Provider as JotaiProvider } from 'jotai'
+import { Atom, Provider as JotaiProvider } from 'jotai'
 import { render } from '@testing-library/react-native'
 import { SWRConfig } from 'swr'
 import { swrConfig } from '@app/services'
@@ -10,12 +10,15 @@ i18n.changeLanguage('en_US')
 
 const { t: translate } = i18n
 
-const renderWithProviders = (children: JSX.Element[] | JSX.Element) =>
+const renderWithProviders = (
+  children: JSX.Element[] | JSX.Element,
+  atomValues?: Iterable<readonly [Atom<unknown>, unknown]>,
+) =>
   render(
     <SWRConfig value={{ ...swrConfig, dedupingInterval: 0 }}>
       <I18nextProvider i18n={i18n}>
         <NavigationContainer>
-          <JotaiProvider>{children}</JotaiProvider>
+          <JotaiProvider initialValues={atomValues ?? []}>{children}</JotaiProvider>
         </NavigationContainer>
       </I18nextProvider>
     </SWRConfig>,

@@ -4,7 +4,7 @@ import { ListRenderItem, RefreshControl, ViewProps } from 'react-native'
 import { FlatList, ProductListContainer } from './ProductList.styles'
 import { useCallback } from 'react'
 import { useAtomValue } from 'jotai'
-import { CartSummaryModelAtom } from '@app/store'
+import { cartSummaryModelAtom } from '@app/store'
 
 const NUMBER_COLUMNS = 2
 
@@ -15,7 +15,7 @@ type ProductListProps = {
 } & ViewProps
 
 export const ProductList = ({ products, isRefreshing, onRefresh, ...props }: ProductListProps) => {
-  const cart = useAtomValue(CartSummaryModelAtom)
+  const cart = useAtomValue(cartSummaryModelAtom)
 
   const renderItem: ListRenderItem<ProductModel> = useCallback(
     ({ item: product }) => (
