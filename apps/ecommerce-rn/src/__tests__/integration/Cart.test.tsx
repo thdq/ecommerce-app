@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitForElementToBeRemoved } from '@testing-library/react-native'
+import { fireEvent, screen } from '@testing-library/react-native'
 import { Cart } from '@app/screens'
 import { renderWithProviders, translate } from '@app/__tests__/wrapper'
 import { cartSummaryModelAtom } from '@app/store'
