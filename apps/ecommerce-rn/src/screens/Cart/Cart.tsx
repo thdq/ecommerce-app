@@ -1,14 +1,12 @@
 import { FlatList, ListRenderItem } from 'react-native'
 import { CartSummary, EmptyCart, ProductDetailCart } from '@app/components'
-import { useCart, useCheckout } from '@app/hooks'
+import { useDispatchCart, useCheckout, useCartSummary } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
 import { useCallback, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
-import { useAtomValue } from 'jotai'
-import { cartSummaryModelAtom } from '@app/store'
 
 import { useTranslation } from 'react-i18next'
 
@@ -16,9 +14,9 @@ const Cart = () => {
   const { t } = useTranslation()
 
   const navigation = useNavigation<StackNavigationProps>()
-  const cartSummary = useAtomValue(cartSummaryModelAtom)
+  const { cartSummary } = useCartSummary()
 
-  const { clearCart, removeFromCart } = useCart()
+  const { clearCart, removeFromCart } = useDispatchCart()
 
   const { purchase } = useCheckout()
   const [isPurchasing, setIsPurchasing] = useState(false)

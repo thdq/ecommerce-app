@@ -41,7 +41,10 @@ export class ProductModel implements Product {
   }
 
   getFormattedPrice(): string {
-    return this.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    return Number(this.price.toFixed(2)).toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })
   }
 
   isFreeShipping(): boolean {
@@ -49,8 +52,8 @@ export class ProductModel implements Product {
   }
 
   getShippingTax(): number {
-    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return 0
-    return this.price * TAX_SHIP_PERCENTAGE
+    if (Number(this.price.toFixed(2)) > FREE_SHIPPING_IF_MORE_THAN_IT) return 0
+    return Number(this.price.toFixed(2)) * TAX_SHIP_PERCENTAGE
   }
 
   getFormattedShippingTax(): string {
@@ -59,8 +62,9 @@ export class ProductModel implements Product {
   }
 
   getPriceWithShipping(): number {
-    if (this.price > FREE_SHIPPING_IF_MORE_THAN_IT) return this.price
+    if (Number(this.price.toFixed(2)) > FREE_SHIPPING_IF_MORE_THAN_IT)
+      return Number(this.price.toFixed(2))
 
-    return this.price + this.getShippingTax()
+    return Number(this.price.toFixed(2)) + this.getShippingTax()
   }
 }

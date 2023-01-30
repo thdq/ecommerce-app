@@ -2,19 +2,18 @@ import { useAtom } from 'jotai'
 import useSWR from 'swr'
 import { getProducts } from '@app/api'
 import { productListModelAtom } from '@app/store'
+import { mapProductList } from '@app/models'
+import { useEffect } from 'react'
 
 const GET_PRODUCTS_KEY = '/products'
-const MAX_RETRY_FETCH_ON_ERROR = 3
 
 export const useGetProducts = () => {
   const [filteredList, setProducts] = useAtom(productListModelAtom)
-  const { data: response, ...swrOptions } = useSWR(GET_PRODUCTS_KEY, getProducts, {
-    errorRetryCount: MAX_RETRY_FETCH_ON_ERROR,
-  })
+  const { data: response, ...swrOptions } = useSWR(GET_PRODUCTS_KEY, getProducts)
 
-  if (!swrOptions.error) {
-    setProducts(response?.data ?? null)
-  }
+  useEffect(() => {
+    setProducts(mapProductList(response?.data ?? null))
+  }, [response])
 
   return {
     filteredList,

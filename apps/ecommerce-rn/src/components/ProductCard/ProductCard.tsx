@@ -1,6 +1,6 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
 import { ProductModel } from '@app/models'
-import { useCart } from '@app/hooks'
+import { useDispatchCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
 import { useState, memo } from 'react'
@@ -31,7 +31,7 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
   const [isImageLoading, setIsImageLoading] = useState(true)
   const [isOnCart, setInCart] = useState(inCart)
 
-  const { addToCart, removeFromCart } = useCart()
+  const { addToCart, removeFromCart } = useDispatchCart()
 
   const handleAddToCart = () => {
     setInCart(true)
