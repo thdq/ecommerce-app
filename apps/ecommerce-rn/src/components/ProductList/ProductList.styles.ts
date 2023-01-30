@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { FlatList as FlatListNative } from 'react-native'
 
-export const ProductListContainer = styled.ScrollView`
+export const ProductListContainer = styled.View`
   flex: 1;
 `
 
