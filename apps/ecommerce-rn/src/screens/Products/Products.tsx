@@ -9,7 +9,7 @@ const Products = () => {
   const navigation = useNavigation()
 
   const [isRefreshing, setRefreshing] = useState(false)
-  const { filteredList, error, isLoading, mutate } = useGetProducts()
+  const { filteredList, error, isLoading, mutate, setSize } = useGetProducts()
 
   const products = filteredList?.products
 
@@ -28,6 +28,10 @@ const Products = () => {
 
   const handleRetry = async () => await mutate()
 
+  const handleFetchMore = () => {
+    setSize((size) => size + 1)
+  }
+
   return (
     <>
       {isLoading || isRefreshing ? (
@@ -36,6 +40,7 @@ const Products = () => {
         <ProductListError testID='product-list-error' onTryAgain={handleRetry} />
       ) : Array.isArray(products) ? (
         <ProductList
+          onFetchMore={handleFetchMore}
           testID='product-list'
           isRefreshing={isRefreshing}
           onRefresh={onRefresh}
