@@ -3,6 +3,7 @@
 ## Roadmap a respeito de desenvolvimento
 
 - [x] Melhorar perfomance, identificar gargalos de render etc
+- [x] Scroll infinito da listagem de produtos
 - [ ] Resolver "glitches" de box-model sizing dos cards durante a renderização da imagem do produto
 - [ ] Documentação com storybook;
 - [x] Testes de integração
