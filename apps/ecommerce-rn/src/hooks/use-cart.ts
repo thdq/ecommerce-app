@@ -6,8 +6,8 @@ export const useCart = () => {
   const setCartSummary = useSetAtom(cartSummaryModelAtom)
 
   const addToCart = (product: ProductModel, quantity = 1) => {
+    product.setQuantity(quantity)
     setCartSummary((state: ProductModel[]) => {
-      product.setQuantity(quantity)
       return [...state, product]
     })
   }

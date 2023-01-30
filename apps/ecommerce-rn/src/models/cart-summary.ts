@@ -51,19 +51,19 @@ export class CartSummaryModel implements CartSummary {
   }
 
   isFreeShipping(): boolean {
-    if (this.totalShippingTax === 0) return true
+    if (Number(this.totalShippingTax.toFixed(2)) === 0) return true
     return false
   }
 
   getFormattedShippingTax(): string {
-    return this.totalShippingTax.toLocaleString('pt-br', {
+    return Number(this.totalShippingTax.toFixed(2)).toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL',
     })
   }
 
   getFormattedTotalPriceWithShipping(): string {
-    return this.totalPriceWithShipping.toLocaleString('pt-br', {
+    return Number(this.totalPriceWithShipping.toFixed(2)).toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL',
     })
