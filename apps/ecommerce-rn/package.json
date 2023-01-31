@@ -5,7 +5,6 @@
   "scripts": {
     "build-deps": "turbo run build --scope=ui-rn",
     "postinstall": "npm install -g turbo@latest && npm run build-deps",
-    "debug": "react-devtools",
     "dev:expo": "npm run build-deps && ENVFILE=.env.local expo start",
     "dev:cli": "ENVFILE=.env.local react-native run-android",
     "android": "expo run:android",
@@ -13,13 +12,15 @@
     "web": "expo start --web",
     "test": "jest --watchAll --runInBand --detectOpenHandles",
     "test:ci": "jest --runInBand --detectOpenHandles",
-    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage"
+    "test:coverage": "jest --runInBand --detectOpenHandles --collectCoverage",
+    "start": "expo start --dev-client"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "axios": "^1.2.3",
     "expo": "~47.0.12",
+    "expo-localization": "~14.0.0",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "i18next": "^22.4.9",
@@ -35,7 +36,7 @@
     "styled-components": "^5.3.6",
     "swr": "^2.0.1",
     "ui-rn": "*",
-    "expo-localization": "~14.0.0"
+    "expo-dev-client": "~2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -50,11 +51,13 @@
     "eslint": "^8.10.0",
     "eslint-config-react-custom": "*",
     "expo-cli": "^6.1.0",
+    "expo-community-flipper": "^47.0.2",
     "husky": "^8.0.3",
     "jest": "^29.3.1",
     "jest-mock-axios": "^4.7.0-beta4",
-    "react-devtools": "^4.27.1",
     "react-native-dotenv": "^3.4.7",
+    "react-native-flipper": "^0.177.0",
+    "react-native-flipper-performance-plugin": "^0.3.1",
     "ts-node": "^10.9.1",
     "tsconfig": "*",
     "typescript": "^4.6.3"
