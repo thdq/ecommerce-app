@@ -1,6 +1,6 @@
 import { useGetProducts } from '@app/hooks'
 import { ProductListError, ProductListLoading } from '@app/components'
-import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 import { ProductList } from '@app/components'
 import { useNavigation } from '@react-navigation/native'
@@ -13,18 +13,18 @@ const Products = () => {
 
   const products = filteredList?.products
 
-  const onRefresh = useCallback(async () => {
+  const handleRefresh = useCallback(async () => {
     setRefreshing(true)
     await mutate()
     setRefreshing(false)
-  }, [isRefreshing])
+  }, [mutate, setRefreshing])
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => onRefresh())
+    const unsubscribe = navigation.addListener('focus', () => handleRefresh())
     return () => {
       unsubscribe
     }
-  }, [navigation])
+  }, [navigation, handleRefresh])
 
   const handleRetry = async () => await mutate()
 
@@ -44,7 +44,7 @@ const Products = () => {
           onFetchMore={handleFetchMore}
           testID='product-list'
           isRefreshing={isRefreshing}
-          onRefresh={onRefresh}
+          onRefresh={handleRefresh}
           products={products}
         />
       ) : null}
