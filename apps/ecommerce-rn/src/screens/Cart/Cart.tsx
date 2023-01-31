@@ -4,7 +4,7 @@ import { useDispatchCart, useCheckout, useCartSummary } from '@app/hooks'
 import { ProductModel } from '@app/models'
 import { CartContainer, TotalItensText, SafeAreaView } from './Cart.styles'
 
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProps } from '@app/navigation/AppNavigation'
 
@@ -25,15 +25,12 @@ const Cart = () => {
     removeFromCart(product)
   }
 
-  const renderItem: ListRenderItem<ProductModel> = useCallback(
-    ({ item: product }) => (
-      <ProductDetailCart
-        testID='product-detail-cart'
-        onRemove={handleRemoveFromCart}
-        product={product}
-      />
-    ),
-    [],
+  const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
+    <ProductDetailCart
+      testID='product-detail-cart'
+      onRemove={handleRemoveFromCart}
+      product={product}
+    />
   )
 
   const getKeyExtractor = (product: ProductModel) => product.id.toString()
