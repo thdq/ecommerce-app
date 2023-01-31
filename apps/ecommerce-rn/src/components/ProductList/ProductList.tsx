@@ -2,7 +2,6 @@ import { ProductModel } from '@app/models'
 import { ProductCard } from '@app/components/ProductCard'
 import { ActivityIndicator, ListRenderItem, RefreshControl, ViewProps } from 'react-native'
 import { FlatList, ProductListContainer } from './ProductList.styles'
-import { useCallback } from 'react'
 import { useCartSummary } from '@app/hooks'
 
 const NUMBER_COLUMNS = 2
@@ -25,16 +24,14 @@ export const ProductList = ({
 }: ProductListProps) => {
   const { cartSummary } = useCartSummary()
 
-  const renderItem: ListRenderItem<ProductModel> = useCallback(
-    ({ item: product }) => (
-      <ProductCard
-        inCart={cartSummary.hasProduct(product.id) || false}
-        testID='product-card'
-        product={product}
-      />
-    ),
-    [],
+  const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
+    <ProductCard
+      inCart={cartSummary.hasProduct(product.id) || false}
+      testID='product-card'
+      product={product}
+    />
   )
+
   const getKeyExtractor = (product: ProductModel) => product.id.toString()
 
   return (
