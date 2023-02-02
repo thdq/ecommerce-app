@@ -3,7 +3,7 @@ import { ProductModel } from '@app/models'
 import { useDispatchCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
-import { useState, memo } from 'react'
+import { useState, memo, useEffect } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
 import {
@@ -29,17 +29,13 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
   const { t } = useTranslation()
 
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const [isOnCart, setInCart] = useState(inCart)
-
   const { addToCart, removeFromCart } = useDispatchCart()
 
   const handleAddToCart = () => {
-    setInCart(true)
     addToCart(product)
   }
 
   const handleRemoveFromCart = () => {
-    setInCart(false)
     removeFromCart(product)
   }
 
@@ -64,7 +60,7 @@ export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardP
       </ProductInfoView>
 
       <ProductFooterView>
-        {!isOnCart ? (
+        {!inCart ? (
           <>
             <ShippingInfoView>
               <MaterialIcons name='local-shipping' size={18} color='#22c55e' />
