@@ -28,11 +28,23 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 @end
 #endif
+// @generated begin react-native-performance-plugin-expo-import - expo prebuild (DO NOT MODIFY) sync-0c450984d85804b454a82236df8ba7fcb294317d
+#ifdef FB_SONARKIT_ENABLED
+  #import <FlipperKit/FlipperClient.h>
+  #import <FlipperPerformancePlugin.h>
+#endif
+// @generated end react-native-performance-plugin-expo-import
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+// @generated begin react-native-performance-plugin-expo-launchingcode - expo prebuild (DO NOT MODIFY) sync-1067177043730346297c306d5c5df506451de9e7
+  #ifdef FB_SONARKIT_ENABLED
+    FlipperClient * client = [FlipperClient sharedClient];
+    [client addPlugin: [FlipperPerformancePlugin new]];
+  #endif
+// @generated end react-native-performance-plugin-expo-launchingcode
   RCTAppSetupPrepareApp(application);
 
   RCTBridge *bridge = [self.reactDelegate createBridgeWithDelegate:self launchOptions:launchOptions];
