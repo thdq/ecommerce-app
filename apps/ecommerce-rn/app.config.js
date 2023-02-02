@@ -28,7 +28,7 @@ const config = {
     bundleIdentifier: 'com.ecommerce.rn',
     supportsTablet: true,
   },
-  plugins: [['expo-community-flipper'], ['react-native-flipper-performance-plugin']],
+  plugins: [['expo-community-flipper']],
 }
 
 export default config

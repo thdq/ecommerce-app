@@ -5,7 +5,7 @@
   "scripts": {
     "build-deps": "turbo run build --scope=ui-rn",
     "postinstall": "npm install -g turbo@latest && npm run build-deps",
-    "dev:expo": "npm run build-deps && ENVFILE=.env.local expo start",
+    "dev:expo": "npm run build-deps && ENVFILE=.env.local expo start --dev-client",
     "dev:cli": "ENVFILE=.env.local react-native run-android",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -57,7 +57,6 @@
     "jest-mock-axios": "^4.7.0-beta4",
     "react-native-dotenv": "^3.4.7",
     "react-native-flipper": "^0.177.0",
-    "react-native-flipper-performance-plugin": "^0.3.1",
     "ts-node": "^10.9.1",
     "tsconfig": "*",
     "typescript": "^4.6.3"
