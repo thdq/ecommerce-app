@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^6.9.8",
     "axios": "^1.2.3",
     "expo": "~47.0.12",
+    "expo-dev-client": "~2.0.1",
     "expo-localization": "~14.0.0",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
@@ -27,6 +28,7 @@
     "jest-expo": "^47.0.1",
     "jotai": "^1.13.1",
     "react": "18.1.0",
+    "react-devtools-core": "^4.27.1",
     "react-i18next": "^12.1.4",
     "react-native": "0.70.5",
     "react-native-reanimated": "~2.12.0",
@@ -35,8 +37,7 @@
     "react-native-web": "~0.18.9",
     "styled-components": "^5.3.6",
     "swr": "^2.0.1",
-    "ui-rn": "*",
-    "expo-dev-client": "~2.0.1"
+    "ui-rn": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

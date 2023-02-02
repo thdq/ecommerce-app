@@ -20,6 +20,17 @@
       "ios": {
         "resourceClass": "m1-medium"
       }
+    },
+    "devclient": {
+      "releaseChannel": "default",
+      "distribution": "internal",
+      "developmentClient": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
     }
   },
   "submit": {
