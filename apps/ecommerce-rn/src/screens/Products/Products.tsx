@@ -28,9 +28,9 @@ const Products = () => {
 
   const handleRetry = async () => await mutate()
 
-  const handleFetchMore = () => {
+  const handleFetchMore = useCallback(() => {
     setSize((size) => size + 1)
-  }
+  }, [setSize])
 
   return (
     <>

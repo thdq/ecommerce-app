@@ -2,7 +2,8 @@ import { ProductModel } from '@app/models'
 import { ProductCard } from '@app/components/ProductCard'
 import { ActivityIndicator, ListRenderItem, RefreshControl, ViewProps } from 'react-native'
 import { FlatList, ProductListContainer } from './ProductList.styles'
-import { useCartSummary } from '@app/hooks'
+import { useCartSummary, useDispatchCart } from '@app/hooks'
+import { useCallback } from 'react'
 
 const NUMBER_COLUMNS = 2
 
@@ -23,13 +24,19 @@ export const ProductList = ({
   ...props
 }: ProductListProps) => {
   const { cartSummary } = useCartSummary()
+  const { addToCart, removeFromCart } = useDispatchCart()
 
-  const renderItem: ListRenderItem<ProductModel> = ({ item: product }) => (
-    <ProductCard
-      inCart={cartSummary.hasProduct(product.id) || false}
-      testID='product-card'
-      product={product}
-    />
+  const renderItem: ListRenderItem<ProductModel> = useCallback(
+    ({ item: product }) => (
+      <ProductCard
+        onAddToCart={addToCart}
+        onRemoveFromCart={removeFromCart}
+        inCart={cartSummary.hasProduct(product.id) || false}
+        testID='product-card'
+        product={product}
+      />
+    ),
+    [cartSummary, addToCart, removeFromCart],
   )
 
   const getKeyExtractor = (product: ProductModel) => product.id.toString()

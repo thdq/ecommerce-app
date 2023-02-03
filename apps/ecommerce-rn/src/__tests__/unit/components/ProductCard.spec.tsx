@@ -1,9 +1,17 @@
 import { screen, fireEvent } from '@testing-library/react-native'
 
 import { productMock } from '@mocks/product-list'
-import { ProductCard } from '@app/components'
+import { ProductCard, ProductCardProps } from '@app/components'
 import { ProductModel } from '@app/models'
 import { renderWithProviders, translate } from '@app/__tests__/wrapper'
+
+const product = new ProductModel(productMock(1))
+const productCardPropsMock: ProductCardProps = {
+  inCart: false,
+  product,
+  onAddToCart: jest.fn(),
+  onRemoveFromCart: jest.fn(),
+}
 
 const TRANSALATE_PREFIX = 'components.product_card'
 
@@ -14,22 +22,19 @@ const addToCartAssert = () => {
   expect(addToCartButton).toBeVisible()
   fireEvent(addToCartButton, 'press')
 
-  const removeToCartButton = screen.getByText(t('remove'))
-  expect(removeToCartButton).toBeVisible()
+  expect(productCardPropsMock.onAddToCart).toBeCalledWith(product)
 }
 
 const removeToCartAssert = () => {
   const removeToCartButton = screen.getByText(t('remove'))
   fireEvent(removeToCartButton, 'press')
 
-  const addToCartButton = screen.getByTestId('add-to-cart-button')
-  expect(addToCartButton).toBeVisible()
+  expect(productCardPropsMock.onRemoveFromCart).toBeCalledWith(product)
 }
 
 describe('<ProductCard /> component', () => {
   it('should renders card information', () => {
-    const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard inCart={false} product={product} />)
+    renderWithProviders(<ProductCard {...productCardPropsMock} />)
 
     const titleText = screen.getByText(product.title)
     const priceText = screen.getByText(product.getFormattedPrice())
@@ -40,18 +45,14 @@ describe('<ProductCard /> component', () => {
     expect(thumbnail).toBeVisible()
   })
 
-  it('should add to cart if press on button', async () => {
-    const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard inCart={false} product={product} />)
-
+  it('should call onAddToCard if press on button', async () => {
+    renderWithProviders(<ProductCard {...productCardPropsMock} />)
     addToCartAssert()
   })
 
-  it('should remove to cart if press on button', async () => {
-    const product = new ProductModel(productMock(1))
-    renderWithProviders(<ProductCard inCart={false} product={product} />)
+  it('should call onRemoveFromCart if press on button', async () => {
+    renderWithProviders(<ProductCard {...productCardPropsMock} inCart={true} />)
 
-    addToCartAssert()
     removeToCartAssert()
   })
 })
