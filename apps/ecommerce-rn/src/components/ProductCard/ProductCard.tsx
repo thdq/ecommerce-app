@@ -1,9 +1,8 @@
 import { ActivityIndicator, ViewProps, Text } from 'react-native'
 import { ProductModel } from '@app/models'
-import { useDispatchCart } from '@app/hooks'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from 'ui-rn'
-import { useState, memo, useEffect } from 'react'
+import { useState, memo } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
 import {
@@ -20,23 +19,30 @@ import {
   View,
 } from './ProductCart.styles'
 
-type ProductCardProps = {
+export type ProductCardProps = {
   product: ProductModel
   inCart: boolean
+  onAddToCart: (product: ProductModel) => void
+  onRemoveFromCart: (product: ProductModel) => void
 } & ViewProps
 
-export const ProductCardComponent = ({ product, inCart, ...props }: ProductCardProps) => {
+export const ProductCardComponent = ({
+  product,
+  inCart,
+  onAddToCart,
+  onRemoveFromCart,
+  ...props
+}: ProductCardProps) => {
   const { t } = useTranslation()
 
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const { addToCart, removeFromCart } = useDispatchCart()
 
   const handleAddToCart = () => {
-    addToCart(product)
+    onAddToCart(product)
   }
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product)
+    onRemoveFromCart(product)
   }
 
   const handleShowLoading = () => {
